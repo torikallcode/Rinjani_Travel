@@ -18,7 +18,7 @@ export const HomePage = () => {
             <p className='text-white font-secondary text-xs sm:text-xl lg:text-base xl:text-base font-light text-start drop-shadow-md max-w-sm'>Travelling or travelling depends on where is your audience. Traveling is the preferred spelling in the LOMBOK.</p>
             <div>
               <button
-                className="relative px-8 py-2 rounded-xl bg-transparent isolation-auto z-10 border-2 border-white before:absolute before:w-full before:transition-all before:duration-500 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-white before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-500 text-white hover:text-hitam-0 font-primary font-medium hover:font-semibold text-base sm:text-2xl lg:text-lg xl:text-xl"
+                className="relative px-8 py-2 rounded-xl bg-transparent isolation-auto z-10 border-2 border-white before:absolute before:w-full before:transition-all before:duration-500 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-biru-0 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-500 text-white hover:text-white hover:border-biru-0 font-primary font-medium  text-base sm:text-2xl lg:text-lg xl:text-xl"
               >
                 Get started →
               </button>

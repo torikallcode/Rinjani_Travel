@@ -24,7 +24,7 @@ export const Layout = () => {
       <section className='w-full'>
         <AboutMe></AboutMe>
       </section>
-      <section className='w-full px-5 md:px-11 xl:px-28 py-28 xl:max-w-[100rem] mx-auto'>
+      <section className='w-full px-5 md:px-11 xl:px-28  py-20 xl:max-w-[100rem] mx-auto'>
         <ContactMe></ContactMe>
       </section>
     </div>
