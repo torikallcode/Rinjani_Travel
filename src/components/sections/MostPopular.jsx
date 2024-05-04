@@ -10,7 +10,7 @@ export const MostPopular = () => {
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
         <CardMostPopular
           style={{ backgroundImage: "url('img/Rinjani.jpg')" }}
-          className={`lg:col-span-2 `}
+          className={`lg:col-span-2`}
           lokasi={'Sembalun , Lombok Timur'}
           nama={'Gunung Rinjani'}
         />

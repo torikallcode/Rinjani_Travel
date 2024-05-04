@@ -13,6 +13,7 @@ export default {
         hitam: ["#222831"],
         putih: ["#EEEEEE"],
         biru: ["#00ADB5"],
+        abu: ["#393E46"],
       },
     },
   },
