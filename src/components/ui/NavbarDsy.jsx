@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { Link, animateScroll as scroll } from 'react-scroll';
+import { useState, useEffect, useRef } from 'react';
 
 export const NavbarDsy = ({ className }) => {
 
@@ -21,8 +21,9 @@ export const NavbarDsy = ({ className }) => {
     };
   }, [scrolled]);
 
-  const [aktif, setAktif] = useState(false)
 
+  // sidebar
+  const [aktif, setAktif] = useState(false)
   const handleClick = () => {
     setAktif(!aktif)
   }
@@ -32,6 +33,20 @@ export const NavbarDsy = ({ className }) => {
     document.getElementById("my-drawer-3").checked = false;
     setAktif(!aktif)
   }
+
+  // goto
+  const [activeLink, setActiveLink] = useState(null);
+  const navRef = useRef(null);
+
+  const handleLinkClick = (section) => {
+    setActiveLink(section);
+  };
+
+  const scrollToSection = (section) => {
+    const element = navRef.current.querySelector(`[id="${section}"]`);
+    element.scrollIntoView({ behavior: 'smooth' });
+  };
+
 
   return (
     <div className={`drawer ${className} drawer-end`}>
@@ -49,12 +64,52 @@ export const NavbarDsy = ({ className }) => {
               </label>
             </div>
             <div className="flex-none hidden lg:block">
-              <ul className="menu menu-horizontal flex justify-center items-center space-x-5">
+              <ul className="flex justify-center items-center gap-x-14">
                 {/* Navbar menu content here */}
-                <li className='text-white text-base font-secondary'><Link to={``}>Home</Link></li>
-                <li className='text-white text-base font-secondary'><Link to={``}>About</Link></li>
-                <li className='text-white text-base font-secondary'><Link to={``}>Galery</Link></li>
-                <li className='text-white text-base font-secondary'><Link to={``} className='bg-biru-0 px-4 py-2 rounded-lg hover:bg-[#008e93]'>Contact us</Link></li>
+                <li className='text-white cursor-pointer text-base font-secondary'>
+                  <Link
+                    activeClass="active"
+                    to="home"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    onClick={() => handleClick('home')}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className='text-white cursor-pointer text-base font-secondary'>
+                  <Link
+                    activeClass="active"
+                    to="about"
+                    spy={true}
+                    smooth={true}
+                    offset={-200}
+                    duration={500}
+                    onClick={() => handleLinkClick('about')}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li className='text-white cursor-pointer text-base font-secondary'>
+                  <Link
+                    to="galery"
+                  >
+                    Galery
+                  </Link>
+                </li>
+                <li className='text-white cursor-pointer text-base font-secondary bg-biru-0 px-4 py-2 rounded-lg hover:bg-[#008e93]'>
+                  <Link
+                    activeClass="active"
+                    to="contact"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    onClick={() => handleLinkClick('Contact')}
+                  >
+                    Contact us
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -65,10 +120,52 @@ export const NavbarDsy = ({ className }) => {
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
         <ul className="menu w-full min-h-full bg-hitam-0 flex justify-start py-32">
           {/* Sidebar content here */}
-          <li><h1 onClick={closeSidebar} className='text-white font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>Home</h1></li>
-          <li><h1 onClick={closeSidebar} className='text-white font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>About</h1></li>
-          <li><h1 onClick={closeSidebar} className='text-white font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>Galery</h1></li>
-          <li><h1 onClick={closeSidebar} className='text-white font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>Contact us</h1></li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
+              to="home"
+              spy={true}
+              smooth={true}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              Home
+            </Link>
+          </li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              About
+            </Link>
+          </li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              to="galery"
+              onClick={closeSidebar}
+            >
+              Galery
+            </Link>
+          </li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              Contact us
+            </Link>
+          </li>
         </ul>
         <footer className="footer footer-center p-10 bg-transparent text-base-content rounded absolute bottom-0">
           <nav>
@@ -83,6 +180,6 @@ export const NavbarDsy = ({ className }) => {
           </aside>
         </footer>
       </div>
-    </div>
+    </div >
   )
 }

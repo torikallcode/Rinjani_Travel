@@ -3,7 +3,7 @@ import React from 'react'
 export const HomePage = () => {
 
   return (
-    <div className='w-full h-screen gradient-mask-b-70  relative'>
+    <section id='home' className='w-full h-screen gradient-mask-b-70  relative'>
       <div
         className='w-full h-full absolute top-0 left-0 bg-cover bg-center -z-20'
         style={{ backgroundImage: "url('img/homepage3.jpg')" }}
@@ -27,6 +27,6 @@ export const HomePage = () => {
           <img src="img/peta.png" alt="" className='hidden lg:block w-72 h-72 lg:w-96 lg:h-96 xl:w-[450px] xl:h-[450px]' />
         </div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -28,7 +28,7 @@ export const ContactMe = () => {
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
       <div className=''>
-        <h1 className='text-gray-300 font-tomorrow text-left'>Kontak kami</h1>
+        <h1 id='contact' className='text-gray-300 font-tomorrow text-left'>Kontak kami</h1>
         <h1 className='text-white font-tomorrow text-3xl text-left mb-5'>Jangan ragu menghubungi kami untuk informasi lebih lanjut</h1>
         <Link to={"/"} className='mb-16'>
           <button

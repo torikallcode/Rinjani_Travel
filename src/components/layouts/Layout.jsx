@@ -20,20 +20,20 @@ export const Layout = () => {
       <HomePage />
       <section className='w-full px-5 md:px-11 xl:px-28 py-28 xl:max-w-[100rem] mx-auto'>
         <Statistik className={`w-full mb-32`} />
-        <section id='home' className='w-full mb-32'>
+        <section className='w-full mb-32'>
           <MostPopular></MostPopular>
         </section>
         <section className='w-full'>
           <LayananKami></LayananKami>
         </section>
       </section>
-      <section className='w-full' ref={contactRef} id="contact">
+      <section className='w-full' ref={contactRef}>
         <AboutMe></AboutMe>
       </section>
-      <section className='w-full px-5 md:px-11 xl:px-28  py-20 xl:max-w-[100rem] mx-auto'>
+      <section className='w-full px-5 md:px-11 xl:px-28  py-32 xl:max-w-[100rem] mx-auto'>
         <ContactMe></ContactMe>
       </section>
       <Footer></Footer>
-    </div>
+    </div >
   )
 }
