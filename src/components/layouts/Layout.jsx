@@ -23,14 +23,14 @@ export const Layout = () => {
         <section className='w-full mb-32'>
           <MostPopular></MostPopular>
         </section>
-        <section className='w-full'>
+        <section className='w-full lg:py-20'>
           <LayananKami></LayananKami>
         </section>
       </section>
       <section className='w-full' ref={contactRef}>
         <AboutMe></AboutMe>
       </section>
-      <section className='w-full px-5 md:px-11 xl:px-28  py-32 xl:max-w-[100rem] mx-auto'>
+      <section className='w-full px-5 md:px-11 xl:px-28 py-24 lg:py-32 xl:max-w-[100rem] mx-auto'>
         <ContactMe></ContactMe>
       </section>
       <Footer></Footer>

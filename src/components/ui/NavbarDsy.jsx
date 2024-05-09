@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, animateScroll as scroll } from 'react-scroll';
+import { Link, animateScroll as ScrollLink } from 'react-scroll';
 import { useState, useEffect, useRef } from 'react';
-
+import { Link as RouterLink } from 'react-router-dom'
 export const NavbarDsy = ({ className }) => {
 
   const [scrolled, setScrolled] = useState(false);
@@ -55,7 +55,17 @@ export const NavbarDsy = ({ className }) => {
         {/* Navbar */}
         <div className={`w-full navbar md:px-8 xl:px-28 transition-all ease-linear ${scrolled ? ' bg-hitam-0 shadow-md' : 'bg-transparent'}`}>
           <div className='w-full mx-auto xl:max-w-[100rem]'>
-            <div className="flex-1 px-2 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">TRVL.</div>
+            <div className="flex-1 px-2 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">
+              <Link
+                activeClass="active"
+                to="home"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                TRVL.
+              </Link>
+            </div>
             <div className="flex-none lg:hidden z-10">
               <label onClick={handleClick} htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                 {aktif ? <svg xmlns="http://www.w3.org/2000/svg" fill='#ffffff' width="44" height="44" viewBox="0 0 24 24"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
@@ -81,6 +91,19 @@ export const NavbarDsy = ({ className }) => {
                 <li className='text-white cursor-pointer text-base font-secondary'>
                   <Link
                     activeClass="active"
+                    to="service"
+                    spy={true}
+                    smooth={true}
+                    offset={-300}
+                    duration={500}
+                    onClick={() => handleLinkClick('service')}
+                  >
+                    Service
+                  </Link>
+                </li>
+                <li className='text-white cursor-pointer text-base font-secondary'>
+                  <Link
+                    activeClass="active"
                     to="about"
                     spy={true}
                     smooth={true}
@@ -89,13 +112,6 @@ export const NavbarDsy = ({ className }) => {
                     onClick={() => handleLinkClick('about')}
                   >
                     About
-                  </Link>
-                </li>
-                <li className='text-white cursor-pointer text-base font-secondary'>
-                  <Link
-                    to="galery"
-                  >
-                    Galery
                   </Link>
                 </li>
                 <li className='text-white cursor-pointer text-base font-secondary bg-biru-0 px-4 py-2 rounded-lg hover:bg-[#008e93]'>
@@ -135,6 +151,19 @@ export const NavbarDsy = ({ className }) => {
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
             <Link
               activeClass="active"
+              to="service"
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              service
+            </Link>
+          </li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
               to="about"
               spy={true}
               smooth={true}
@@ -143,14 +172,6 @@ export const NavbarDsy = ({ className }) => {
               onClick={closeSidebar}
             >
               About
-            </Link>
-          </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
-            <Link
-              to="galery"
-              onClick={closeSidebar}
-            >
-              Galery
             </Link>
           </li>
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>

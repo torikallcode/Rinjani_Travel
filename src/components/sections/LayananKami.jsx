@@ -28,7 +28,8 @@ export const LayananKami = () => {
   ]
 
   return (
-    <div
+    <section
+      id='service'
       className='w-full flex flex-col '>
       <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-5 content-end'>
         <div
@@ -44,7 +45,7 @@ export const LayananKami = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

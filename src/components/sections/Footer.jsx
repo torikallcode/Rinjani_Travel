@@ -56,9 +56,15 @@ export const Footer = () => {
         </h2>
         <h2 className="text-gray-300 link link-hover">
           <Link
-            to="galery"
+            activeClass="active"
+            to="service"
+            spy={true}
+            offset={-300}
+            smooth={true}
+            duration={500}
+            onClick={() => handleLinkClick('service')}
           >
-            Galery
+            service
           </Link>
         </h2>
         <h2 className="text-gray-300 link link-hover">
@@ -77,10 +83,10 @@ export const Footer = () => {
       <nav>
         <h6 className="text-gray-300 footer-title">Social</h6>
         <div className="grid grid-flow-col gap-4">
-          <Instagram size={24} warna={'#d1d5db'}></Instagram>
-          <Facebook size={24} warna={'#d1d5db'}></Facebook>
-          <WhatsApp size={24} warna={'#d1d5db'}></WhatsApp>
-          <Email size={24} warna={'#d1d5db'}></Email>
+          <Instagram size={24} warna={'#d1d5db'} className={'cursor-pointer'} ></Instagram>
+          <Facebook size={24} warna={'#d1d5db'} className={'cursor-pointer'} ></Facebook>
+          <WhatsApp size={24} warna={'#d1d5db'} className={'cursor-pointer'} ></WhatsApp>
+          <Email size={24} warna={'#d1d5db'} className={'cursor-pointer'} ></Email>
         </div>
       </nav>
     </footer>
