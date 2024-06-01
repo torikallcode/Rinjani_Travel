@@ -36,7 +36,7 @@ export const LayananKami = () => {
           data-aos="fade-up"
           data-aos-once="true"
           className='flex flex-col justify-start sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-xl'>
-          <h1 className='text-putih-0 font-tomorrow text-4xl xl:text-5xl mb-12 xl:mb-12'>Layanan Kami</h1>
+          <h1 className='text-putih-0 font-tomorrow text-4xl xl:text-4xl mb-12 xl:mb-12'>Layanan Kami</h1>
           <p className='text-putih-0 font-secondary text-base sm:text-xl lg:text-base xl:text-base'>Selamat datang di pusat solusi perjalanan kami! Temukan akomodasi eksklusif, transportasi nyaman, paket wisata tak terlupakan, dan asuransi perjalanan terpercaya untuk petualangan lancar dan tak terlupakan Anda.</p>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 w-full'>

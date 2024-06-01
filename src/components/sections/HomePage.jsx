@@ -15,7 +15,7 @@ export const HomePage = () => {
       <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-30 -z-10'>
 
       </span>
-      <div className='flex flex-col items-center justify-center h-full w-full z-10 relative px-5 md:px-8 lg:px-11 xl:px-28 xl:max-w-[100rem] mx-auto'>
+      <div className='flex flex-col items-center justify-center h-full w-full z-10 relative px-5 md:px-8 lg:px-11 xl:px-20 xl:max-w-[100rem] mx-auto'>
         <div className='w-full flex flex-col lg:flex-row lg:justify-between lg:items-center'>
           <div className='flex justify-start flex-col space-y-3'>
             <h1 className='text-white font-tomorrow text-5xl sm:text-7xl lg:text-5xl xl:text-7xl font-medium text-start drop-shadow-md'>Back to nature <br /> <span>make the future</span></h1>

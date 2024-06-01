@@ -7,6 +7,8 @@ import { LayananKami } from '../sections/LayananKami'
 import { AboutMe } from '../sections/AboutMe'
 import { ContactMe } from '../sections/ContactMe'
 import { Footer } from '../sections/Footer'
+import { RinjaniTrackigPackage } from '../sections/RinjaniTrackigPackage'
+import { RinjaniTour } from '../sections/RinjaniTour'
 
 export const Layout = () => {
 
@@ -18,19 +20,26 @@ export const Layout = () => {
     <div>
       <NavbarDsy className={`z-50 fixed`} />
       <HomePage />
-      <section className='w-full px-5 md:px-11 xl:px-28 py-28 xl:max-w-[100rem] mx-auto'>
+      <section className='w-full px-5 md:px-11 xl:px-20 py-28 xl:max-w-[100rem] mx-auto'>
         <Statistik className={`w-full mb-32`} />
-        <section className='w-full mb-32'>
+        <section className='w-full mb-20'>
           <MostPopular></MostPopular>
         </section>
-        <section className='w-full lg:py-20'>
+        <section className='w-full py-14'>
+          <RinjaniTour></RinjaniTour>
+        </section>
+        <section className='w-full py-14'>
+          <RinjaniTrackigPackage></RinjaniTrackigPackage>
+        </section>
+
+        <section className='w-full py-14'>
           <LayananKami></LayananKami>
         </section>
       </section>
       <section className='w-full' ref={contactRef}>
         <AboutMe></AboutMe>
       </section>
-      <section className='w-full px-5 md:px-11 xl:px-28 py-24 lg:py-32 xl:max-w-[100rem] mx-auto'>
+      <section className='w-full px-5 md:px-11 xl:px-20 py-24 lg:py-32 xl:max-w-[100rem] mx-auto'>
         <ContactMe></ContactMe>
       </section>
       <Footer></Footer>

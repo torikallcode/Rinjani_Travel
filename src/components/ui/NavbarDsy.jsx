@@ -53,7 +53,7 @@ export const NavbarDsy = ({ className }) => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className={`w-full navbar md:px-8 xl:px-28 transition-all ease-linear ${scrolled ? ' bg-hitam-0 shadow-md' : 'bg-transparent'}`}>
+        <div className={`w-full navbar md:px-8 xl:px-20 transition-all ease-linear ${scrolled ? ' bg-hitam-0 shadow-md' : 'bg-transparent'}`}>
           <div className='w-full mx-auto xl:max-w-[100rem]'>
             <div className="flex-1 px-2 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">
               <Link
