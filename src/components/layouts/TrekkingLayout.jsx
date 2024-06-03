@@ -1,0 +1,77 @@
+import React, { useState, useEffect } from 'react'
+import { NavbarDsy } from '../ui/NavbarDsy'
+import { HomePage } from '../sections/Trekking/HomePage'
+import { useParams } from 'react-router-dom';
+import { DataTracking } from '@/data/DataTracking'; // Ensure this is the correct path
+import { MainContent } from '../sections/Trekking/MainContent';
+
+export const TrekkingLayout = () => {
+
+
+  const { id } = useParams();
+  const [trekking, setTrekking] = useState({});
+
+  useEffect(() => {
+    const trekkingData = DataTracking.find(item => item.id.toString() === id);
+    //mengembalikan elemen pertama dalam array kemudian  memeriksa apakah id yang sudah diubah menjadi string dari item tersebut sama dengan id dari parameter DataTracking
+    setTrekking(trekkingData || {});
+  }, [id]);
+
+  console.log(trekking);
+
+  return (
+    <div>
+      <NavbarDsy className={`z-50 fixed`} />
+      {trekking ? (
+        <section className='w-full min-h-screen'>
+          <div className='w-full h-[35rem] xl:max-w-[100rem] mx-auto'>
+            <HomePage
+              Image={trekking.image}
+              title={trekking.title}
+              className={`px-5 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto`}
+            ></HomePage>
+          </div>
+          <MainContent
+            className={`w-full px-5 md:px-11 xl:px-20 pb-28 pt-7 xl:max-w-[100rem] mx-auto`}
+            title={trekking.title}
+            descLengkap={trekking.descLengkap}
+            daySatu={trekking.daySatu}
+            dayDua={trekking.dayDua}
+            dayTiga={trekking.dayTiga}
+            dayEmpat={trekking.dayEmpat}
+            daySatuLengkap={trekking.daySatuLengkap}
+            dayDuaLengkap={trekking.dayDuaLengkap}
+            dayTigaLengkap={trekking.dayTigaLengkap}
+            dayEmpatLengkap={trekking.dayEmpatLengkap}
+          >
+            {trekking.include ? (
+              <>
+                <h1 className='text-putih-0 font-secondary text-lg font-medium'>Price Include</h1>
+                <ul className='list-disc px-5'>
+                  {trekking.include.map((item, index) => (
+                    <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>
+                  ))}
+                </ul>
+              </>
+            )
+              : null}
+            {trekking.exclude ? (
+              <>
+                <h1 className='text-putih-0 font-secondary text-lg font-medium'>Price Exclude</h1>
+                <ul className='list-disc px-5'>
+                  {trekking.exclude.map((item, index) => (
+                    <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>
+                  ))}
+                </ul>
+              </>
+            )
+              : null}
+          </MainContent>
+        </section>
+      ) : (
+        <p className='text-white'>loading...</p>
+      )
+      }
+    </div>
+  )
+}

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 export const CardTour = ({ className, image }) => {
   return (
     <div
-      data-aos="fade-up"
-      data-aos-once="true"
+      // data-aos="fade-up"
+      // data-aos-once="true"
       style={{ backgroundImage: `url(${image})` }}
-      className={`${className} w-full bg-cover bg-center h-60 sm:h-72 md:h-80 rounded-xl relative px-5 py-7 flex flex-col justify-between`}
+      className={`${className} h-60 sm:h-72 md:h-80 rounded-xl w-full p-3 bg-cover bg-center ease-in-out relative flex flex-col justify-between`}
     >
       <h1 className='text-putih-0 drop-shadow-lg font-secondary text-lg leading-6 font-medium z-10'>Tour Sendang Gile and <br /> Tiu Kelep Waterfall</h1>
       <Link className='text-putih-0 drop-shadow-lg font-secondary text-sm font-medium z-10 leading-4 bg-biru-0 p-3 w-44 text-center rounded-lg shadow-sm'>Start From $260</Link>
