@@ -31,8 +31,7 @@ export const Layout = () => {
         <section className='w-full py-14'>
           <RinjaniTrackigPackage></RinjaniTrackigPackage>
         </section>
-
-        <section className='w-full py-14'>
+        <section className='w-full lg:py-14'>
           <LayananKami></LayananKami>
         </section>
       </section>

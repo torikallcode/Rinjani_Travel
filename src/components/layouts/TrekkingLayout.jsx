@@ -7,7 +7,6 @@ import { MainContent } from '../sections/Trekking/MainContent';
 
 export const TrekkingLayout = () => {
 
-
   const { id } = useParams();
   const [trekking, setTrekking] = useState({});
 
@@ -16,7 +15,6 @@ export const TrekkingLayout = () => {
     //mengembalikan elemen pertama dalam array kemudian  memeriksa apakah id yang sudah diubah menjadi string dari item tersebut sama dengan id dari parameter DataTracking
     setTrekking(trekkingData || {});
   }, [id]);
-
   console.log(trekking);
 
   return (
@@ -58,7 +56,7 @@ export const TrekkingLayout = () => {
             {trekking.exclude ? (
               <>
                 <h1 className='text-putih-0 font-secondary text-lg font-medium'>Price Exclude</h1>
-                <ul className='list-disc px-5'>
+                <ul className='list-disc px-5 mb-5'>
                   {trekking.exclude.map((item, index) => (
                     <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>
                   ))}

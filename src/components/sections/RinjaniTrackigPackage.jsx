@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom'
 import { DataTracking } from '@/data/DataTracking'
 
 export const RinjaniTrackigPackage = () => {
+
+  const limitedData = DataTracking.slice(0, 5)
+
   return (
     <section className='w-full flex flex-col '>
       <h1 className='text-putih-0 font-tomorrow text-4xl xl:text-4xl mb-12 xl:mb-12'>Rinjani Trekking <br /> package</h1>
       <div className="carousel flex gap-x-7 mb-5">
-        {DataTracking.map((item, index) => (
+        {limitedData.map((item, index) => (
           <div key={index} className="carousel-item">
             <CardTracking
               id={item.id}
