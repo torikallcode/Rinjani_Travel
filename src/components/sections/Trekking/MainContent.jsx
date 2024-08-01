@@ -1,3 +1,6 @@
+import { SideGalery } from '@/components/fragments/Side/SideGalery'
+import { SideSupport } from '@/components/fragments/Side/SideSupport'
+import { SideTrekking } from '@/components/fragments/Side/SideTrekking'
 import React from 'react'
 export const MainContent = ({
   title,
@@ -25,8 +28,14 @@ export const MainContent = ({
         {children}
         <button className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full max-w-sm mx-auto text-base text-center">Booking Now</button>
       </div>
-      <div className='bg-gray-700 h-96 lg:w-[30%]'>
-
+      <div className='h-96 lg:w-[30%] overflow-hidden rounded-lg'>
+        <SideSupport />
+      </div>
+      <div className='h-96 lg:w-[30%] overflow-hidden rounded-lg'>
+        <SideGalery />
+      </div>
+      <div className='h-96 lg:w-[30%] overflow-hidden rounded-lg'>
+        <SideTrekking />
       </div>
     </div>
   )
