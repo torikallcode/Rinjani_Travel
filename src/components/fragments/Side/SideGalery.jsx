@@ -4,7 +4,7 @@ export const SideGalery = () => {
   return (
     <div className="w-full rounded-md">
       <header className="w-full bg-biru-0 h-full">
-        <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Support</h1>
+        <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Galery</h1>
       </header>
       <div className="w-full grid grid-cols-2 gap-3 content-stretch py-3">
         <div

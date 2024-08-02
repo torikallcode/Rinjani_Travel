@@ -4,6 +4,8 @@ import { HomePage } from '../sections/Trekking/HomePage'
 import { useParams } from 'react-router-dom';
 import { DataTracking } from '@/data/DataTracking'; // Ensure this is the correct path
 import { MainContent } from '../sections/Trekking/MainContent';
+import { Footer } from '../sections/Footer';
+import { CarouselTrekking } from '../ui/CarouselTrekking';
 
 export const TrekkingLayout = () => {
 
@@ -30,7 +32,7 @@ export const TrekkingLayout = () => {
             ></HomePage>
           </div>
           <MainContent
-            className={`w-full px-5 md:px-11 xl:px-20 pb-28 pt-7 xl:max-w-[100rem] mx-auto`}
+            className={`w-full px-5 md:px-11 xl:px-20 pt-7 xl:max-w-[100rem] mx-auto`}
             title={trekking.title}
             descLengkap={trekking.descLengkap}
             daySatu={trekking.daySatu}
@@ -70,6 +72,7 @@ export const TrekkingLayout = () => {
         <p className='text-white'>loading...</p>
       )
       }
+      <Footer></Footer>
     </div>
   )
 }

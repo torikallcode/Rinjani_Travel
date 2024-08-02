@@ -2,14 +2,14 @@ import React from "react";
 import { DataTracking } from "@/data/DataTracking";
 
 
-export const SideTrekking = () => {
+export const SideTour = () => {
 
-  const limitedData = DataTracking.slice(0, 6)
+  const limitedData = DataTracking.slice(0, 5)
 
   return (
     <div className="w-full rounded-md">
       <header className="w-full bg-biru-0 h-full">
-        <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Rinjani Trekking Package</h1>
+        <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Rinjani Tour</h1>
       </header>
       <div className="w-full">
         <ul className="text-gray-300 font-secondary text-sm">
