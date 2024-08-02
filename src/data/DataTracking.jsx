@@ -10,10 +10,10 @@ export const DataTracking = [
     include: ['Pick-up from and drop-off to area in Lombok.', 'Fuel, driver, and parking fees.', 'Porter and guide.', 'Equipment, tent, sleeping bag, cook gear, mattress, toilet tent, and emergency lamp.', 'Food and water as mentioned on the itinerary.', 'Government tax and Trekking insurance.'],
     exclude: ['Bed and breakfast and rent a car.', 'International, domestic flight ticket and connecting transportation.', 'Travel and health insurance.', 'National Park ticket entrance.', 'Tips for driver, porter and mountain guide.', 'Personal expenses.'],
     descLengkap: 'Good trekking program for you who have good level of fitness and have several mountain climbs experiences. Web Designed this trip to specially for real trekker (advanced) Participant/s. But, we not recommended for beginners because this trip will exhaust many your energy, so fastly.',
-    daySatu: 'Day 1: ',
-    dayDua: 'Day 2: ',
-    dayTiga: 'Day 3: ',
-    dayEmpat: 'Day 4: ',
+    daySatu: 'Day 1: Trekking Start and Sembalun Crater Rim Camp',
+    dayDua: 'Day 2: Summit Ascent and Segara Anak Lake',
+    dayTiga: 'Day 3: Trek to Senaru Crater Rim',
+    dayEmpat: 'Day 4: Descend to Senaru Village',
     daySatuLengkap: `Wake up at 6:00 and get breakfast. After that, we will walk to register at the Rinjani information center Sembalun.
 Trekking start from the village of Sembalun around 8:00 am. We start with a gentle climb through open meadow. After about 2 hours of walking, we will reach the post 1 (1300m), and another 40 minutes to Pos 2 (1500m). We will continue to Pos 3 (1800m) and have lunch here.
 After lunch and rest, we will go to Sembalun crater rim (2639m). It takes 3 hours including a prolonged steep climb. We will camp the night on the crater rim. We can enjoy the view of sunrise and sunset.`,

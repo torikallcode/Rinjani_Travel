@@ -46,7 +46,7 @@ export const TrekkingLayout = () => {
           >
             {trekking.include ? (
               <>
-                <h1 className='text-putih-0 font-secondary text-lg font-medium'>Price Include</h1>
+                <h1 className='text-putih-0 font-secondary text-base font-medium'>Price Include</h1>
                 <ul className='list-disc px-5'>
                   {trekking.include.map((item, index) => (
                     <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>
@@ -57,7 +57,7 @@ export const TrekkingLayout = () => {
               : null}
             {trekking.exclude ? (
               <>
-                <h1 className='text-putih-0 font-secondary text-lg font-medium'>Price Exclude</h1>
+                <h1 className='text-putih-0 font-secondary text-base font-medium'>Price Exclude</h1>
                 <ul className='list-disc px-5 mb-5'>
                   {trekking.exclude.map((item, index) => (
                     <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>

@@ -22,55 +22,62 @@ export const MainContent = ({
 }) => {
 
   const images = [
-    'https://via.placeholder.com/600/92c952',
-    'https://via.placeholder.com/600/771796',
-    'https://via.placeholder.com/600/24f355',
+    '/img/mandalika.webp',
+    '/img/Rinjani.jpg',
+    '/img/pinkbeach.jpg',
   ];
 
   return (
     <div className={`${className} flex flex-col lg:flex-row w-full lg:gap-x-10`}>
       <div className='lg:w-[70%] mb-10'>
-        <h1 className='text-putih-0 font-tomorrow font-medium text-4xl max-w-xs mb-5'>{title}</h1>
+        <h1 className='text-putih-0 font-tomorrow font-medium text-4xl mb-5'>{title}</h1>
         <p className='text-gray-300 font-secondary text-sm mb-3'>{descLengkap}</p>
-        {/* <CarouselTrekking images={images}></CarouselTrekking> */}
-        <Acourdion>
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            <span className='font-semibold text-base text-putih-0'>{daySatu}</span>{daySatuLengkap}
-          </p>
-        </Acourdion>
-        <Acourdion>
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            <span className='font-semibold text-base text-putih-0'>{dayDua}</span>{dayDuaLengkap}
-          </p>
-        </Acourdion>
-        <Acourdion>
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            <span className='font-semibold text-base text-putih-0'>{dayTiga}</span>{dayTigaLengkap}
-          </p>
-        </Acourdion>
-        <Acourdion>
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            <span className='font-semibold text-base text-putih-0'>{dayEmpat}</span>{dayEmpatLengkap}
-          </p>
-        </Acourdion>
-
+        <CarouselTrekking images={images}></CarouselTrekking>
         {children}
+        <Acourdion
+          judulHari={daySatu}
+        >
+          <p className='text-gray-300 font-secondary text-sm mb-3'>
+            {daySatuLengkap}
+          </p>
+        </Acourdion>
+        <Acourdion
+          judulHari={dayDua}
+        >
+          <p className='text-gray-300 font-secondary text-sm mb-3'>
+            {dayDuaLengkap}
+          </p>
+        </Acourdion>
+        <Acourdion
+          judulHari={dayTiga}
+        >
+          <p className='text-gray-300 font-secondary text-sm mb-3'>
+            {dayTigaLengkap}
+          </p>
+        </Acourdion>
+        <Acourdion
+          judulHari={dayEmpat}
+        >
+          <p className='text-gray-300 font-secondary text-sm mb-3'>
+            {dayEmpatLengkap}
+          </p>
+        </Acourdion>
         <button className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full mx-auto text-base text-center">Booking Now</button>
       </div>
       <div className='w-full lg:w-[30%]'>
-        <div className='min-h-80 mb-7  overflow-hidden rounded-lg'>
+        <div className='min-h-80 mb-7  overflow-hidden'>
           <SideSupport />
         </div>
-        <div className='min-h-80 mb-7 overflow-hidden rounded-lg'>
+        <div className='min-h-80 mb-7 overflow-hidden'>
           <SideGalery />
         </div>
-        <div className='min-h-80 mb-7 overflow-hidden rounded-lg'>
+        <div className='min-h-80 mb-7 overflow-hidden'>
           <SideTrekking />
         </div>
-        <div className='min-h-80 mb-7 overflow-hidden rounded-lg'>
+        <div className='min-h-80 mb-7 overflow-hidden'>
           <SideTour />
         </div>
-        <div className='min-h-80 mb-7 overflow-hidden rounded-lg'>
+        <div className='min-h-80 mb-7 overflow-hidden'>
           <SideSummit />
         </div>
       </div>

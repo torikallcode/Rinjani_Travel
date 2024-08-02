@@ -7,7 +7,7 @@ export const SideTrekking = () => {
   const limitedData = DataTracking.slice(0, 6)
 
   return (
-    <div className="w-full rounded-md">
+    <div className="w-full">
       <header className="w-full bg-biru-0 h-full">
         <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Rinjani Trekking Package</h1>
       </header>
