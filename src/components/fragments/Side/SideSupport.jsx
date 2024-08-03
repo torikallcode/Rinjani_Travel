@@ -2,9 +2,9 @@ import React from "react";
 
 export const SideSupport = () => {
   return (
-    <div className="w-full rounded-md">
+    <div className="w-full rounded-lg overflow-hidden">
       <header className="w-full bg-biru-0 h-full">
-        <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Support</h1>
+        <h1 className="text-white font-tomorrow text-lg py-3 px-3 text-start">Contact me</h1>
       </header>
       <div className="w-full">
         <ul className="text-gray-300 font-secondary text-sm">
