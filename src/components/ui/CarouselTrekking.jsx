@@ -27,7 +27,7 @@ export const CarouselTrekking = ({ images, autoSlideInterval = 4000 }) => {
 
   return (
     <div className="relative w-full mx-auto my-5">
-      <div className="pt-[46.67%] relative overflow-hidden">
+      <div className="pt-[66.67%] lg:pt-[46.67%] relative overflow-hidden">
         <div
           className="absolute top-0 left-0 w-full h-full flex transition-transform duration-500"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
