@@ -64,8 +64,8 @@ export const MainContent = ({
         </Acourdion>
         <button className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full mx-auto text-base text-center">Booking Now</button>
       </div>
-      <div className='w-full lg:w-[30%] sticky top-20 bg-gray-500 rounded-lg bg-opacity-20'>
-        <div className='min-h-80 mb-7 overflow-hidden'>
+      <div className='w-full lg:w-[30%] sticky top-20 bg-abu-0 bg-opacity-50 rounded-lg'>
+        <div className='min-h-80 overflow-hidden py-3'>
           <SideSupport />
         </div>
       </div>

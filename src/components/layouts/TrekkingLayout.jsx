@@ -6,6 +6,7 @@ import { DataTracking } from '@/data/DataTracking'; // Ensure this is the correc
 import { MainContent } from '../sections/Trekking/MainContent';
 import { Footer } from '../sections/Footer';
 import { CarouselTrekking } from '../ui/CarouselTrekking';
+import NotFound from '../elements/NotFound';
 
 export const TrekkingLayout = () => {
 
@@ -17,7 +18,13 @@ export const TrekkingLayout = () => {
     //mengembalikan elemen pertama dalam array kemudian  memeriksa apakah id yang sudah diubah menjadi string dari item tersebut sama dengan id dari parameter DataTracking
     setTrekking(trekkingData || {});
   }, [id]);
-  console.log(trekking);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
+  if (trekking.id === undefined) return <NotFound />
 
   return (
     <div>
@@ -32,7 +39,7 @@ export const TrekkingLayout = () => {
             ></HomePage>
           </div>
           <MainContent
-            className={`w-full px-5 md:px-11 xl:px-20 pt-7 xl:max-w-[100rem] mx-auto`}
+            className={`w-full px-5 md:px-11 xl:px-20 pt-7 xl:max-w-[100rem] mx-auto pb-7`}
             title={trekking.title}
             descLengkap={trekking.descLengkap}
             daySatu={trekking.daySatu}

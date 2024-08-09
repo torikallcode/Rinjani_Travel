@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home } from './pages/home'
 import { Galery } from './pages/galery'
 import { DetailTrekking } from './pages/DetailTrekking'
+import NotFound from './components/elements/NotFound'
 
 const Route = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const Route = createBrowserRouter([
   {
     path: '/DetailTrekking/:id',
     element: <DetailTrekking />
+  },
+  {
+    path: '*',
+    element: <NotFound />
   }
 ])
 
