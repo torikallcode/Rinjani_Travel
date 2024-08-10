@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, animateScroll as ScrollLink } from 'react-scroll';
 import { useState, useEffect, useRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom'
+import { Dropdowndsy } from './Dropdowndsy';
 export const NavbarDsy = ({ className }) => {
 
   const [scrolled, setScrolled] = useState(false);
@@ -96,6 +96,9 @@ export const NavbarDsy = ({ className }) => {
                   >
                     Home
                   </Link>
+                </li>
+                <li className='text-white cursor-pointer text-base font-secondary'>
+                  <Dropdowndsy></Dropdowndsy>
                 </li>
                 <li className='text-white cursor-pointer text-base font-secondary'>
                   <Link

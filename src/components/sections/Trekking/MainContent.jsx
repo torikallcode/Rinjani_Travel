@@ -6,6 +6,7 @@ import { SideTour } from '@/components/fragments/Side/SIdeTour'
 import { SideTrekking } from '@/components/fragments/Side/SideTrekking'
 import { CarouselTrekking } from '@/components/ui/CarouselTrekking'
 import React from 'react'
+
 export const MainContent = ({
   title,
   className,
@@ -17,8 +18,8 @@ export const MainContent = ({
   daySatuLengkap,
   dayDuaLengkap,
   dayTigaLengkap,
-  dayEmpatLengkap
-  , children
+  dayEmpatLengkap,
+  children
 }) => {
 
   const images = [
@@ -34,36 +35,42 @@ export const MainContent = ({
         <p className='text-gray-300 font-secondary text-sm mb-3'>{descLengkap}</p>
         <CarouselTrekking images={images}></CarouselTrekking>
         {children}
-        <Acourdion
-          judulHari={daySatu}
-        >
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            {daySatuLengkap}
-          </p>
-        </Acourdion>
-        <Acourdion
-          judulHari={dayDua}
-        >
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            {dayDuaLengkap}
-          </p>
-        </Acourdion>
-        <Acourdion
-          judulHari={dayTiga}
-        >
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            {dayTigaLengkap}
-          </p>
-        </Acourdion>
-        <Acourdion
-          judulHari={dayEmpat}
-        >
-          <p className='text-gray-300 font-secondary text-sm mb-3'>
-            {dayEmpatLengkap}
-          </p>
-        </Acourdion>
+
+        {daySatuLengkap && (
+          <Acourdion judulHari={daySatu}>
+            <p className='text-gray-300 font-secondary text-sm mb-3'>
+              {daySatuLengkap}
+            </p>
+          </Acourdion>
+        )}
+
+        {dayDuaLengkap && (
+          <Acourdion judulHari={dayDua}>
+            <p className='text-gray-300 font-secondary text-sm mb-3'>
+              {dayDuaLengkap}
+            </p>
+          </Acourdion>
+        )}
+
+        {dayTigaLengkap && (
+          <Acourdion judulHari={dayTiga}>
+            <p className='text-gray-300 font-secondary text-sm mb-3'>
+              {dayTigaLengkap}
+            </p>
+          </Acourdion>
+        )}
+
+        {dayEmpatLengkap && (
+          <Acourdion judulHari={dayEmpat}>
+            <p className='text-gray-300 font-secondary text-sm mb-3'>
+              {dayEmpatLengkap}
+            </p>
+          </Acourdion>
+        )}
+
         <button className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full mx-auto text-base text-center">Booking Now</button>
       </div>
+
       <div className='w-full lg:w-[30%] sticky top-20 bg-abu-0 bg-opacity-50 rounded-lg'>
         <div className='min-h-80 overflow-hidden py-3'>
           <SideSupport />
@@ -72,16 +79,3 @@ export const MainContent = ({
     </div>
   )
 }
-
-{/* <div className='min-h-80 mb-7 overflow-hidden'>
-  <SideGalery />
-</div>
-<div className='min-h-80 mb-7 overflow-hidden'>
-  <SideTrekking />
-</div>
-<div className='min-h-80 mb-7 overflow-hidden'>
-  <SideTour />
-</div>
-<div className='min-h-80 mb-7 overflow-hidden'>
-  <SideSummit />
-</div> */}
