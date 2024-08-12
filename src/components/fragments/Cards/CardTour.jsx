@@ -7,10 +7,10 @@ export const CardTour = ({ className, image }) => {
       // data-aos="fade-up"
       // data-aos-once="true"
       style={{ backgroundImage: `url(${image})` }}
-      className={`${className} h-60 sm:h-72 md:h-80 rounded-xl w-full p-3 bg-cover bg-center ease-in-out relative flex flex-col justify-between`}
+      className={`${className} h-60 sm:h-72 md:h-80 lg:h-96 w-full aspect-[2/3] rounded-xl p-5 bg-cover bg-center ease-in-out relative flex flex-col justify-end`}
     >
-      <h1 className='text-putih-0 drop-shadow-lg font-secondary text-lg leading-6 font-medium z-10'>Tour Sendang Gile and <br /> Tiu Kelep Waterfall</h1>
-      <Link className='text-putih-0 drop-shadow-lg font-secondary text-sm font-medium z-10 leading-4 bg-biru-0 p-3 w-44 text-center rounded-lg shadow-sm'>Start From $260</Link>
+      <h1 className='text-putih-0 drop-shadow-lg font-secondary text-base font-medium z-10'>Tour Sendang Gile and Tiu Kelep Waterfall</h1>
+      <Link className='text-putih-0 drop-shadow-lg font-secondary text-sm font-medium z-10 bg-biru-0 p-3 w-44 text-center rounded-lg shadow-sm'>Start From $260</Link>
       <span className='w-full h-full bg-hitam-0 top-0 left-0 opacity-30 absolute'></span>
     </div>
   )

@@ -4,17 +4,21 @@ import { CardTour } from "../fragments/Cards/CardTour";
 export const RinjaniTour = () => {
   return (
     <section className="w-full flex flex-col">
-      <h1 className="text-putih-0 font-tomorrow text-4xl xl:text-4xl mb-12 xl:mb-12">Rinjani Tour</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-4">
+      <div className="mb-12 xl:mb-12">
+        <h1 className="text-putih-0 font-tomorrow text-4xl xl:text-3xl  text-center">Finde Out The Best <br /> Travel Choice in Asia</h1>
+        <p className="text-gray-500 text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br /> Voluptatem, quia corrupti sapiente perspiciatis quibusdam quod sequi facere cumque sint aspernatur!</p>
+
+      </div>
+      <div className="flex justify-around items-start lg:grid-cols-3 gap-4">
         <CardTour
           image={"img/trawangan2.png"}
-          className={`lg:row-span-2 lg:h-full`}></CardTour>
+        ></CardTour>
         <CardTour
           image={"img/mandalika.webp"}
-          className={`lg:h-52`}></CardTour>
+        ></CardTour>
         <CardTour
           image={"img/turtle.webp"}
-          className={`lg:h-52`}></CardTour>
+        ></CardTour>
       </div>
     </section>
   )
