@@ -9,6 +9,7 @@ import { ContactMe } from '../sections/ContactMe'
 import { Footer } from '../sections/Footer'
 import { RinjaniTrackigPackage } from '../sections/RinjaniTrackigPackage'
 import { RinjaniTour } from '../sections/RinjaniTour'
+import Category from '../sections/CategoryContainer'
 
 export const Layout = () => {
 
@@ -26,11 +27,12 @@ export const Layout = () => {
           <MostPopular></MostPopular>
         </section>
         <section className='w-full py-14'>
-          <RinjaniTour></RinjaniTour>
+          {/* <RinjaniTour></RinjaniTour> */}
+          <Category></Category>
         </section>
-        <section className='w-full py-14'>
+        {/* <section className='w-full py-14'>
           <RinjaniTrackigPackage></RinjaniTrackigPackage>
-        </section>
+        </section> */}
         <section className='w-full lg:py-14'>
           <LayananKami></LayananKami>
         </section>
