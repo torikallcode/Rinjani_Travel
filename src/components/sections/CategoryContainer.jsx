@@ -36,7 +36,7 @@ const Category = () => {
       return (
         <section className='w-full flex flex-col '>
           {/* <h1 className='text-putih-0 font-tomorrow text-4xl xl:text-4xl mb-12 xl:mb-12'>Rinjani Trekking <br /> package</h1> */}
-          <div className="carousel flex lg:grid lg:grid-cols-4 lg:gap-y-7 gap-x-7 mb-5 lg:mx-auto">
+          <div className="carousel flex xl:grid xl:grid-cols-4 xl:gap-y-7 gap-x-7 mb-5 xl:mx-auto">
             {limitedDataTrekking.map((item, index) => (
               <div key={index} className="carousel-item">
                 <CardTracking
@@ -65,7 +65,7 @@ const Category = () => {
         <h1 className="text-putih-0 font-tomorrow text-3xl xl:text-3xl  text-center">Find Out The Best <br /> Travel Choice in Asia</h1>
         <p className="text-gray-500 text-center text-sm md:text-base">Lorem, ipsum dolor sit amet consectetur adipisicing elit.  Voluptatem, <br /> quia corrupti  sapiente perspiciatis quibusdam quod sequi facere cumque sint aspernatur!</p>
       </div>
-      <div className="button-group mb-8 flex justify-center gap-x-3 items-center mx-auto bg-transparen border-2 border-gray-500 rounded-full p-2">
+      <div className="button-group mb-10 flex justify-center gap-x-3 items-center mx-auto bg-transparen border-2 border-gray-500 rounded-full p-2">
         <button
           onClick={() => setSelectedCategory('Tour')}
           className={`category-button py-2 px-4 rounded-full font-secondary transition-all ease-out ${selectedCategory === 'Tour' ? 'bg-putih-0 text-hitam-0' : 'bg-transparent text-putih-0'

@@ -39,7 +39,7 @@ export const LayananKami = () => {
           <h1 className='text-putih-0 font-tomorrow text-4xl xl:text-4xl mb-12 xl:mb-12'>Layanan Kami</h1>
           <p className='text-putih-0 font-secondary text-base sm:text-xl lg:text-base xl:text-base'>Selamat datang di pusat solusi perjalanan kami! Temukan akomodasi eksklusif, transportasi nyaman, paket wisata tak terlupakan, dan asuransi perjalanan terpercaya untuk petualangan lancar dan tak terlupakan Anda.</p>
         </div> */}
-      <div className='grid grid-cols-1 sm:grid-cols-4 gap-2 mx-auto'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mx-auto'>
         {items.map((item, index) => (
           <CardLayananKami key={index} icon={item.icon} title={item.title} desc={item.desc} />
         ))}

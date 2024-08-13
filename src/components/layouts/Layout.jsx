@@ -10,6 +10,7 @@ import { Footer } from '../sections/Footer'
 import { RinjaniTrackigPackage } from '../sections/RinjaniTrackigPackage'
 import { RinjaniTour } from '../sections/RinjaniTour'
 import Category from '../sections/CategoryContainer'
+import { FooterDsy } from '../ui/FooterDsy'
 
 export const Layout = () => {
 
@@ -23,7 +24,7 @@ export const Layout = () => {
       <HomePage />
       <section className='w-full px-5 md:px-11 xl:px-20 py-28 xl:max-w-[100rem] mx-auto'>
         <Statistik className={`w-full mb-32`} />
-        <section className='w-full mb-20'>
+        <section className='w-full mb-16'>
           <MostPopular></MostPopular>
         </section>
         <section className='w-full py-14'>
@@ -40,10 +41,11 @@ export const Layout = () => {
       <section className='w-full' ref={contactRef}>
         <AboutMe></AboutMe>
       </section>
-      <section className='w-full px-5 md:px-11 xl:px-20 py-24 lg:py-32 xl:max-w-[100rem] mx-auto'>
+      {/* <section className='w-full px-5 md:px-11 xl:px-20 py-24 lg:py-32 xl:max-w-[100rem] mx-auto'>
         <ContactMe></ContactMe>
-      </section>
-      <Footer></Footer>
+      </section> */}
+      {/* <Footer></Footer> */}
+      <FooterDsy></FooterDsy>
     </div >
   )
 }
