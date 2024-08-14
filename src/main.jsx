@@ -6,6 +6,7 @@ import { Home } from './pages/home'
 import { Galery } from './pages/galery'
 import { DetailTrekking } from './pages/DetailTrekking'
 import NotFound from './components/elements/NotFound'
+import { Contact } from './pages/contact'
 
 const Route = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const Route = createBrowserRouter([
   {
     path: '*',
     element: <NotFound />
+  },
+  {
+    path: '/contact',
+    element: <Contact />
   }
 ])
 

@@ -110,7 +110,7 @@ export const NavbarDsy = ({ className }) => {
                     duration={500}
                     onClick={() => handleLinkClick('service')}
                   >
-                    Service
+                    About
                   </Link>
                 </li>
                 <li className='text-white cursor-pointer text-base font-secondary'>
@@ -123,7 +123,7 @@ export const NavbarDsy = ({ className }) => {
                     duration={500}
                     onClick={() => handleLinkClick('about')}
                   >
-                    About
+                    Galery
                   </Link>
                 </li>
                 <li className='text-white cursor-pointer text-base font-secondary bg-biru-0 px-4 py-2 rounded-lg hover:bg-[#008e93]'>
