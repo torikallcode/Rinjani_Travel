@@ -5,19 +5,21 @@ import { FooterDsy } from '../ui/FooterDsy'
 
 export const ContactLayout = () => {
   return (
-    <section className="relative min-h-screen bg-fixed bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('img/homepage3.jpg')" }}>
-      <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-50 z-10'></span>
-      <NavbarDsy className={'fixed z-50'}></NavbarDsy>
-      <div className='flex flex-col justify-between w-full h-screen px-5 md:px-11 xl:px-20 pt-40 pb-10 xl:max-w-[100rem] mx-auto z-20 relative'>
-        <h1 className='text-putih-0 font-tomorrow uppercase text-4xl font-normal'>Kontak <br /> kami</h1>
-        <div className='flex justify-between items-center'>
-          <img src="img/peta.png" alt="" className='lg:block w-28 h-28 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-96 lg:h-96 xl:w-[450px] xl:h-[450px] mx-auto lg:mx-0' />
-          <p className='text-putih-0 font-secondary text-xs text-start ml-10'>Hubungi kami jika Anda memiliki pertanyaan <br /> ataupun saran</p>
+    <>
+
+      <section className="relative min-h-screen bg-fixed bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('img/aboutme1.jpg')" }}>
+        <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-50 z-10'></span>
+        <NavbarDsy className={'fixed z-50'}></NavbarDsy>
+        <div className='flex flex-col justify-between w-full h-screen px-5 md:px-11 xl:px-20 pt-40 pb-10 xl:max-w-[100rem] mx-auto z-20 relative'>
+          <h1 className='text-putih-0 font-tomorrow uppercase text-4xl sm:text-6xl md:text-7xl lg:text-4xl xl:text-5xl font-light text-start'>Kontak <br /> kami</h1>
+          <div className='flex justify-between items-center lg:items-end'>
+            <p className='text-putih-0 font-secondary text-xs sm:text-base md:text-lg lg:text-base xl:text-lg text-start font-light'>Hubungi kami jika Anda memiliki <br /> pertanyaan ataupun saran</p>
+            <img src="img/peta.png" alt="" className='lg:block w-28 h-28 sm:w-48 sm:h-48 md:w-70 md:h-70 lg:w-40 lg:h-40 xl:w-52 xl:h-52 lg:mx-0' />
+          </div>
         </div>
-      </div>
-      <div className="bg-hitam-0 bg-opacity-50 h-full flex items-center justify-center">
-      </div>
-    </section>
+      </section>
+      <h1 className='text-putih-0 font-tomorrow uppercase text-4xl sm:text-6xl md:text-7xl lg:text-4xl xl:text-5xl font-light text-start'>hallo</h1>
+    </>
   )
 }
 

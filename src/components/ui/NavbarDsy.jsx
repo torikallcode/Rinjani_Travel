@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, animateScroll as ScrollLink } from 'react-scroll';
+import { animateScroll as ScrollLink } from 'react-scroll';
+import { Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
 import { Dropdowndsy } from './Dropdowndsy';
 export const NavbarDsy = ({ className }) => {
@@ -88,7 +89,7 @@ export const NavbarDsy = ({ className }) => {
                 <li className='text-white cursor-pointer text-base font-secondary'>
                   <Link
                     activeClass="active"
-                    to="home"
+                    to="/"
                     spy={true}
                     smooth={true}
                     duration={500}
@@ -116,7 +117,7 @@ export const NavbarDsy = ({ className }) => {
                 <li className='text-white cursor-pointer text-base font-secondary'>
                   <Link
                     activeClass="active"
-                    to="about"
+                    to="/contact"
                     spy={true}
                     smooth={true}
                     offset={-200}
@@ -128,12 +129,8 @@ export const NavbarDsy = ({ className }) => {
                 </li>
                 <li className='text-white cursor-pointer text-base font-secondary bg-biru-0 px-4 py-2 rounded-lg hover:bg-[#008e93]'>
                   <Link
-                    activeClass="active"
-                    to="contact"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    onClick={() => handleLinkClick('Contact')}
+                    to="/contact"
+                    onClick={() => window.scrollTo({ top: 0 })}
                   >
                     Contact us
                   </Link>
