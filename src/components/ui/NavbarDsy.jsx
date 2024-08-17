@@ -127,10 +127,11 @@ export const NavbarDsy = ({ className }) => {
                     Galery
                   </Link>
                 </li>
-                <li className='text-white cursor-pointer text-base font-secondary bg-biru-0 px-4 py-2 rounded-lg hover:bg-[#008e93]'>
+                <li className='text-white cursor-pointer text-base font-secondary overflow-hidden bg-biru-0 rounded-lg hover:bg-[#008e93]'>
                   <Link
                     to="/contact"
                     onClick={() => window.scrollTo({ top: 0 })}
+                    className='w-full h-full flex px-4 py-2'
                   >
                     Contact us
                   </Link>

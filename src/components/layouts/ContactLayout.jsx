@@ -2,11 +2,11 @@ import React from 'react'
 import { NavbarDsy } from '../ui/NavbarDsy'
 import { Footer, Navbar } from 'flowbite-react'
 import { FooterDsy } from '../ui/FooterDsy'
+import { ContactMe } from '../sections/ContactMe'
 
 export const ContactLayout = () => {
   return (
     <>
-
       <section className="relative min-h-screen bg-fixed bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('img/aboutme1.jpg')" }}>
         <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-50 z-10'></span>
         <NavbarDsy className={'fixed z-50'}></NavbarDsy>
@@ -18,7 +18,18 @@ export const ContactLayout = () => {
           </div>
         </div>
       </section>
-      <h1 className='text-putih-0 font-tomorrow uppercase text-4xl sm:text-6xl md:text-7xl lg:text-4xl xl:text-5xl font-light text-start'>hallo</h1>
+      <div className="bg-hitam-0 py-32 w-full px-8 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto">
+        <ContactMe></ContactMe>
+      </div>
+      <div className='flex items-center justify-center w-full h-full '>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14457.123557722494!2d116.54109658007094!3d-8.656765165859417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc4f40a1f4bfcf%3A0xd7eaf20dbfcd8711!2sTaman%20Rinjani%20Selong!5e0!3m2!1sid!2sid!4v1714786329714!5m2!1sid!2sid"
+          className='w-full h-72'
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <FooterDsy></FooterDsy>
     </>
   )
 }
