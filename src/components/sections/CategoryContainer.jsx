@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { DataTracking } from '@/data/DataTracking';
 import { CardTracking } from '../fragments/Cards/CardTracking';
-import { Link } from 'react-router-dom';
-import { CardMostPopular } from '../fragments/Cards/CardMostPopular';
 import { DataTour } from '@/data/DataTour';
 
 const Category = () => {

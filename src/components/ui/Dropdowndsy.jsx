@@ -8,8 +8,8 @@ export const Dropdowndsy = () => {
         Package
       </div>
       <ul className="absolute top-[100%] hidden group-hover:block rounded-lg z-[1] w-52 p-2 bg-gray-600 shadow text-putih-0">
-        <li className='mb-2 hover:bg-gray-700 rounded-lg p-2'><Link to="/"><a>Tour</a></Link></li>
-        <li className='hover:bg-gray-700 rounded-lg p-2'><Link to="/"><a>Trekking</a></Link></li>
+        <li className='mb-2 hover:bg-gray-700 rounded-lg p-2'><Link className='w-full h-full' to="/rinjaniTour"><a>RInjani Tour</a></Link></li>
+        <li className='hover:bg-gray-700 rounded-lg p-2'><Link to="/trekkingSummit"><a>Trekking Summit</a></Link></li>
       </ul>
     </div>
   )

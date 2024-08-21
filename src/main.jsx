@@ -7,7 +7,8 @@ import { Galery } from './pages/galery'
 import { DetailTrekking } from './pages/DetailTrekking'
 import NotFound from './components/elements/NotFound'
 import { Contact } from './pages/contact'
-
+import { Tour } from './pages/rinjaniTour'
+import { TrekkingSummit } from './pages/trekkingSummit'
 const Route = createBrowserRouter([
   {
     path: '/',
@@ -28,6 +29,14 @@ const Route = createBrowserRouter([
   {
     path: '/contact',
     element: <Contact />
+  },
+  {
+    path: '/rinjaniTour',
+    element: <Tour></Tour>
+  },
+  {
+    path: '/trekkingSummit',
+    element: <TrekkingSummit></TrekkingSummit>
   }
 ])
 
