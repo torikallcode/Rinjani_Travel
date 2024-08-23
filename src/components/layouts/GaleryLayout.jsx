@@ -3,7 +3,6 @@ import { FocusCardsDemo } from '@/FocusCardsDemo';
 import { NavbarDsy } from '../ui/NavbarDsy';
 import { FooterDsy } from '../ui/FooterDsy';
 
-
 const images = [
   { src: 'https://via.placeholder.com/400', size: 'large' },
   { src: 'https://via.placeholder.com/200', size: 'small' },
@@ -13,9 +12,6 @@ const images = [
   { src: 'https://via.placeholder.com/200', size: 'small' },
 ];
 export const GaleryLayout = () => {
-
-
-
   return (
     <>
       <NavbarDsy className={'fixed z-[9999]'}></NavbarDsy>

@@ -9,24 +9,26 @@ export const Card = memo(({ card, index, hovered, setHovered }) => (
     className={cn(
       "rounded-lg relative bg-transparent dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
       hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
-      (index === 0 || index === 6) && "md:col-span-2" // Apply col-span-2 to the first and seventh cards
+      (index === 0 || index === 6) && "lg:col-span-2" // Apply col-span-2 to the first and seventh cards
     )}
   >
     <img
       src={card.src}
       alt={card.title}
-      className="object-cover absolute inset-0 opacity-70"
+      className="object-cover absolute inset-0 opacity-80"
       style={{ width: "100%", height: "100%" }}
     />
     <div
       className={cn(
         "absolute inset-0 bg-black/50 flex items-end py-8 px-4 transition-opacity duration-300",
-        hovered === index ? "opacity-100" : "opacity-0"
+        hovered === index ? "opacity-40" : "opacity-0"
       )}
     >
-      <div className="text-xl md:text-2xl font-tomorrow font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">
-        {card.title}
-      </div>
+    </div>
+    <div className={cn("text-xl md:text-2xl font-tomorrow font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200 absolute inset-0 flex items-end py-8 px-4 transition-opacity duration-300",
+      hovered === index ? "opacity-100" : "opacity-0"
+    )}>
+      {card.title}
     </div>
   </div>
 ));
@@ -43,7 +45,7 @@ export function FocusCards({ cards = [] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-[100rem] mx-auto md:px-8 w-full cursor-pointer">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[100rem] mx-auto md:px-8 w-full cursor-pointer">
       {cards.map((card, index) => (
         <Card
           key={card.title}

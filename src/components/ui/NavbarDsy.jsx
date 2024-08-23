@@ -33,6 +33,7 @@ export const NavbarDsy = ({ className }) => {
   function closeSidebar() {
     document.getElementById("my-drawer-3").checked = false;
     setAktif(!aktif)
+    window.scrollTo({ top: 0 });
   }
 
   // goto
@@ -93,7 +94,7 @@ export const NavbarDsy = ({ className }) => {
                     spy={true}
                     smooth={true}
                     duration={500}
-                    onClick={() => handleClick('home')}
+                    onClick={() => window.scrollTo({ top: 0 })}
                   >
                     Home
                   </Link>
@@ -109,7 +110,7 @@ export const NavbarDsy = ({ className }) => {
                     smooth={true}
                     offset={-200}
                     duration={500}
-                    onClick={() => handleLinkClick('about')}
+                    onClick={() => window.scrollTo({ top: 0 })}
                   >
                     Galery
                   </Link>
@@ -122,7 +123,7 @@ export const NavbarDsy = ({ className }) => {
                     smooth={true}
                     offset={-200}
                     duration={500}
-                    onClick={() => handleLinkClick('about')}
+                    onClick={() => window.scrollTo({ top: 0 })}
                   >
                     About
                   </Link>
@@ -158,18 +159,8 @@ export const NavbarDsy = ({ className }) => {
               Home
             </Link>
           </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
-            <Link
-              activeClass="active"
-              to="service"
-              spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={closeSidebar}
-            >
-              Package
-            </Link>
+          <li className='text-white cursor-pointer text-base font-secondary'>
+            <Dropdowndsy></Dropdowndsy>
           </li>
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
             <Link
