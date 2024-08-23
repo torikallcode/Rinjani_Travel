@@ -35,7 +35,7 @@ export const TrekkingLayout = () => {
             <HomePage
               Image={trekking.image}
               title={trekking.title}
-              className={`px-5 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto`}
+              className={`px-5 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto gradient-mask-b-70`}
             ></HomePage>
           </div>
           <MainContent

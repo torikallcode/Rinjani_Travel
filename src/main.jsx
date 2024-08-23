@@ -37,7 +37,7 @@ const Route = createBrowserRouter([
   {
     path: '/trekkingSummit',
     element: <TrekkingSummit></TrekkingSummit>
-  }
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

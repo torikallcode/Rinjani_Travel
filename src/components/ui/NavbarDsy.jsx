@@ -59,7 +59,7 @@ export const NavbarDsy = ({ className }) => {
             <div className="flex-1 px-2 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">
               <Link
                 activeClass="active"
-                to="home"
+                to="/"
                 spy={true}
                 smooth={true}
                 duration={500}
@@ -104,20 +104,7 @@ export const NavbarDsy = ({ className }) => {
                 <li className='text-white cursor-pointer text-base font-secondary'>
                   <Link
                     activeClass="active"
-                    to="service"
-                    spy={true}
-                    smooth={true}
-                    offset={-300}
-                    duration={500}
-                    onClick={() => handleLinkClick('service')}
-                  >
-                    About
-                  </Link>
-                </li>
-                <li className='text-white cursor-pointer text-base font-secondary'>
-                  <Link
-                    activeClass="active"
-                    to="/contact"
+                    to="/galery"
                     spy={true}
                     smooth={true}
                     offset={-200}
@@ -125,6 +112,19 @@ export const NavbarDsy = ({ className }) => {
                     onClick={() => handleLinkClick('about')}
                   >
                     Galery
+                  </Link>
+                </li>
+                <li className='text-white cursor-pointer text-base font-secondary'>
+                  <Link
+                    activeClass="active"
+                    to="/galery"
+                    spy={true}
+                    smooth={true}
+                    offset={-200}
+                    duration={500}
+                    onClick={() => handleLinkClick('about')}
+                  >
+                    About
                   </Link>
                 </li>
                 <li className='text-white cursor-pointer text-base font-secondary overflow-hidden bg-biru-0 rounded-lg hover:bg-[#008e93]'>
@@ -149,7 +149,7 @@ export const NavbarDsy = ({ className }) => {
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
             <Link
               activeClass="active"
-              to="home"
+              to="/"
               spy={true}
               smooth={true}
               duration={500}
@@ -168,13 +168,26 @@ export const NavbarDsy = ({ className }) => {
               duration={500}
               onClick={closeSidebar}
             >
-              service
+              Package
             </Link>
           </li>
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
             <Link
               activeClass="active"
-              to="about"
+              to="/galery"
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              Galery
+            </Link>
+          </li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
+              to="/about"
               spy={true}
               smooth={true}
               offset={-80}

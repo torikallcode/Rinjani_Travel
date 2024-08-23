@@ -3,7 +3,7 @@ import React from 'react'
 
 export const Galery = () => {
   return (
-    <div className='bg-hitam-0'>
+    <div className='bg-hitam-0 min-h-screen w-full'>
       <GaleryLayout></GaleryLayout>
     </div>
   )

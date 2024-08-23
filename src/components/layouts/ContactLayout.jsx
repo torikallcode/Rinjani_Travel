@@ -7,9 +7,9 @@ import { ContactMe } from '../sections/ContactMe'
 export const ContactLayout = () => {
   return (
     <>
+      <NavbarDsy className={'fixed z-[99999]'}></NavbarDsy>
       <section className="relative h-[50dvh] bg-center bg-cover bg-no-repeat gradient-mask-b-70" style={{ backgroundImage: "url('img/aboutme1.jpg')" }}>
         <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-50 z-10'></span>
-        <NavbarDsy className={'fixed z-50'}></NavbarDsy>
         <div className='flex flex-col items-center justify-center w-full h-full px-5 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto z-20 relative'>
           <h1 className="text-putih-0 font-tomorrow text-3xl xl:text-3xl font-semibold text-start">Kontak kami</h1>
           <p className="text-gray-200 font-secondary text-center text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit.  Voluptatem, <br /> quia corrupti  sapiente perspiciatis quibusdam quod sequi facere cumque sint aspernatur!</p>
