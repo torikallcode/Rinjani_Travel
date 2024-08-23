@@ -5,7 +5,7 @@ export const CardTracking = ({ image, rating, title, days, desc, price, id, aspe
   return (
     <Link to={`/DetailTrekking/${id}`}>
       <div
-        className={`card card-compact w-72 bg-hitam-0 relative ${aspect} lg:aspect-[2/3] overflow-hidden group cursor-pointer`}
+        className={`card card-compact w-full bg-hitam-0 relative ${aspect} lg:aspect-[2/3] overflow-hidden group cursor-pointer`}
       >
         {/* Background image with scaling on hover */}
         <div

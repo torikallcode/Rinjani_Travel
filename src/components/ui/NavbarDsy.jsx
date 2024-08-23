@@ -64,6 +64,8 @@ export const NavbarDsy = ({ className }) => {
                 spy={true}
                 smooth={true}
                 duration={500}
+                onClick={() => window.scrollTo({ top: 0 })}
+
               >
                 TRVL.
               </Link>
@@ -110,7 +112,7 @@ export const NavbarDsy = ({ className }) => {
                     smooth={true}
                     offset={-200}
                     duration={500}
-                    onClick={() => window.scrollTo({ top: 0 })}
+
                   >
                     Galery
                   </Link>
@@ -159,8 +161,31 @@ export const NavbarDsy = ({ className }) => {
               Home
             </Link>
           </li>
-          <li className='text-white cursor-pointer text-base font-secondary'>
-            <Dropdowndsy></Dropdowndsy>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
+              to="/rinjaniTour"
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              Rinjani Tour
+            </Link>
+          </li>
+          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+            <Link
+              activeClass="active"
+              to="/trekkingSummit"
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={closeSidebar}
+            >
+              Trekking Summit
+            </Link>
           </li>
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
             <Link
@@ -191,7 +216,7 @@ export const NavbarDsy = ({ className }) => {
           <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
             <Link
               activeClass="active"
-              to="contact"
+              to="/contact"
               spy={true}
               smooth={true}
               offset={-80}

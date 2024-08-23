@@ -18,11 +18,11 @@ export const TrekkingSummitLayout = () => {
           <p className="text-gray-200 font-secondary text-center text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit.  Voluptatem, <br /> quia corrupti  sapiente perspiciatis quibusdam quod sequi facere cumque sint aspernatur!</p>
         </div>
       </section>
-      <div className="bg-hitam-0 py-16 w-full px-8 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto">
-        <section className='w-full flex flex-col '>
-          <div className="carousel flex xl:grid xl:grid-cols-4 xl:gap-y-7 gap-x-7 mb-5 xl:mx-auto">
+      <div className="bg-hitam-0 py-32 lg:py-16 pb-32 w-full px-8 md:px-11 xl:px-20 xl:max-w-[90rem] mx-auto">
+        <section className='w-full flex'>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-7 lg:gap-y-7 gap-x-7 mb-5 mx-auto w-full">
             {dataTrekking.map((item, index) => (
-              <div key={index} className="carousel-item">
+              <div key={index} className="">
                 <CardTracking
                   id={item.id}
                   image={item.image}
@@ -31,6 +31,7 @@ export const TrekkingSummitLayout = () => {
                   desc={item.desc}
                   rating={item.rating}
                   price={item.price}
+                  aspect='aspect-[7/8]'
                 />
               </div>
             ))}
