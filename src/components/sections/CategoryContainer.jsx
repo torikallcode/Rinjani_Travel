@@ -61,7 +61,7 @@ const Category = () => {
     <div className="category-container mx-auto text-center w-full flex flex-col">
       <div className="mb-12 xl:mb-12">
         <h1 className="text-putih-0 font-tomorrow text-3xl xl:text-3xl  text-center">Find Out The Best <br /> Travel Choice in Asia</h1>
-        <p className="text-gray-500 text-center text-sm md:text-base">Lorem, ipsum dolor sit amet consectetur adipisicing elit.  Voluptatem, <br /> quia corrupti  sapiente perspiciatis quibusdam quod sequi facere cumque sint aspernatur!</p>
+        <p className="text-gray-500 text-center text-sm md:text-base max-w-2xl mx-auto">Explore Asia's vibrant cities, serene landscapes, and rich cultural heritage for unforgettable adventures. The perfect destination for every type of traveler.</p>
       </div>
       <div className="button-group mb-10 flex justify-center gap-x-3 items-center mx-auto bg-transparen border-2 border-gray-500 rounded-full p-2">
         <button

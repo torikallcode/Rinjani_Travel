@@ -4,23 +4,23 @@ export function FocusCardsDemo() {
   const cards = [
     {
       title: "Forest Adventure",
-      src: "/img/aboutme.jpg",
+      src: "/img/homepage2.jpg",
     },
     {
       title: "Valley of life",
-      src: "/img/homepage2.jpg"
-    },
-    {
-      title: "Sala behta hi jayega",
       src: "/img/homepage3.jpg"
     },
     {
-      title: "Camping is for pros",
+      title: "Sala behta hi jayega",
       src: "/img/homePage.jpg"
     },
     {
-      title: "The road not taken",
+      title: "Camping is for pros",
       src: "/img/mandalika.webp"
+    },
+    {
+      title: "The road not taken",
+      src: "/img/layanan.jpg"
     },
     {
       title: "The First Rule",
@@ -28,19 +28,19 @@ export function FocusCardsDemo() {
     },
     {
       title: "Sala behta hi jayega",
-      src: "/img/homepage3.jpg"
+      src: "/img/pinkbeach.jpg"
     },
     {
       title: "Camping is for pros",
-      src: "/img/homePage.jpg"
+      src: "/img/Rinjani.jpg"
     },
     {
       title: "The road not taken",
-      src: "/img/mandalika.webp"
+      src: "/img/DesaSade.jpg"
     },
     {
       title: "The First Rule",
-      src: "/img/Rinjani.jpg"
+      src: "/img/trawangan2.png"
     },
   ];
 

@@ -15,7 +15,7 @@ export const Card = memo(({ card, index, hovered, setHovered }) => (
     <img
       src={card.src}
       alt={card.title}
-      className="object-cover absolute inset-0 opacity-80"
+      className="object-cover absolute inset-0 opacity-70"
       style={{ width: "100%", height: "100%" }}
     />
     <div
