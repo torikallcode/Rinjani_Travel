@@ -5,8 +5,6 @@ export const Contact = ({ children }) => {
   return (
     <div className="App bg-hitam-0 ">
       <ContactLayout />
-      {/* Content di bawah section */}
-
     </div>
 
   )

@@ -9,6 +9,7 @@ import NotFound from './components/elements/NotFound'
 import { Contact } from './pages/contact'
 import { Tour } from './pages/rinjaniTour'
 import { TrekkingSummit } from './pages/trekkingSummit'
+import { About } from './pages/about'
 const Route = createBrowserRouter([
   {
     path: '/',
@@ -32,12 +33,16 @@ const Route = createBrowserRouter([
   },
   {
     path: '/rinjaniTour',
-    element: <Tour></Tour>
+    element: <Tour />
   },
   {
     path: '/trekkingSummit',
-    element: <TrekkingSummit></TrekkingSummit>
+    element: <TrekkingSummit />
   },
+  {
+    path: '/about',
+    element: <About />
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

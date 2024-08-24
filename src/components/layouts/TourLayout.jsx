@@ -17,8 +17,7 @@ export const TourLayout = () => {
         <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-50 z-10'></span>
         <div className='flex flex-col items-center justify-center w-full h-full px-5 md:px-11 xl:px-20 xl:max-w-[87rem] mx-auto z-20 relative'>
           <h1 className="text-putih-0 font-tomorrow text-3xl xl:text-3xl font-semibold text-center">Rinjani Tour</h1>
-          <p className="text-gray-200 font-secondary text-center text-sm max-w-3xl">Nikmati perjalanan eksklusif ke Gunung Rinjani, dirancang untuk memberikan pengalaman mendaki yang memadukan petualangan dan keindahan alam Lombok.
-
+          <p className="text-gray-200 font-secondary text-center text-sm xl:text-base max-w-3xl">Nikmati perjalanan eksklusif ke Gunung Rinjani, dirancang untuk memberikan pengalaman mendaki yang memadukan petualangan dan keindahan alam Lombok.
           </p>
         </div>
       </section>

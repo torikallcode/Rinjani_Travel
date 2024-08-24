@@ -120,7 +120,7 @@ export const NavbarDsy = ({ className }) => {
                 <li className='text-white cursor-pointer text-base font-secondary'>
                   <Link
                     activeClass="active"
-                    to="/galery"
+                    to="/about"
                     spy={true}
                     smooth={true}
                     offset={-200}

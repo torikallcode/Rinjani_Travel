@@ -12,7 +12,7 @@ export const ContactLayout = () => {
         <span className='w-full h-full bg-hitam-0 absolute top-0 left-0 opacity-50 z-10'></span>
         <div className='flex flex-col items-center justify-center w-full h-full px-5 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto z-20 relative'>
           <h1 className="text-putih-0 font-tomorrow text-3xl xl:text-3xl font-semibold text-start">Kontak kami</h1>
-          <p className="text-gray-200 font-secondary text-center text-sm max-w-3xl">Jangan ragu untuk menghubungi kami dengan pertanyaan, saran, atau untuk merencanakan perjalanan Anda berikutnya. Kami siap membantu Anda merencanakan petualangan yang sempurna.</p>
+          <p className="text-gray-200 font-secondary text-center text-sm xl:text-base max-w-3xl">Jangan ragu untuk menghubungi kami dengan pertanyaan, saran, atau untuk merencanakan perjalanan Anda berikutnya. Kami siap membantu Anda merencanakan petualangan yang sempurna.</p>
         </div>
       </section>
       <div className="bg-hitam-0 py-32 w-full px-8 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto">
