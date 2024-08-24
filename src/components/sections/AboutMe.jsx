@@ -16,7 +16,7 @@ export const AboutMe = () => {
         <p className='text-putih-0 font-secondary sm:max-w-lg md:max-w-xl sm:text-xl lg:text-base text-left drop-shadow-sm'>Kami adalah tim TRVL yang berbasis di Lombok, yang berkomitmen untuk membawa Anda pada petualangan tak terlupakan di pulau yang indah ini. Dengan cinta dan pengetahuan yang mendalam tentang destinasi ini, kami menyediakan layanan travel yang personal dan berkualitas tinggi, memastikan setiap momen perjalanan Anda menjadi berkesan. Dari pantai-pantai yang memikat hingga gunung-gunung yang megah, mari bersama-sama menjelajahi pesona alam dan budaya Lombok. Sambutlah petualangan baru dan kenangan abadi dengan kami!</p>
       </div>
       <div>
-        <Link to={"contact"} className='text-putih-0 font-tomorrow text-base italic' onClick={() => window.scrollTo(0, 0)}>view more →</Link>
+        <Link to={"/about"} className='text-putih-0 font-tomorrow text-base italic' onClick={() => window.scrollTo(0, 0)}>view more →</Link>
       </div>
       {/* <ContactMe></ContactMe> */}
     </div>
