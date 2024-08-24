@@ -14,7 +14,8 @@ const Category = () => {
         <div className='w-full flex flex-col'>
           <div className="carousel flex gap-x-7 mb-5 lg:mx-auto">
             {limitedDataTour.map((item, index) => (
-              <div key={index} className="carousel-item">
+              <div
+                key={index} className="carousel-item">
                 <CardTracking
                   style={{ backgroundImage: "url('img/Rinjani.jpg')" }}
                   id={item.id}

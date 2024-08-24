@@ -112,7 +112,7 @@ export const NavbarDsy = ({ className }) => {
                     smooth={true}
                     offset={-200}
                     duration={500}
-
+                    onClick={() => window.scrollTo({ top: 0 })}
                   >
                     Galery
                   </Link>
