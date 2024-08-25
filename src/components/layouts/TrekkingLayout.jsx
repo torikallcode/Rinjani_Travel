@@ -7,6 +7,7 @@ import { MainContent } from '../sections/Trekking/MainContent';
 import { Footer } from '../sections/Footer';
 import { CarouselTrekking } from '../ui/CarouselTrekking';
 import NotFound from '../elements/NotFound';
+import { FooterDsy } from '../ui/FooterDsy';
 
 export const TrekkingLayout = () => {
 
@@ -31,11 +32,11 @@ export const TrekkingLayout = () => {
       <NavbarDsy className={`z-50 fixed`} />
       {trekking ? (
         <section className='w-full min-h-screen'>
-          <div className='w-full h-[35rem] xl:max-w-[100rem] mx-auto'>
+          <div className='w-full h-[35rem] mx-auto'>
             <HomePage
               Image={trekking.image}
               title={trekking.title}
-              className={`px-5 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto gradient-mask-b-70`}
+              className={`px-5 md:px-11 mx-auto gradient-mask-b-70`}
             ></HomePage>
           </div>
           <MainContent
@@ -79,7 +80,7 @@ export const TrekkingLayout = () => {
         <p className='text-white'>loading...</p>
       )
       }
-      <Footer></Footer>
+      <FooterDsy></FooterDsy>
     </div>
   )
 }

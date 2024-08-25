@@ -22,9 +22,9 @@ export const AboutLayout = () => {
           <p className="text-gray-200 font-secondary text-center text-sm xl:text-base max-w-3xl">Kenali kami lebih dalam dan pelajari misi serta visi kami dalam menyediakan petualangan yang aman dan berkesan.</p>
         </div>
       </section>
-      <div className="flex flex-col justify-center items-center bg-hitam-0 py-32 w-full px-8 md:px-11 xl:px-20 xl:max-w-[90rem] mx-auto">
-        <div className='flex flex-col justify-center items-center gap-y-28'>
-          <div className='flex flex-col lg:flex-row justify-between items-center gap-y-3 gap-x-20'>
+      <div className="flex flex-col justify-center items-center bg-hitam-0 py-32 w-full px-8 md:px-11 xl:px-20 xl:max-w-[100rem] mx-auto">
+        <div className='flex flex-col justify-center items-center gap-y-28 w-full'>
+          <div className='flex flex-col lg:flex-row justify-around items-center gap-y-3 gap-x-20 w-full'>
             <div
               data-aos="fade-up"
               data-aos-once="true"
@@ -43,7 +43,7 @@ export const AboutLayout = () => {
               />
             </div>
           </div>
-          <div className='flex flex-col lg:flex-row-reverse justify-between items-center gap-y-3 gap-x-20'>
+          <div className='flex flex-col lg:flex-row-reverse justify-around items-center gap-y-3 gap-x-20 w-full'>
             <div
               data-aos="fade-up"
               data-aos-once="true"
@@ -55,13 +55,13 @@ export const AboutLayout = () => {
               <img
                 data-aos="fade-up"
                 data-aos-once="true"
-                src="img/Rinjani.jpg"
+                src="img/layanan.jpg"
                 alt=""
                 className="w-full h-full aspect-[3/2] lg:max-w-md object-cover rounded-lg"
               />
             </div>
           </div>
-          <div className='flex flex-col lg:flex-row justify-between items-center gap-y-3 gap-x-20'>
+          <div className='flex flex-col lg:flex-row justify-around items-center gap-y-3 gap-x-20 w-full'>
             <div
               data-aos="fade-up"
               data-aos-once="true"
@@ -73,7 +73,7 @@ export const AboutLayout = () => {
               <img
                 data-aos="fade-up"
                 data-aos-once="true"
-                src="img/Rinjani.jpg"
+                src="img/trawangan.jpg"
                 alt=""
                 className="w-full h-full aspect-[3/2] lg:max-w-md object-cover rounded-lg"
               />

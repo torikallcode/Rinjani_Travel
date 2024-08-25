@@ -56,8 +56,8 @@ export const NavbarDsy = ({ className }) => {
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className={`w-full navbar md:px-8 xl:px-20 transition-all ease-linear ${scrolled ? ' bg-hitam-0 shadow-md' : 'bg-transparent'}`}>
-          <div className='w-full mx-auto xl:max-w-[100rem]'>
-            <div className="flex-1 px-2 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">
+          <div className='w-full mx-auto xl:max-w-[90rem]'>
+            <div className="flex-1 px-1 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">
               <Link
                 activeClass="active"
                 to="/"
