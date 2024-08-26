@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const BookingForm = ({ onClose }) => {
+const BookingForm = ({ onClose, bookingName }) => {
   const [fullName, setFullName] = useState("");
   const [departureDate, setDepartureDate] = useState(new Date());
   const [people, setPeople] = useState(1);
@@ -13,8 +13,22 @@ const BookingForm = ({ onClose }) => {
 
   const handleSend = () => {
     const formattedDate = departureDate.toISOString().split("T")[0];
-    const message = `Full Name: ${fullName}\nDeparture Date: ${formattedDate}\nPeople: ${people}\nPackage Type: ${packageType}\nContact: ${contact}\nPickup Location: ${pickupLocation}\nNotes: ${notes}`;
-    const whatsappUrl = `https://wa.me/+6281339879335?text=${encodeURIComponent(message)}`;
+    const message = `
+    Booking Request:
+    ---------------------------
+    Full Name: ${fullName}
+    Departure Date: ${departureDate.toLocaleDateString()}
+    Number of People: ${people}
+    Package Type: ${packageType}
+    Contact: ${contact}
+    Pickup Location: ${pickupLocation}
+    Additional Notes: ${notes || 'N/A'}
+    ---------------------------
+    Thank you for your booking request. We will contact you shortly with further details.
+  
+    Best regards,
+    [Your Company Name]
+    `; const whatsappUrl = `https://wa.me/+6281339879335?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
     onClose(); // Close the form after sending
   };
@@ -22,7 +36,7 @@ const BookingForm = ({ onClose }) => {
 
   return (
     <div className="bg-[#222831] p-6 rounded-lg shadow-lg w-full sm:max-w-4xl mx-auto max-w-[23rem]">
-      <h2 className="text-2xl font-bold text-[#EEEEEE] mb-6">Booking Form</h2>
+      <h2 className="text-2xl font-bold text-[#EEEEEE] mb-6">{bookingName}</h2>
       <div className="grid grid-cols-2 md:grid-cols-2 gap-x-6 gap-y-3">
         <div className="mb-4">
           <label className="block text-[#EEEEEE] text-sm font-medium">Full Name:</label>

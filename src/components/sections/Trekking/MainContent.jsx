@@ -85,7 +85,10 @@ export const MainContent = ({
           {isFormOpen && (
             <>
               <div className="fixed inset-0 flex items-center justify-center z-50">
-                <BookingForm onClose={closeForm} />
+                <BookingForm
+                  onClose={closeForm}
+                  bookingName={title}
+                />
               </div>
               <div className="fixed inset-0 bg-black opacity-50 z-40" onClick={closeForm} />
             </>
