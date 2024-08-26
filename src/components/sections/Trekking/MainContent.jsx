@@ -6,6 +6,8 @@ import { SideTour } from '@/components/fragments/Side/SIdeTour'
 import { SideTrekking } from '@/components/fragments/Side/SideTrekking'
 import { CarouselTrekking } from '@/components/ui/CarouselTrekking'
 import React from 'react'
+import BookingForm from '@/components/fragments/BookingForm'
+import { useState } from 'react'
 
 export const MainContent = ({
   title,
@@ -27,6 +29,11 @@ export const MainContent = ({
     '/img/Rinjani.jpg',
     '/img/pinkbeach.jpg',
   ];
+
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const openForm = () => setIsFormOpen(true);
+  const closeForm = () => setIsFormOpen(false);
 
   return (
     <div className={`${className} flex flex-col lg:flex-row w-full lg:gap-x-10 relative items-start`}>
@@ -69,6 +76,22 @@ export const MainContent = ({
         )}
 
         <button className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full mx-auto text-base text-center">Booking Now</button>
+        <div className="relative">
+          <button
+            onClick={openForm}
+            className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+          >
+            Booking Now
+          </button>
+          {isFormOpen && (
+            <>
+              <div className="fixed inset-0 flex items-center justify-center z-50">
+                <BookingForm onClose={closeForm} />
+              </div>
+              <div className="fixed inset-0 bg-black opacity-50 z-40" onClick={closeForm} />
+            </>
+          )}
+        </div>
       </div>
 
       <div className='w-full lg:w-[30%] sticky top-20 bg-abu-0 bg-opacity-50 rounded-lg'>

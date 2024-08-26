@@ -10,6 +10,7 @@ import { Contact } from './pages/contact'
 import { Tour } from './pages/rinjaniTour'
 import { TrekkingSummit } from './pages/trekkingSummit'
 import { About } from './pages/about'
+import DarkModeContextProvider from './context/DarkMode'
 const Route = createBrowserRouter([
   {
     path: '/',
@@ -47,6 +48,8 @@ const Route = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={Route} />
+    <DarkModeContextProvider>
+      <RouterProvider router={Route} />
+    </DarkModeContextProvider>
   </React.StrictMode>
 )
