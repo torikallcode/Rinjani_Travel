@@ -27,7 +27,7 @@ const BookingForm = ({ onClose, bookingName }) => {
     Thank you for your booking request. We will contact you shortly with further details.
   
     Best regards,
-    [Your Company Name]
+    [TRVL Industries Ltd.]
     `; const whatsappUrl = `https://wa.me/+6281339879335?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
     onClose(); // Close the form after sending
