@@ -75,11 +75,10 @@ export const MainContent = ({
           </Acourdion>
         )}
 
-        <button className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full mx-auto text-base text-center">Booking Now</button>
         <div className="relative">
           <button
             onClick={openForm}
-            className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+            className="btn bg-biru-0 text-putih-0 border-none hover:bg-biru-0 w-full mx-auto text-base text-center"
           >
             Booking Now
           </button>
