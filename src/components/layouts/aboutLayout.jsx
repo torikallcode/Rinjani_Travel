@@ -30,8 +30,8 @@ export const AboutLayout = () => {
               data-aos-once="true"
               className='xl:col-span-2 flex lg:w-[2/3] flex-col gap-y-3 justify-start items-starts lg:max-w-md xl:max-w-xl'>
               <h3 className='text-gray-300 font-secondary text-start text-sm'>About Our Agency</h3>
-              <h1 className='text-putih-0 font-tomorrow text-3xl sm:text-4xl lg:text-2xl font-medium text-start'>Your trusted patner <br /> for business</h1>
-              <p className='text-gray-300 font-secondary text-base text-start'>Grow Rinjani is a trekking and travel agency based in senaru, North of Lombok Indonesia. Grow Rinjani was founded on 2018 by Perman & Suwendi, our company has been licensed since 2018, and all of our crew are trained and have experience on their respective fields such as guides, porters & oprators.</p>
+              <h1 className='text-putih-0 font-tomorrow text-3xl sm:text-4xl lg:text-2xl font-medium text-start'>Your Trusted Patner <br /> For Advanturef</h1>
+              <p className='text-gray-300 font-secondary text-base text-start'>Grow Rinjani is a premier trekking and travel agency located in Senaru, North Lombok, Indonesia. Established in 2018 by founders Perman & Suwendi, we have been a licensed company since our inception. Our dedicated team, including experienced guides, porters, and operators, is well-trained and committed to ensuring a safe and unforgettable adventure for every client.</p>
             </div>
             <div>
               <img
@@ -48,8 +48,8 @@ export const AboutLayout = () => {
               data-aos="fade-up"
               data-aos-once="true"
               className='xl:col-span-2 flex lg:w-[2/3] flex-col gap-y-3 justify-start items-starts lg:max-w-md xl:max-w-xl'>
-              <h1 className='text-putih-0 font-tomorrow text-3xl sm:text-4xl lg:text-2xl font-medium text-start'>Your trusted patner <br /> for business</h1>
-              <p className='text-gray-300 font-secondary text-base text-start'>Grow Rinjani is a trekking and travel agency based in senaru, North of Lombok Indonesia. Grow Rinjani was founded on 2018 by Perman & Suwendi, our company has been licensed since 2018, and all of our crew are trained and have experience on their respective fields such as guides, porters & oprators.</p>
+              <h1 className='text-putih-0 font-tomorrow text-3xl sm:text-4xl lg:text-2xl font-medium text-start'>Your Reliable Partner <br /> For Treks</h1>
+              <p className='text-gray-300 font-secondary text-base text-start'>Located in the heart of Senaru, North Lombok, Indonesia, Grow Rinjani is a trusted trekking and travel agency that was established in 2018 by Perman & Suwendi. We hold a valid license and take pride in our skilled team, which includes knowledgeable guides, strong porters, and efficient operators, all ready to provide you with an extraordinary trekking experience.</p>
             </div>
             <div>
               <img
@@ -66,7 +66,7 @@ export const AboutLayout = () => {
               data-aos="fade-up"
               data-aos-once="true"
               className='xl:col-span-2 flex lg:w-[2/3] flex-col gap-y-3 justify-start items-starts lg:max-w-md xl:max-w-xl'>
-              <h1 className='text-putih-0 font-tomorrow text-3xl sm:text-4xl lg:text-2xl font-medium text-start'>Your trusted patner <br /> for business</h1>
+              <h1 className='text-putih-0 font-tomorrow text-3xl sm:text-4xl lg:text-2xl font-medium text-start'>Your Trusted Patner <br /> For Business</h1>
               <p className='text-gray-300 font-secondary text-base text-start'>Grow Rinjani is a trekking and travel agency based in senaru, North of Lombok Indonesia. Grow Rinjani was founded on 2018 by Perman & Suwendi, our company has been licensed since 2018, and all of our crew are trained and have experience on their respective fields such as guides, porters & oprators.</p>
             </div>
             <div>
