@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { DataTracking } from '@/data/DataTracking';
 import { CardTracking } from '../fragments/Cards/CardTracking';
 import { DataTour } from '@/data/DataTour';
+import { Link } from 'react-router-dom';
 
-const Category = () => {
+const Category = ({ classname }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tour');
   const limitedDataTour = DataTour.slice(0, 3)
   const limitedDataTrekking = DataTracking.slice(0, 8)
@@ -11,8 +12,8 @@ const Category = () => {
   const renderContent = () => {
     if (selectedCategory === 'Tour') {
       return (
-        <div className='w-full flex flex-col'>
-          <div className="carousel flex gap-x-7 mb-5 lg:mx-auto">
+        <div className='flex flex-col w-full'>
+          <div className="flex mb-5 carousel gap-x-7 lg:mx-auto">
             {limitedDataTour.map((item, index) => (
               <div
                 key={index} className="carousel-item">
@@ -29,13 +30,19 @@ const Category = () => {
               </div>
             ))}
           </div>
+          <Link
+            to={"/rinjaniTour"}
+            onClick={() => window.scrollTo(0, 0)}
+            className='text-base text-putih-0 font-secondary text-start mb-7'>
+            More Tour →
+          </Link>
         </div>
       );
     } else if (selectedCategory === 'Trekking') {
       return (
-        <section className='w-full flex flex-col '>
-          {/* <h1 className='text-putih-0 font-tomorrow text-4xl xl:text-4xl mb-12 xl:mb-12'>Rinjani Trekking <br /> package</h1> */}
-          <div className="carousel flex xl:grid xl:grid-cols-4 xl:gap-y-7 gap-x-7 mb-5 xl:mx-auto">
+        <section className='flex flex-col w-full '>
+          {/* <h1 className='mb-12 text-4xl text-putih-0 font-tomorrow xl:text-4xl xl:mb-12'>Rinjani Trekking <br /> package</h1> */}
+          <div className="flex mb-5 carousel xl:grid xl:grid-cols-4 xl:gap-y-7 gap-x-7 xl:mx-auto">
             {limitedDataTrekking.map((item, index) => (
               <div key={index} className="carousel-item">
                 <CardTracking
@@ -50,21 +57,24 @@ const Category = () => {
               </div>
             ))}
           </div>
-          {/* <Link to={"/"} className='text-putih-0 font-secondary text-base text-start mb-7'>
-            More package →
-          </Link> */}
+          <Link
+            to={"/trekkingSummit"}
+            onClick={() => window.scrollTo(0, 0)}
+            className='text-base text-putih-0 font-secondary text-start mb-7'>
+            More Trekking →
+          </Link>
         </section >
       );
     }
   };
 
   return (
-    <div className="category-container mx-auto text-center w-full flex flex-col">
+    <div className={`category-container mx-auto text-center w-full flex flex-col ${classname}`}>
       <div className="mb-12 xl:mb-12">
-        <h1 className="text-putih-0 font-tomorrow text-3xl xl:text-3xl  text-center">Find Out The Best <br /> Travel Choice in Asia</h1>
-        <p className="text-gray-500 text-center text-sm md:text-base max-w-2xl mx-auto">Explore Asia's vibrant cities, serene landscapes, and rich cultural heritage for unforgettable adventures. The perfect destination for every type of traveler.</p>
+        <h1 className="text-3xl text-center text-putih-0 font-tomorrow xl:text-3xl">Find Out The Best <br /> Travel Choice in Asia</h1>
+        <p className="max-w-2xl mx-auto text-sm text-center text-gray-500 md:text-base">Explore Asia's vibrant cities, serene landscapes, and rich cultural heritage for unforgettable adventures. The perfect destination for every type of traveler.</p>
       </div>
-      <div className="button-group mb-10 flex justify-center gap-x-3 items-center mx-auto bg-transparen border-2 border-gray-500 rounded-full p-2">
+      <div className="flex items-center justify-center p-2 mx-auto mb-10 border-2 border-gray-500 rounded-full button-group gap-x-3 bg-transparen">
         <button
           onClick={() => setSelectedCategory('Tour')}
           className={`category-button py-2 px-4 rounded-full font-secondary transition-all ease-out ${selectedCategory === 'Tour' ? 'bg-putih-0 text-hitam-0' : 'bg-transparent text-putih-0'

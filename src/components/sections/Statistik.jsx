@@ -6,10 +6,8 @@ import 'aos/dist/aos.css'
 
 
 export const Statistik = ({ className }) => {
-
   function Number({ n }) {
     const [isVisible, setIsVisible] = useState(false);
-
     useEffect(() => {
       AOS.init({ duration: 1000 }); // Inisialisasi AOS
       const handleScroll = () => {
@@ -20,9 +18,7 @@ export const Statistik = ({ className }) => {
           setIsVisible(true);
         }
       };
-
       window.addEventListener('scroll', handleScroll);
-
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
@@ -39,20 +35,19 @@ export const Statistik = ({ className }) => {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
-
     return <animated.div>{number.to((n) => formatter.format(n))}</animated.div>;
   }
 
   return (
     <div className={`w-full ${className}`}>
       <div data-aos="fade-up" data-aos-once="true" className='max-w-xs xl:max-w-sm mb-14'>
-        <h1 className='text-white font-tomorrow text-4xl xl:text-5xl'>Statistik Wisata</h1>
-        <p className='text-gray-500 font-secondary text-sm'>Data terkini pariwisata Lombok berdasarkan sumber terpercaya</p>
+        <h1 className='text-4xl text-white font-tomorrow xl:text-5xl'>Statistik Wisata</h1>
+        <p className='text-sm text-gray-400 font-secondary'>Data terkini pariwisata Lombok berdasarkan sumber terpercaya</p>
       </div>
       <div
         data-aos="fade"
         data-aos-once="true"
-        id='statistik' className='w-full flex flex-col lg:flex-row space-y-11 lg:space-y-0 gap-x-11'>
+        id='statistik' className='flex flex-col w-full lg:flex-row space-y-11 lg:space-y-0 gap-x-11'>
         {/* Jumlah wisatawan */}
         <ItemStatistik className={``} >
           <ItemStatistik.Header header={'Jumlah Wisatawan'} />
