@@ -4,8 +4,6 @@ import { HomePage } from '../sections/Trekking/HomePage'
 import { useParams } from 'react-router-dom';
 import { DataTracking } from '@/data/DataTracking'; // Ensure this is the correct path
 import { MainContent } from '../sections/Trekking/MainContent';
-import { Footer } from '../sections/Footer';
-import { CarouselTrekking } from '../ui/CarouselTrekking';
 import NotFound from '../elements/NotFound';
 import { FooterDsy } from '../ui/FooterDsy';
 
@@ -54,10 +52,10 @@ export const TrekkingLayout = () => {
           >
             {trekking.include ? (
               <>
-                <h1 className='text-putih-0 font-secondary text-base font-medium'>Price Include</h1>
-                <ul className='list-disc px-5'>
+                <h1 className='text-base font-medium text-putih-0 font-secondary'>Price Include</h1>
+                <ul className='px-5 list-disc'>
                   {trekking.include.map((item, index) => (
-                    <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>
+                    <li key={index} className='text-sm text-gray-300 font-secondary'>{item}</li>
                   ))}
                 </ul>
               </>
@@ -65,10 +63,10 @@ export const TrekkingLayout = () => {
               : null}
             {trekking.exclude ? (
               <>
-                <h1 className='text-putih-0 font-secondary text-base font-medium'>Price Exclude</h1>
-                <ul className='list-disc px-5 mb-5'>
+                <h1 className='text-base font-medium text-putih-0 font-secondary'>Price Exclude</h1>
+                <ul className='px-5 mb-5 list-disc'>
                   {trekking.exclude.map((item, index) => (
-                    <li key={index} className='text-gray-300 font-secondary text-sm'>{item}</li>
+                    <li key={index} className='text-sm text-gray-300 font-secondary'>{item}</li>
                   ))}
                 </ul>
               </>

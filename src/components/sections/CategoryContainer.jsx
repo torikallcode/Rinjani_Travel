@@ -33,7 +33,7 @@ const Category = ({ classname }) => {
           <Link
             to={"/rinjaniTour"}
             onClick={() => window.scrollTo(0, 0)}
-            className='text-base text-putih-0 font-secondary text-start mb-7'>
+            className='text-base italic text-putih-0 font-tomorrow text-start lg:text-center mb-7 lg:mx-auto lg:mt-5'>
             More Tour →
           </Link>
         </div>
@@ -41,7 +41,6 @@ const Category = ({ classname }) => {
     } else if (selectedCategory === 'Trekking') {
       return (
         <section className='flex flex-col w-full '>
-          {/* <h1 className='mb-12 text-4xl text-putih-0 font-tomorrow xl:text-4xl xl:mb-12'>Rinjani Trekking <br /> package</h1> */}
           <div className="flex mb-5 carousel xl:grid xl:grid-cols-4 xl:gap-y-7 gap-x-7 xl:mx-auto">
             {limitedDataTrekking.map((item, index) => (
               <div key={index} className="carousel-item">
@@ -60,7 +59,7 @@ const Category = ({ classname }) => {
           <Link
             to={"/trekkingSummit"}
             onClick={() => window.scrollTo(0, 0)}
-            className='text-base text-putih-0 font-secondary text-start mb-7'>
+            className='text-base text-putih-0 font-tomorrow text-start mb-7 lg:text-center lg:mx-auto lg:mt-5'>
             More Trekking →
           </Link>
         </section >
