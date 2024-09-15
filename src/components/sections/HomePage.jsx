@@ -7,7 +7,7 @@ export const HomePage = () => {
       className='relative w-full h-screen gradient-mask-b-70'>
       <div
         className='absolute top-0 left-0 w-full h-full bg-center bg-cover -z-20'
-        style={{ backgroundImage: "url('img/mnt4.jpg')" }}
+        style={{ backgroundImage: "url('img/mnt41.jpg')" }}
       ></div>
       <span className='absolute top-0 left-0 w-full h-full bg-hitam-0 opacity-30 -z-10'>
       </span>

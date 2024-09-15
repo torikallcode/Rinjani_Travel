@@ -10,6 +10,7 @@ import { Contact } from './pages/contact'
 import { Tour } from './pages/rinjaniTour'
 import { TrekkingSummit } from './pages/trekkingSummit'
 import { About } from './pages/about'
+import { DetailTour } from './pages/detailTour'
 const Route = createBrowserRouter([
   {
     path: '/',
@@ -22,6 +23,10 @@ const Route = createBrowserRouter([
   {
     path: '/DetailTrekking/:id',
     element: <DetailTrekking />
+  },
+  {
+    path: '/DetailTour/:id',
+    element: <DetailTour />
   },
   {
     path: '*',

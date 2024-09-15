@@ -3,6 +3,7 @@ import { DataTracking } from '@/data/DataTracking';
 import { CardTracking } from '../fragments/Cards/CardTracking';
 import { DataTour } from '@/data/DataTour';
 import { Link } from 'react-router-dom';
+import { CardTour } from '../fragments/Cards/CardTour';
 
 const Category = ({ classname }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tour');
@@ -17,7 +18,7 @@ const Category = ({ classname }) => {
             {limitedDataTour.map((item, index) => (
               <div
                 key={index} className="carousel-item">
-                <CardTracking
+                <CardTour
                   style={{ backgroundImage: "url('img/Rinjani.jpg')" }}
                   id={item.id}
                   image={item.image}

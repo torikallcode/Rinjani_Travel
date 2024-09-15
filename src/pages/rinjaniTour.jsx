@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AuthLayout } from '@/components/layouts/AuthLayout'
 import { DataTour } from '@/data/DataTour'
-import { CardTracking } from '@/components/fragments/Cards/CardTracking'
+import { CardTour } from '@/components/fragments/Cards/CardTour'
 
 export const Tour = () => {
 
@@ -15,7 +15,7 @@ export const Tour = () => {
           <div className="grid w-full grid-cols-1 mx-auto mb-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-7 lg:gap-y-7 gap-x-7">
             {dataTours.map((item, index) => (
               <div key={index}>
-                <CardTracking
+                <CardTour
                   id={item.id}
                   image={item.image}
                   title={item.title}
