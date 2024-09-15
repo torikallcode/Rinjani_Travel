@@ -7,7 +7,7 @@ export const HomePage = () => {
       className='relative w-full h-screen gradient-mask-b-70'>
       <div
         className='absolute top-0 left-0 w-full h-full bg-center bg-cover -z-20'
-        style={{ backgroundImage: "url('img/homepage3.jpg')" }}
+        style={{ backgroundImage: "url('img/mnt4.jpg')" }}
       ></div>
       <span className='absolute top-0 left-0 w-full h-full bg-hitam-0 opacity-30 -z-10'>
       </span>
@@ -17,10 +17,13 @@ export const HomePage = () => {
             <h1 className='text-5xl font-medium text-white font-tomorrow sm:text-7xl lg:text-5xl xl:text-7xl text-start drop-shadow-md'>Back to nature <br /> <span>make the future</span></h1>
             <p className='max-w-xs text-sm font-light text-white font-secondary sm:text-xl lg:text-base xl:text-base text-start drop-shadow-md sm:max-w-sm'>Selamat datang di dunia petualangan tanpa batas. Temukan keindahan dunia bersama kami!</p>
           </div>
-          <img src="img/peta-phone.png"
-            srcset="img/peta-small.png 320w, img/peta-medium.png 768w, img/peta-large.png 1024w"
-            sizes="(max-width: 600px) 320px, (max-width: 768px) 768px, 1024px"
-            alt="Peta" class="lg:block max-w-[25rem]" />
+          <div className='flex items-center justify-center'>
+            <img src="img/peta-phone.png"
+              alt="Peta"
+              className='lg:block max-w-[25rem] w-full'
+            />
+
+          </div>
 
         </div>
       </div>

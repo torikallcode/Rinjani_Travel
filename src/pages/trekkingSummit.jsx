@@ -7,7 +7,6 @@ export const TrekkingSummit = () => {
   return (
     <div className="App bg-hitam-0 ">
       <AuthLayout
-        backgroundImage={'img/aboutme1.jpg'}
         title={'Trekking Summit'}
         desc={'Nikmati perjalanan eksklusif ke Gunung Rinjani, dirancang untuk memberikan pengalaman mendaki yang memadukan petualangan dan keindahan alam Lombok.'}
         children={

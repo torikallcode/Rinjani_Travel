@@ -9,7 +9,6 @@ export const Tour = () => {
   return (
     <div className="App bg-hitam-0 ">
       <AuthLayout
-        backgroundImage={'img/aboutme1.jpg'}
         title={'Rinjani Tour'}
         desc={'Nikmati perjalanan eksklusif ke Gunung Rinjani, dirancang untuk memberikan pengalaman mendaki yang memadukan petualangan dan keindahan alam Lombok.'}
         children={
