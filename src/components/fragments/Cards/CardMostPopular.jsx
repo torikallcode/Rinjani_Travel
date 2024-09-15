@@ -5,6 +5,7 @@ export const CardMostPopular = ({ style, children, className, lokasi, nama }) =>
     <div
       data-aos="fade-up"
       data-aos-once="true"
+      loading="lazy"
       style={{
         ...style,
         backgroundImage:

@@ -53,16 +53,16 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
   return (
     <div className={`drawer ${className} drawer-end`}>
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col">
+      <div className="flex flex-col drawer-content">
         {/* Navbar */}
         <div className={`w-full navbar md:px-8 xl:px-20 transition-all ease-linear ${scrolled ? ' bg-hitam-0 shadow-md' : 'bg-transparent'}`}>
           <div className='w-full mx-auto xl:max-w-[90rem]'>
-            <div className="flex-1 px-1 font-tomorrow text-2xl xl:text-3xl font-bold text-white z-50">
+            <div className="z-50 flex-1 px-1 text-2xl font-bold text-white font-tomorrow xl:text-3xl">
               <Link
-                activeClass="active"
+                activeclass="active"
                 to="/"
-                spy={true}
-                smooth={true}
+
+                yyy
                 duration={500}
                 onClick={() => window.scrollTo({ top: 0 })}
 
@@ -70,7 +70,7 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
                 TRVL.
               </Link>
             </div>
-            <div className="flex-none justify-center items-center flex gap-x-5 lg:hidden z-10">
+            <div className="z-10 flex items-center justify-center flex-none gap-x-5 lg:hidden">
               {labelDarkMode}
               <label onClick={handleClick} htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                 {aktif ? <svg xmlns="http://www.w3.org/2000/svg" fill='#ffffff' width="44" height="44" viewBox="0 0 24 24"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
@@ -80,29 +80,29 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
 
             </div>
             <div className="flex-none hidden lg:block">
-              <ul className="flex justify-center items-center gap-x-14">
+              <ul className="flex items-center justify-center gap-x-14">
                 {/* Navbar menu content here */}
-                <li className='text-white cursor-pointer text-base font-secondary'>
+                <li className='text-base text-white cursor-pointer font-secondary'>
                   <Link
-                    activeClass="active"
+                    activeclass="active"
                     to="/"
-                    spy={true}
-                    smooth={true}
+
+                    yyy
                     duration={500}
                     onClick={() => window.scrollTo({ top: 0 })}
                   >
                     Home
                   </Link>
                 </li>
-                <li className='text-white cursor-pointer text-base font-secondary'>
+                <li className='text-base text-white cursor-pointer font-secondary'>
                   <Dropdowndsy></Dropdowndsy>
                 </li>
-                <li className='text-white cursor-pointer text-base font-secondary'>
+                <li className='text-base text-white cursor-pointer font-secondary'>
                   <Link
-                    activeClass="active"
+                    activeclass="active"
                     to="/galery"
-                    spy={true}
-                    smooth={true}
+
+                    yyy
                     offset={-200}
                     duration={500}
                     onClick={() => window.scrollTo({ top: 0 })}
@@ -110,12 +110,12 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
                     Galery
                   </Link>
                 </li>
-                <li className='text-white cursor-pointer text-base font-secondary'>
+                <li className='text-base text-white cursor-pointer font-secondary'>
                   <Link
-                    activeClass="active"
+                    activeclass="active"
                     to="/about"
-                    spy={true}
-                    smooth={true}
+
+                    yyy
                     offset={-200}
                     duration={500}
                     onClick={() => window.scrollTo({ top: 0 })}
@@ -127,7 +127,7 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
                   <Link
                     to="/contact"
                     onClick={() => window.scrollTo({ top: 0 })}
-                    className='w-full h-full flex px-4 py-2'
+                    className='flex w-full h-full px-4 py-2'
                   >
                     Contact us
                   </Link>
@@ -140,26 +140,22 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
       </div>
       <div className="drawer-side ">
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-        <ul className="menu w-full min-h-full bg-hitam-0 flex justify-start py-32">
+        <ul className="flex justify-start w-full min-h-full py-32 menu bg-hitam-0">
           {/* Sidebar content here */}
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+          <li onClick={closeSidebar} className='text-3xl font-medium text-white rounded-none cursor-pointer font-tomorrow hover:text-biru-0 '>
             <Link
-              activeClass="active"
-              to="/"
-              spy={true}
-              smooth={true}
+              activeclass="active"
+              to="/" yyy
               duration={500}
               onClick={closeSidebar}
             >
               Home
             </Link>
           </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+          <li onClick={closeSidebar} className='text-3xl font-medium text-white rounded-none cursor-pointer font-tomorrow hover:text-biru-0 '>
             <Link
-              activeClass="active"
-              to="/rinjaniTour"
-              spy={true}
-              smooth={true}
+              activeclass="active"
+              to="/rinjaniTour" yyy
               offset={-80}
               duration={500}
               onClick={closeSidebar}
@@ -167,12 +163,10 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
               Rinjani Tour
             </Link>
           </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+          <li onClick={closeSidebar} className='text-3xl font-medium text-white rounded-none cursor-pointer font-tomorrow hover:text-biru-0 '>
             <Link
-              activeClass="active"
-              to="/trekkingSummit"
-              spy={true}
-              smooth={true}
+              activeclass="active"
+              to="/trekkingSummit" yyy
               offset={-80}
               duration={500}
               onClick={closeSidebar}
@@ -180,12 +174,10 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
               Trekking Summit
             </Link>
           </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+          <li onClick={closeSidebar} className='text-3xl font-medium text-white rounded-none cursor-pointer font-tomorrow hover:text-biru-0 '>
             <Link
-              activeClass="active"
-              to="/galery"
-              spy={true}
-              smooth={true}
+              activeclass="active"
+              to="/galery" yyy
               offset={-80}
               duration={500}
               onClick={closeSidebar}
@@ -193,12 +185,10 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
               Galery
             </Link>
           </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+          <li onClick={closeSidebar} className='text-3xl font-medium text-white rounded-none cursor-pointer font-tomorrow hover:text-biru-0 '>
             <Link
-              activeClass="active"
-              to="/about"
-              spy={true}
-              smooth={true}
+              activeclass="active"
+              to="/about" yyy
               offset={-80}
               duration={500}
               onClick={closeSidebar}
@@ -206,12 +196,10 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
               About
             </Link>
           </li>
-          <li onClick={closeSidebar} className='text-white cursor-pointer font-tomorrow text-3xl font-medium rounded-none hover:text-biru-0 '>
+          <li onClick={closeSidebar} className='text-3xl font-medium text-white rounded-none cursor-pointer font-tomorrow hover:text-biru-0 '>
             <Link
-              activeClass="active"
-              to="/contact"
-              spy={true}
-              smooth={true}
+              activeclass="active"
+              to="/contact" yyy
               offset={-80}
               duration={500}
               onClick={closeSidebar}
@@ -220,7 +208,7 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
             </Link>
           </li>
         </ul>
-        <footer className="footer footer-center p-10 bg-transparent text-base-content rounded absolute bottom-0">
+        <footer className="absolute bottom-0 p-10 bg-transparent rounded footer footer-center text-base-content">
           <nav>
             <div className="grid grid-flow-col gap-4 opacity-50">
               <a><svg xmlns="http://www.w3.org/2000/svg" fill='#ffffff' width="18" height="18" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a>
@@ -229,7 +217,7 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
             </div>
           </nav>
           <aside>
-            <p className='text-white font-secondary font-light text-xs opacity-50'>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+            <p className='text-xs font-light text-white opacity-50 font-secondary'>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
           </aside>
         </footer>
       </div>

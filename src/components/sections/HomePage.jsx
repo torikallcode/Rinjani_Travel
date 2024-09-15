@@ -17,10 +17,11 @@ export const HomePage = () => {
             <h1 className='text-5xl font-medium text-white font-tomorrow sm:text-7xl lg:text-5xl xl:text-7xl text-start drop-shadow-md'>Back to nature <br /> <span>make the future</span></h1>
             <p className='max-w-xs text-sm font-light text-white font-secondary sm:text-xl lg:text-base xl:text-base text-start drop-shadow-md sm:max-w-sm'>Selamat datang di dunia petualangan tanpa batas. Temukan keindahan dunia bersama kami!</p>
           </div>
-          <img
-            src="img/peta.png"
-            alt=""
-            className='lg:block w-72 h-72 sm:w-96 sm:h-96 md:w-[450px] md:h-[450px] lg:w-96 lg:h-96 xl:w-[450px] xl:h-[450px] mx-auto lg:mx-0' />
+          <img src="img/peta-phone.png"
+            srcset="img/peta-small.png 320w, img/peta-medium.png 768w, img/peta-large.png 1024w"
+            sizes="(max-width: 600px) 320px, (max-width: 768px) 768px, 1024px"
+            alt="Peta" class="lg:block max-w-[25rem]" />
+
         </div>
       </div>
     </section>
