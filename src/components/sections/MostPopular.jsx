@@ -11,17 +11,17 @@ export const MostPopular = ({ classname }) => {
       nama: 'Gunung Rinjani',
     },
     {
-      backgroundImage: "url('img/pinkbeach.jpg')",
+      backgroundImage: "url('img/mnt4.jpg')",
       lokasi: 'Jerowaru, Lombok Timur',
       nama: 'Pantai Pink',
     },
     {
-      backgroundImage: "url('img/mandalika.webp')",
+      backgroundImage: "url('img/mnt14.jpg')",
       lokasi: 'Kuta, Lombok Tengah',
       nama: 'Circuit Mandalika',
     },
     {
-      backgroundImage: "url('img/turtle.webp')",
+      backgroundImage: "url('img/mnt10.jpg')",
       className: 'lg:col-span-2',
       lokasi: 'Pemenang, Lombok Utara',
       nama: 'Gili Trawangan',
