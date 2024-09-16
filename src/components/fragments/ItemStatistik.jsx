@@ -27,13 +27,13 @@ export const Body = ({ Dom, Man, DomChild, ManChild, body, classBody }) => {
         <h1 className='text-5xl font-light text-putih-0 font-tomorrow lg:text-4xl xl:font-normal'>
           {Dom}
         </h1>
-        <span className='text-xs text-putih-0 font-tomorrow'>{DomChild}</span>
+        <span className='text-sm text-putih-0 font-tomorrow'>{DomChild}</span>
       </div>
       <div className='flex items-end pb-2 gap-x-2'>
         <h1 className='text-5xl font-light text-putih-0 font-tomorrow lg:text-4xl xl:font-normal'>
           {Man}
         </h1>
-        <span className='text-xs text-putih-0 font-tomorrow'>{ManChild}</span>
+        <span className='text-sm text-putih-0 font-tomorrow'>{ManChild}</span>
       </div>
     </div>
   )
@@ -42,7 +42,7 @@ export const Body = ({ Dom, Man, DomChild, ManChild, body, classBody }) => {
 export const Footer = ({ footer }) => {
   return (
     <div className='w-full max-w-sm'>
-      <p className='text-sm text-gray-400 font-secondary'>{footer}</p>
+      <p className='text-base text-gray-400 font-secondary'>{footer}</p>
     </div>
   )
 }

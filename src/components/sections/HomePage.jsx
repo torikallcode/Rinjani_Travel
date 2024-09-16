@@ -15,7 +15,7 @@ export const HomePage = () => {
         <div className='flex flex-col w-full lg:flex-row lg:justify-between lg:items-center'>
           <div className='flex flex-col justify-start space-y-3'>
             <h1 className='text-5xl font-medium text-white font-tomorrow sm:text-7xl lg:text-5xl xl:text-7xl text-start drop-shadow-md'>Back to nature <br /> <span>make the future</span></h1>
-            <p className='max-w-xs text-sm font-light text-white font-secondary sm:text-xl lg:text-base xl:text-base text-start drop-shadow-md sm:max-w-sm'>Selamat datang di dunia petualangan tanpa batas. Temukan keindahan dunia bersama kami!</p>
+            <p className='max-w-xs text-base font-light text-white font-secondary sm:text-xl lg:text-base xl:text-base text-start drop-shadow-md sm:max-w-sm'>Selamat datang di dunia petualangan tanpa batas. Temukan keindahan dunia bersama kami!</p>
           </div>
           <div className='flex items-center justify-center'>
             <img src="img/peta-phone.png"

@@ -123,7 +123,7 @@ export const NavbarDsy = ({ className, labelDarkMode }) => {
                     About
                   </Link>
                 </li>
-                <li className='text-white cursor-pointer text-base font-secondary overflow-hidden bg-biru-0 rounded-lg hover:bg-[#008e93]'>
+                <li className={`text-white cursor-pointer text-base font-secondary overflow-hidden rounded-lg ${scrolled ? 'bg-biru-0' : 'bg-hitam-0'}`}>
                   <Link
                     to="/contact"
                     onClick={() => window.scrollTo({ top: 0 })}

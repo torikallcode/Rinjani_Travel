@@ -42,7 +42,7 @@ export const Statistik = ({ className }) => {
     <div className={`w-full ${className}`}>
       <div data-aos="fade-up" data-aos-once="true" className='max-w-xs xl:max-w-sm mb-14'>
         <h1 className='text-4xl text-white font-tomorrow xl:text-5xl'>Statistik Wisata</h1>
-        <p className='text-sm text-gray-400 font-secondary'>Data terkini pariwisata Lombok berdasarkan sumber terpercaya</p>
+        <p className='text-base text-gray-400 font-secondary'>Data terkini pariwisata Lombok berdasarkan sumber terpercaya</p>
       </div>
       <div
         data-aos="fade"

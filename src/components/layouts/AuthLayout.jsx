@@ -2,7 +2,7 @@ import React from 'react';
 import { NavbarDsy } from '../ui/NavbarDsy';
 import { FooterDsy } from '../ui/FooterDsy';
 
-export const AuthLayout = ({ children, title, desc }) => {
+export const AuthLayout = ({ children, title, desc, gmp }) => {
   return (
     <div>
       <NavbarDsy className={'fixed z-50'}></NavbarDsy>
@@ -23,6 +23,7 @@ export const AuthLayout = ({ children, title, desc }) => {
           {children}
         </section >
       </div>
+      {gmp}
       <FooterDsy></FooterDsy>
     </div>
   );
