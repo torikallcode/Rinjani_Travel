@@ -3,7 +3,7 @@ import React from 'react'
 export const DataGalery = [
   {
     id: 1,
-    image: 'img/galery1.jpg',
+    image: 'img/galery.jpg',
   },
   {
     id: 2,

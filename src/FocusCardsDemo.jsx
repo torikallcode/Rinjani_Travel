@@ -4,47 +4,45 @@ export function FocusCardsDemo() {
   const cards = [
     {
       title: "Forest Adventure",
-      src: "/img/homepage2.jpg",
+      src: "/img/mnt.jpg",
     },
     {
       title: "Valley of life",
-      src: "/img/homepage3.jpg"
+      src: "/img/mnt2.jpg"
     },
     {
       title: "Sala behta hi jayega",
-      src: "/img/homePage.jpg"
+      src: "/img/mnt3.jpg"
     },
     {
       title: "Camping is for pros",
-      src: "/img/mandalika.webp"
+      src: "/img/mnt4.jpg"
     },
     {
       title: "The road not taken",
-      src: "/img/layanan.jpg"
+      src: "/img/mnt5.jpg"
     },
     {
       title: "The First Rule",
-      src: "/img/Rinjani.jpg"
+      src: "/img/mnt6.jpg"
     },
     {
       title: "Sala behta hi jayega",
-      src: "/img/pinkbeach.jpg"
+      src: "/img/mnt7.jpg"
     },
     {
       title: "Camping is for pros",
-      src: "/img/Rinjani.jpg"
+      src: "/img/mnt8.jpg"
     },
     {
       title: "The road not taken",
-      src: "/img/DesaSade.jpg"
+      src: "/img/mnt9.jpg"
     },
     {
       title: "The First Rule",
-      src: "/img/trawangan2.png"
+      src: "/img/mnt10.jpg"
     },
   ];
-
-  console.log(cards); // Debugging: Log the cards array
 
   return <FocusCards cards={cards} />;
 }

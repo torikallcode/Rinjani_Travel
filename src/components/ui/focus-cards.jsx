@@ -15,7 +15,7 @@ export const Card = memo(({ card, index, hovered, setHovered }) => (
     <img
       src={card.src}
       alt={card.title}
-      className="object-cover absolute inset-0 opacity-70"
+      className="absolute inset-0 object-cover opacity-70"
       style={{ width: "100%", height: "100%" }}
     />
     <div
@@ -36,8 +36,6 @@ export const Card = memo(({ card, index, hovered, setHovered }) => (
 Card.displayName = "Card";
 
 export function FocusCards({ cards = [] }) {
-  console.log('Cards Prop:', cards); // Debugging: Log props cards
-
   const [hovered, setHovered] = useState(null);
 
   if (!cards.length) {

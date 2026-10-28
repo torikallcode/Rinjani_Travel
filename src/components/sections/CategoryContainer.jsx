@@ -1,35 +1,59 @@
-import React, { useState } from 'react';
-import { DataTracking } from '@/data/DataTracking';
+import React, { useState, useEffect } from 'react';
 import { CardTracking } from '../fragments/Cards/CardTracking';
-import { DataTour } from '@/data/DataTour';
-import { Link } from 'react-router-dom';
 import { CardTour } from '../fragments/Cards/CardTour';
+import { Link } from 'react-router-dom';
+import { fetchPackages } from '@/services/api';
 
 const Category = ({ classname }) => {
   const [selectedCategory, setSelectedCategory] = useState('Tour');
-  const limitedDataTour = DataTour.slice(0, 3)
-  const limitedDataTrekking = DataTracking.slice(0, 8)
+  const [trekkingPackages, setTrekkingPackages] = useState([]);
+  const [tourPackages, setTourPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPackages = async () => {
+      setLoading(true);
+      const allPackages = await fetchPackages();
+      const trekking = allPackages.filter(pkg => pkg.category === 'trekking');
+      const tour = allPackages.filter(pkg => pkg.category === 'tour');
+      setTrekkingPackages(trekking);
+      setTourPackages(tour);
+      setLoading(false);
+    };
+    loadPackages();
+  }, []);
+
+  const limitedDataTour = tourPackages.slice(0, 3);
+  const limitedDataTrekking = trekkingPackages.slice(0, 8);
 
   const renderContent = () => {
+    if (loading) {
+      return <p className='text-white py-10'>Loading packages...</p>;
+    }
+
     if (selectedCategory === 'Tour') {
       return (
         <div className='flex flex-col w-full'>
           <div className="flex mb-5 carousel gap-x-7 lg:mx-auto">
-            {limitedDataTour.map((item, index) => (
-              <div
-                key={index} className="carousel-item">
-                <CardTour
-                  style={{ backgroundImage: "url('img/Rinjani.jpg')" }}
-                  id={item.id}
-                  image={item.image}
-                  title={item.title}
-                  days={item.days}
-                  desc={item.desc}
-                  rating={item.rating}
-                  price={item.price}
-                />
-              </div>
-            ))}
+            {limitedDataTour.length > 0 ? (
+              limitedDataTour.map((item, index) => (
+                <div
+                  key={index} className="carousel-item">
+                  <CardTour
+                    style={{ backgroundImage: "url('img/Rinjani.jpg')" }}
+                    id={item.id}
+                    image={item.image}
+                    title={item.title}
+                    days={item.days}
+                    desc={item.description}
+                    rating={item.rating}
+                    price={item.base_price}
+                  />
+                </div>
+              ))
+            ) : (
+              <p className='text-gray-400'>No tour packages available</p>
+            )}
           </div>
           <Link
             to={"/rinjaniTour"}
@@ -43,19 +67,23 @@ const Category = ({ classname }) => {
       return (
         <section className='flex flex-col w-full '>
           <div className="flex mb-5 carousel xl:grid xl:grid-cols-4 xl:gap-y-7 gap-x-7 xl:mx-auto">
-            {limitedDataTrekking.map((item, index) => (
-              <div key={index} className="carousel-item">
-                <CardTracking
-                  id={item.id}
-                  image={item.image}
-                  title={item.title}
-                  days={item.days}
-                  desc={item.desc}
-                  rating={item.rating}
-                  price={item.price}
-                />
-              </div>
-            ))}
+            {limitedDataTrekking.length > 0 ? (
+              limitedDataTrekking.map((item, index) => (
+                <div key={index} className="carousel-item">
+                  <CardTracking
+                    id={item.id}
+                    image={item.image}
+                    title={item.title}
+                    days={item.days}
+                    desc={item.description}
+                    rating={item.rating}
+                    price={item.base_price}
+                  />
+                </div>
+              ))
+            ) : (
+              <p className='text-gray-400'>No trekking packages available</p>
+            )}
           </div>
           <Link
             to={"/trekkingSummit"}

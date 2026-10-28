@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { NavbarDsy } from '../ui/NavbarDsy'
 import { HomePage } from '../sections/Trekking/HomePage'
 import { useParams } from 'react-router-dom';
-import { DataTracking } from '@/data/DataTracking'; // Ensure this is the correct path
+import { fetchPackageBySlug } from '@/services/api';
 import { MainContent } from '../sections/Trekking/MainContent';
 import NotFound from '../elements/NotFound';
 import { FooterDsy } from '../ui/FooterDsy';
@@ -11,11 +11,16 @@ export const TrekkingLayout = () => {
 
   const { id } = useParams();
   const [trekking, setTrekking] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const trekkingData = DataTracking.find(item => item.id.toString() === id);
-    //mengembalikan elemen pertama dalam array kemudian  memeriksa apakah id yang sudah diubah menjadi string dari item tersebut sama dengan id dari parameter DataTracking
-    setTrekking(trekkingData || {});
+    const loadPackage = async () => {
+      setLoading(true);
+      const data = await fetchPackageBySlug(id);
+      setTrekking(data || {});
+      setLoading(false);
+    };
+    loadPackage();
   }, [id]);
 
   useEffect(() => {
@@ -23,7 +28,9 @@ export const TrekkingLayout = () => {
   }, [])
 
 
-  if (trekking.id === undefined) return <NotFound />
+  if (loading) return <p className='text-white min-h-screen flex items-center justify-center'>Loading...</p>
+  
+  if (!trekking || trekking.id === undefined) return <NotFound />
 
   return (
     <div>
