@@ -1,22 +1,38 @@
-package models
+package repository
 
-import "time"
+import (
+	"database/sql"
+	"rinjani-travel-backend/models"
+)
 
-type User struct {
-	ID        int       `json:"id"`
-	Username  string    `json:"username"`
-	Email     string    `json:"email"`
-	Password  string    `json:"-"`
-	CreatedAt time.Time `json:"created_at"`
+type UserRepository struct {
+	db *sql.DB
 }
 
-type LoginRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+func NewUserRepository(db *sql.DB) *UserRepository {
+	return &UserRepository{db: db}
 }
 
-type RegisterRequest struct {
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
+func (r *UserRepository) Register(req *models.RegisterRequest) error {
+	query := `INSERT INTO users (username, email, password) VALUES ($1, $2, $3)`
+	_, err := r.db.Exec(query, req.Username, req.Email, req.Password)
+	return err
+}
+
+func (r *UserRepository) Login(email, password string) (*models.User, error) {
+	query := `SELECT id, username, email, password, created_at FROM users WHERE email = $1`
+	row := r.db.QueryRow(query, email)
+	
+	var user models.User
+	err := row.Scan(&user.ID, &user.Username, &user.Email, &user.Password, &user.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
+	
+	// ponytail: no password hashing, add bcrypt when auth matters
+	if user.Password != password {
+		return nil, sql.ErrNoRows
+	}
+	
+	return &user, nil
 }

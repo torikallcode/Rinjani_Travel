@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-module backend
-
-go 1.24.3
-=======
 module rinjani-travel-backend
 
 go 1.26.0
@@ -49,4 +44,3 @@ require (
 	golang.org/x/text v0.43.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 )
->>>>>>> d51a9b8 (update tracking layout)

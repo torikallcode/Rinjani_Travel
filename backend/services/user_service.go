@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/torikallcode/rinjani-travel/models"
-	"github.com/torikallcode/rinjani-travel/repository"
+	"rinjani-travel-backend/models"
+	"rinjani-travel-backend/repository"
 )
 
 type UserService struct {

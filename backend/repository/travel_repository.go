@@ -2,7 +2,7 @@ package repository
 
 import (
 	"database/sql"
-	"github.com/torikallcode/rinjani-travel/models"
+	"rinjani-travel-backend/models"
 )
 
 type TravelRepository struct {

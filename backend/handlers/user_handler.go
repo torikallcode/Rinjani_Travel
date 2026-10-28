@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/torikallcode/rinjani-travel/models"
-	"github.com/torikallcode/rinjani-travel/services"
+	"rinjani-travel-backend/models"
+	"rinjani-travel-backend/services"
 )
 
 type UserHandler struct {
