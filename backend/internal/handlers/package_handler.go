@@ -2,117 +2,155 @@ package handlers
 
 import (
 	"net/http"
-	"rinjani-travel-backend/internal/models"
+	"strconv"
+
+	"rinjani-travel-backend/internal/services"
+	"rinjani-travel-backend/internal/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type PackageHandler struct {
-	db *gorm.DB
+	db      *gorm.DB
+	service *services.PackageService
 }
 
 func NewPackageHandler(db *gorm.DB) *PackageHandler {
-	return &PackageHandler{db: db}
+	return &PackageHandler{db: db, service: services.NewPackageService(db)}
 }
 
-// GetAllPackages - GET /api/v1/packages
-func (h *PackageHandler) GetAllPackages(c *gin.Context) {
-	var packages []models.Package
-
-	if err := h.db.Where("status = ?", "published").Find(&packages).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch packages"})
+func (h *PackageHandler) List(c *gin.Context) {
+	page, pageSize, _ := utils.Pagination(c)
+	filter := services.PackageFilter{
+		Search:         c.Query("q"),
+		Category:       c.Query("category"),
+		Difficulty:     c.Query("difficulty"),
+		MinPrice:       utils.QueryInt64(c, "min_price", 0),
+		MaxPrice:       utils.QueryInt64(c, "max_price", 0),
+		Duration:       utils.QueryInt(c, "duration", 0),
+		DeparturePoint: c.Query("departure_point"),
+		Date:           c.Query("date"),
+		Featured:       c.Query("featured") == "true",
+		Sort:           c.Query("sort"),
+		Page:           page,
+		PageSize:       pageSize,
+	}
+	items, total, err := h.service.List(filter)
+	if err != nil {
+		utils.RespondError(c, err)
 		return
 	}
+	utils.PaginatedResponse(c, http.StatusOK, items, total, page, pageSize)
+}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
-		"data":   packages,
-		"count":  len(packages),
+func (h *PackageHandler) Detail(c *gin.Context) {
+	detail, err := h.service.Detail(c.Param("slug"))
+	if err != nil {
+		utils.RespondError(c, err)
+		return
+	}
+	utils.SuccessResponse(c, http.StatusOK, "", detail)
+}
+
+func (h *PackageHandler) Departure(c *gin.Context) {
+	id, ok := parseID(c, "id")
+	if !ok {
+		return
+	}
+	dep, pkg, err := h.service.Departure(id)
+	if err != nil {
+		utils.RespondError(c, err)
+		return
+	}
+	price := pkg.BasePrice
+	if dep.PriceOverride != nil && *dep.PriceOverride > 0 {
+		price = *dep.PriceOverride
+	}
+	utils.SuccessResponse(c, http.StatusOK, "", gin.H{
+		"departure": dep,
+		"package":   pkg,
+		"price":     price,
+		"seats_left": dep.SeatsLeft(),
 	})
 }
 
-// GetPackageBySlug - GET /api/v1/packages/:slug
-func (h *PackageHandler) GetPackageBySlug(c *gin.Context) {
-	slug := c.Param("slug")
-	var pkg models.Package
-
-	if err := h.db.Where("slug = ? AND status = ?", slug, "published").First(&pkg).Error; err != nil {
-		if err == gorm.ErrRecordNotFound {
-			c.JSON(http.StatusNotFound, gin.H{"error": "Package not found"})
-			return
-		}
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch package"})
+// AdminList - GET /admin/packages
+func (h *PackageHandler) AdminList(c *gin.Context) {
+	page, pageSize, _ := utils.Pagination(c)
+	items, total, err := h.service.AdminList(services.PackageFilter{
+		Search:   c.Query("q"),
+		Category: c.Query("category"),
+		Status:   c.Query("status"),
+		Page:     page,
+		PageSize: pageSize,
+	})
+	if err != nil {
+		utils.RespondError(c, err)
 		return
 	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
-		"data":   pkg,
-	})
+	utils.PaginatedResponse(c, http.StatusOK, items, total, page, pageSize)
 }
 
-// CreatePackage - POST /api/v1/packages (admin only)
-func (h *PackageHandler) CreatePackage(c *gin.Context) {
-	var pkg models.Package
-
-	if err := c.ShouldBindJSON(&pkg); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+func (h *PackageHandler) AdminGet(c *gin.Context) {
+	id, ok := parseID(c, "id")
+	if !ok {
 		return
 	}
-
-	if err := h.db.Create(&pkg).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create package"})
+	pkg, err := h.service.AdminGet(id)
+	if err != nil {
+		utils.RespondError(c, err)
 		return
 	}
-
-	c.JSON(http.StatusCreated, gin.H{
-		"status": "success",
-		"data":   pkg,
-	})
+	utils.SuccessResponse(c, http.StatusOK, "", pkg)
 }
 
-// UpdatePackage - PUT /api/v1/packages/:id (admin only)
-func (h *PackageHandler) UpdatePackage(c *gin.Context) {
-	id := c.Param("id")
-	var pkg models.Package
-
-	if err := h.db.First(&pkg, id).Error; err != nil {
-		if err == gorm.ErrRecordNotFound {
-			c.JSON(http.StatusNotFound, gin.H{"error": "Package not found"})
-			return
-		}
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch package"})
+func (h *PackageHandler) Create(c *gin.Context) {
+	var input services.PackageInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		utils.ErrorResponse(c, http.StatusBadRequest, validationMessage(err))
 		return
 	}
-
-	if err := c.ShouldBindJSON(&pkg); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	pkg, err := h.service.Create(input)
+	if err != nil {
+		utils.RespondError(c, err)
 		return
 	}
-
-	if err := h.db.Save(&pkg).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update package"})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
-		"data":   pkg,
-	})
+	audit(c, h.db, "package.create", "package", strconv.Itoa(int(pkg.ID)), nil, pkg)
+	utils.SuccessResponse(c, http.StatusCreated, "Paket berhasil dibuat.", pkg)
 }
 
-// DeletePackage - DELETE /api/v1/packages/:id (admin only)
-func (h *PackageHandler) DeletePackage(c *gin.Context) {
-	id := c.Param("id")
-
-	if err := h.db.Delete(&models.Package{}, id).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete package"})
+func (h *PackageHandler) Update(c *gin.Context) {
+	id, ok := parseID(c, "id")
+	if !ok {
+		return
+	}
+	before, _ := h.service.AdminGet(id)
+	var input services.PackageInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		utils.ErrorResponse(c, http.StatusBadRequest, validationMessage(err))
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
-		"message": "Package deleted successfully",
-	})
+	pkg, err := h.service.Update(id, input)
+	if err != nil {
+		utils.RespondError(c, err)
+		return
+	}
+	audit(c, h.db, "package.update", "package", strconv.Itoa(int(id)), before, pkg)
+	utils.SuccessResponse(c, http.StatusOK, "Paket berhasil diperbarui.", pkg)
+}
+
+func (h *PackageHandler) Delete(c *gin.Context) {
+	id, ok := parseID(c, "id")
+	if !ok {
+		return
+	}
+	before, _ := h.service.AdminGet(id)
+	if err := h.service.Delete(id); err != nil {
+		utils.RespondError(c, err)
+		return
+	}
+	audit(c, h.db, "package.delete", "package", strconv.Itoa(int(id)), before, nil)
+	utils.SuccessResponse(c, http.StatusOK, "Paket berhasil dihapus.", nil)
 }

@@ -1,0 +1,70 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_secret}
+      MYSQL_DATABASE: ${DB_NAME:-rinjani_travel_db}
+      MYSQL_USER: ${DB_USER:-rinjani}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-rinjani_secret}
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-root_secret}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_ENV: ${SERVER_ENV:-development}
+      SERVER_PORT: 8000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ${DB_USER:-rinjani}
+      DB_PASSWORD: ${DB_PASSWORD:-rinjani_secret}
+      DB_NAME: ${DB_NAME:-rinjani_travel_db}
+      DB_MAX_OPEN_CONNS: 25
+      DB_MAX_IDLE_CONNS: 5
+      DB_CONN_MAX_LIFETIME: 5m
+      JWT_SECRET: ${JWT_SECRET:-change-this-compose-jwt-secret}
+      JWT_EXPIRY: 168h
+      API_BASE_URL: ${API_BASE_URL:-http://localhost:8000}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:8080}
+      PAYMENT_PROVIDER: mock
+      PAYMENT_GATEWAY_SECRET: ${PAYMENT_GATEWAY_SECRET:-change-this-compose-payment-secret}
+      TAX_PERCENT: ${TAX_PERCENT:-0}
+      BOOKING_HOLD_MINUTES: ${BOOKING_HOLD_MINUTES:-30}
+      RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-60}
+      BUSINESS_NAME: Rinjani Travel
+      BUSINESS_EMAIL: hello@rinjanitravel.com
+      BUSINESS_PHONE: +62 812-3456-7890
+      BUSINESS_ADDRESS: Jl. Raya Sembalun, Lombok Timur, Nusa Tenggara Barat
+      WHATSAPP_PHONE_NUMBER: "6281234567890"
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api/v1
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:

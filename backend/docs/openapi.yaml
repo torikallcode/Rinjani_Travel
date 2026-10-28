@@ -1,0 +1,1210 @@
+openapi: 3.0.3
+info:
+  title: Rinjani Travel API
+  version: 1.0.0
+  description: |
+    REST API untuk katalog, akun pelanggan, checkout, pembayaran, dan dashboard admin Rinjani Travel.
+
+    Semua response memakai envelope:
+    `{"meta":{"status":"success|error","message":"...","code":200},"data":...}`
+
+    Autentikasi memakai JWT Bearer. Token diperoleh dari `/auth/login` atau `/auth/register`.
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Local development
+tags:
+  - name: Public
+  - name: Auth
+  - name: Customer
+  - name: Booking
+  - name: Payment
+  - name: Admin
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema: { type: integer, minimum: 1, default: 1 }
+    PageSize:
+      in: query
+      name: page_size
+      schema: { type: integer, minimum: 1, maximum: 100, default: 12 }
+    BookingCode:
+      in: path
+      name: code
+      required: true
+      schema: { type: string }
+  schemas:
+    Meta:
+      type: object
+      properties:
+        status: { type: string, enum: [success, error] }
+        message: { type: string }
+        code: { type: integer }
+    Envelope:
+      type: object
+      properties:
+        meta: { $ref: '#/components/schemas/Meta' }
+        data: {}
+    Paginated:
+      type: object
+      properties:
+        meta: { $ref: '#/components/schemas/Meta' }
+        data:
+          type: object
+          properties:
+            items: { type: array, items: {} }
+            total: { type: integer }
+            page: { type: integer }
+            page_size: { type: integer }
+            total_pages: { type: integer }
+    User:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        country: { type: string }
+        role: { type: string, enum: [customer, admin_ops, admin_content, super_admin] }
+        email_verified_at: { type: string, format: date-time, nullable: true }
+        is_active: { type: boolean }
+    Package:
+      type: object
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        title: { type: string }
+        category: { type: string, enum: [trekking, tour] }
+        description: { type: string }
+        description_long: { type: string }
+        difficulty: { type: string }
+        duration: { type: integer }
+        days: { type: integer }
+        base_price: { type: integer, format: int64 }
+        currency: { type: string, example: IDR }
+        image: { type: string }
+        gallery: { type: array, items: { type: string } }
+        includes: { type: array, items: { type: string } }
+        excludes: { type: array, items: { type: string } }
+        equipment: { type: array, items: { type: string } }
+        rating: { type: number }
+        review_count: { type: integer }
+        status: { type: string, enum: [draft, published, archived] }
+        departures: { type: array, items: { $ref: '#/components/schemas/Departure' } }
+        addons: { type: array, items: { $ref: '#/components/schemas/Addon' } }
+    Departure:
+      type: object
+      properties:
+        id: { type: integer }
+        package_id: { type: integer }
+        start_date: { type: string, format: date }
+        end_date: { type: string, format: date }
+        capacity: { type: integer }
+        reserved_count: { type: integer }
+        seats_left: { type: integer }
+        price: { type: integer, format: int64 }
+        booking_cutoff: { type: string, format: date }
+        status: { type: string, enum: [open, closed, full] }
+    Addon:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        description: { type: string }
+        price: { type: integer, format: int64 }
+        pricing_type: { type: string, enum: [per_person, per_booking] }
+        active: { type: boolean }
+    QuoteRequest:
+      type: object
+      required: [departure_id, travelers_count]
+      properties:
+        departure_id: { type: integer }
+        travelers_count: { type: integer, minimum: 1 }
+        addons:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: integer }
+              quantity: { type: integer, minimum: 1 }
+        coupon_code: { type: string }
+    Quote:
+      type: object
+      properties:
+        departure_id: { type: integer }
+        travelers_count: { type: integer }
+        price_per_person: { type: integer, format: int64 }
+        subtotal: { type: integer, format: int64 }
+        addons:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: integer }
+              name: { type: string }
+              quantity: { type: integer }
+              unit_price: { type: integer, format: int64 }
+              total: { type: integer, format: int64 }
+        discount: { type: integer, format: int64 }
+        tax: { type: integer, format: int64 }
+        total: { type: integer, format: int64 }
+        hold_minutes: { type: integer }
+        coupon:
+          type: object
+          nullable: true
+          properties:
+            code: { type: string }
+            type: { type: string }
+            value: { type: integer }
+            description: { type: string }
+    BookingCreate:
+      type: object
+      required: [departure_id, travelers, organizer_name, organizer_phone, consent]
+      properties:
+        departure_id: { type: integer }
+        travelers:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required: [name, health_consent]
+            properties:
+              name: { type: string }
+              birth_date: { type: string, format: date, nullable: true }
+              gender: { type: string }
+              nationality: { type: string }
+              id_number: { type: string }
+              emergency_contact_name: { type: string }
+              emergency_contact_phone: { type: string }
+              health_note: { type: string }
+              health_consent: { type: boolean }
+              is_organizer: { type: boolean }
+        addons:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: integer }
+              quantity: { type: integer }
+        coupon_code: { type: string }
+        organizer_name: { type: string }
+        organizer_phone: { type: string }
+        organizer_email: { type: string, format: email }
+        notes: { type: string }
+        consent: { type: boolean }
+    Booking:
+      type: object
+      properties:
+        id: { type: integer }
+        booking_code: { type: string }
+        status:
+          type: string
+          enum: [draft, pending_payment, paid, confirmed, completed, payment_expired, cancelled, refunded, on_hold]
+        subtotal: { type: integer, format: int64 }
+        discount: { type: integer, format: int64 }
+        tax: { type: integer, format: int64 }
+        total: { type: integer, format: int64 }
+        currency: { type: string }
+        expires_at: { type: string, format: date-time, nullable: true }
+        departure: { $ref: '#/components/schemas/Departure' }
+        travelers: { type: array, items: { type: object } }
+        payments: { type: array, items: { $ref: '#/components/schemas/Payment' } }
+        status_history: { type: array, items: { type: object } }
+    Payment:
+      type: object
+      properties:
+        id: { type: integer }
+        booking_id: { type: integer }
+        provider: { type: string }
+        provider_reference: { type: string }
+        amount: { type: integer, format: int64 }
+        currency: { type: string }
+        status: { type: string, enum: [pending, paid, failed, expired, refunded] }
+        method: { type: string }
+        virtual_account: { type: string }
+        payment_url: { type: string }
+        paid_at: { type: string, format: date-time, nullable: true }
+        expires_at: { type: string, format: date-time, nullable: true }
+    Error:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            status: { type: string, example: error }
+            message: { type: string }
+            code: { type: integer }
+paths:
+  /health:
+    get:
+      tags: [Public]
+      summary: Health check
+      responses:
+        '200': { description: API dan database status }
+  /packages:
+    get:
+      tags: [Public]
+      summary: Daftar paket publik
+      parameters:
+        - { in: query, name: q, schema: { type: string } }
+        - { in: query, name: category, schema: { type: string, enum: [trekking, tour] } }
+        - { in: query, name: difficulty, schema: { type: string } }
+        - { in: query, name: min_price, schema: { type: integer } }
+        - { in: query, name: max_price, schema: { type: integer } }
+        - { in: query, name: date, schema: { type: string, format: date } }
+        - { in: query, name: featured, schema: { type: boolean } }
+        - { in: query, name: sort, schema: { type: string, enum: [featured, price_asc, price_desc, rating, newest] } }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Daftar paket
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Paginated' }
+  /packages/{slug}:
+    get:
+      tags: [Public]
+      summary: Detail paket berdasarkan slug
+      parameters:
+        - { in: path, name: slug, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Paket beserta jadwal, add-on, itinerary, dan FAQ
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data: { $ref: '#/components/schemas/Package' }
+        '404': { description: Paket tidak ditemukan }
+  /reviews:
+    get:
+      tags: [Public]
+      summary: Ulasan yang sudah dipublikasikan
+      parameters:
+        - { in: query, name: package_id, schema: { type: integer } }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200': { description: Daftar ulasan }
+  /content/{slug}:
+    get:
+      tags: [Public]
+      summary: Halaman konten publik (about, terms, privacy, cancellation, safety)
+      parameters:
+        - { in: path, name: slug, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Halaman konten }
+        '404': { description: Halaman tidak ditemukan }
+  /faqs:
+    get:
+      tags: [Public]
+      summary: FAQ publik
+      parameters:
+        - { in: query, name: category, schema: { type: string } }
+      responses:
+        '200': { description: Daftar FAQ }
+  /settings/public:
+    get:
+      tags: [Public]
+      summary: Pengaturan publik (nama bisnis, kontak, alamat)
+      responses:
+        '200': { description: Map pengaturan publik }
+  /contact:
+    post:
+      tags: [Public]
+      summary: Kirim pesan kontak
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, message]
+              properties:
+                name: { type: string }
+                email: { type: string, format: email }
+                phone: { type: string }
+                subject: { type: string }
+                message: { type: string, minLength: 10, maxLength: 3000 }
+      responses:
+        '201': { description: Pesan diterima }
+        '429': { description: Terlalu banyak permintaan }
+  /coupons/{code}/validate:
+    post:
+      tags: [Public]
+      summary: Validasi kode promo
+      parameters:
+        - { in: path, name: code, required: true, schema: { type: string } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subtotal: { type: integer, format: int64 }
+      responses:
+        '200': { description: Kupon valid beserta nilai diskon }
+        '400': { description: Kupon tidak valid }
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Registrasi pelanggan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, phone, password]
+              properties:
+                name: { type: string }
+                email: { type: string, format: email }
+                phone: { type: string }
+                country: { type: string }
+                password: { type: string, minLength: 8 }
+      responses:
+        '201':
+          description: Akun dibuat
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          user: { $ref: '#/components/schemas/User' }
+                          token: { type: string }
+                          verification_token: { type: string }
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login pelanggan atau staf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+      responses:
+        '200':
+          description: Login berhasil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          user: { $ref: '#/components/schemas/User' }
+                          token: { type: string }
+                          expires_at: { type: string, format: date-time }
+        '401': { description: Kredensial salah }
+        '429': { description: Rate limit }
+  /auth/verify-email:
+    post:
+      tags: [Auth]
+      summary: Verifikasi email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token: { type: string }
+      responses:
+        '200': { description: Email terverifikasi }
+  /auth/forgot-password:
+    post:
+      tags: [Auth]
+      summary: Minta tautan reset kata sandi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+      responses:
+        '200': { description: Permintaan diproses }
+  /auth/reset-password:
+    post:
+      tags: [Auth]
+      summary: Reset kata sandi dengan token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token, password]
+              properties:
+                token: { type: string }
+                password: { type: string, minLength: 8 }
+      responses:
+        '200': { description: Kata sandi diperbarui }
+  /webhooks/payments/{provider}:
+    post:
+      tags: [Payment]
+      summary: Webhook gateway pembayaran
+      description: Wajib menyertakan signature HMAC-SHA256 pada header `X-Payment-Signature`.
+      parameters:
+        - { in: path, name: provider, required: true, schema: { type: string, example: mock } }
+        - { in: header, name: X-Payment-Signature, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [event_id, type, provider_reference, booking_code, amount, currency]
+              properties:
+                event_id: { type: string }
+                type: { type: string, example: payment.paid }
+                provider_reference: { type: string }
+                booking_code: { type: string }
+                amount: { type: integer, format: int64 }
+                currency: { type: string }
+                method: { type: string }
+                paid_at: { type: string, format: date-time }
+      responses:
+        '200': { description: Event diproses atau diduplikasi }
+        '401': { description: Signature tidak valid }
+  /dev/payments/{ref}/pay:
+    post:
+      tags: [Payment]
+      summary: Simulasi pembayaran (development only)
+      description: Ditolak saat `SERVER_ENV=production`.
+      parameters:
+        - { in: path, name: ref, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Event webhook berhasil diproses }
+        '403': { description: Tidak tersedia di produksi }
+  /me:
+    get:
+      tags: [Customer]
+      summary: Profil pengguna saat ini
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Profil pengguna }
+    put:
+      tags: [Customer]
+      summary: Perbarui profil
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                phone: { type: string }
+                country: { type: string }
+                emergency_contact_name: { type: string }
+                emergency_contact_phone: { type: string }
+      responses:
+        '200': { description: Profil diperbarui }
+  /me/password:
+    put:
+      tags: [Customer]
+      summary: Ganti kata sandi
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [current_password, new_password]
+              properties:
+                current_password: { type: string }
+                new_password: { type: string, minLength: 8 }
+      responses:
+        '200': { description: Kata sandi diperbarui }
+  /bookings/quote:
+    post:
+      tags: [Booking]
+      summary: Hitung harga server-side
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/QuoteRequest' }
+      responses:
+        '200':
+          description: Rincian harga
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data: { $ref: '#/components/schemas/Quote' }
+        '409': { description: Kuota tidak cukup atau jadwal tidak tersedia }
+  /bookings:
+    post:
+      tags: [Booking]
+      summary: Buat pesanan dan tahan kuota
+      description: Kirim header `Idempotency-Key` unik untuk mencegah duplikasi.
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: header, name: Idempotency-Key, required: false, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BookingCreate' }
+      responses:
+        '201':
+          description: Pesanan dibuat
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data: { $ref: '#/components/schemas/Booking' }
+        '409': { description: Kuota tidak cukup / jadwal ditutup }
+        '422': { description: Validasi gagal }
+  /me/bookings:
+    get:
+      tags: [Booking]
+      summary: Daftar pesanan milik pelanggan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: status, schema: { type: string } }
+      responses:
+        '200': { description: Daftar pesanan }
+  /bookings/{code}:
+    get:
+      tags: [Booking]
+      summary: Detail pesanan milik pelanggan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      responses:
+        '200':
+          description: Detail pesanan
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data: { $ref: '#/components/schemas/Booking' }
+        '404': { description: Pesanan tidak ditemukan }
+  /bookings/{code}/voucher:
+    get:
+      tags: [Booking]
+      summary: Unduh voucher
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      responses:
+        '200': { description: Voucher }
+  /bookings/{code}/cancel:
+    post:
+      tags: [Booking]
+      summary: Batalkan pesanan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason: { type: string }
+      responses:
+        '200': { description: Pesanan dibatalkan dan kuota dilepas }
+  /bookings/{code}/reviews:
+    post:
+      tags: [Booking]
+      summary: Tulis ulasan setelah perjalanan selesai
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [rating, content]
+              properties:
+                rating: { type: integer, minimum: 1, maximum: 5 }
+                title: { type: string }
+                content: { type: string, minLength: 10 }
+      responses:
+        '201': { description: Ulasan menunggu moderasi }
+        '409': { description: Pesanan belum selesai atau sudah diulas }
+  /bookings/{code}/payments:
+    get:
+      tags: [Payment]
+      summary: Riwayat pembayaran pesanan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      responses:
+        '200': { description: Daftar pembayaran }
+    post:
+      tags: [Payment]
+      summary: Buat instruksi pembayaran
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                method: { type: string, enum: [va, ewallet, qris, card] }
+      responses:
+        '201':
+          description: Instruksi pembayaran
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Envelope'
+                  - type: object
+                    properties:
+                      data: { $ref: '#/components/schemas/Payment' }
+  /admin/dashboard:
+    get:
+      tags: [Admin]
+      summary: Ringkasan dashboard operasional
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Metrik booking, pendapatan, okupansi, dan tugas }
+  /admin/packages:
+    get:
+      tags: [Admin]
+      summary: Daftar paket untuk admin
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: q, schema: { type: string } }
+        - { in: query, name: status, schema: { type: string } }
+      responses:
+        '200': { description: Daftar paket }
+    post:
+      tags: [Admin]
+      summary: Buat paket (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Package' }
+      responses:
+        '201': { description: Paket dibuat }
+  /admin/packages/{id}:
+    get:
+      tags: [Admin]
+      summary: Detail paket untuk admin
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Paket }
+    put:
+      tags: [Admin]
+      summary: Perbarui paket (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Package' }
+      responses:
+        '200': { description: Paket diperbarui }
+    delete:
+      tags: [Admin]
+      summary: Hapus paket (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Paket dihapus }
+  /admin/departures:
+    get:
+      tags: [Admin]
+      summary: Daftar jadwal keberangkatan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: query, name: package_id, schema: { type: integer } }
+        - { in: query, name: status, schema: { type: string } }
+      responses:
+        '200': { description: Daftar jadwal }
+    post:
+      tags: [Admin]
+      summary: Buat jadwal (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Departure' }
+      responses:
+        '201': { description: Jadwal dibuat }
+  /admin/departures/{id}:
+    put:
+      tags: [Admin]
+      summary: Perbarui jadwal (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Jadwal diperbarui }
+    delete:
+      tags: [Admin]
+      summary: Hapus jadwal (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Jadwal dihapus }
+  /admin/bookings:
+    get:
+      tags: [Admin]
+      summary: Daftar pesanan dengan filter
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: q, schema: { type: string } }
+        - { in: query, name: status, schema: { type: string } }
+        - { in: query, name: package_id, schema: { type: integer } }
+        - { in: query, name: date_from, schema: { type: string, format: date } }
+        - { in: query, name: date_to, schema: { type: string, format: date } }
+      responses:
+        '200': { description: Daftar pesanan }
+  /admin/bookings/export:
+    get:
+      tags: [Admin]
+      summary: Ekspor CSV pesanan/peserta
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: query, name: status, schema: { type: string } }
+      responses:
+        '200':
+          description: File CSV
+          content:
+            text/csv:
+              schema: { type: string }
+  /admin/bookings/{code}:
+    get:
+      tags: [Admin]
+      summary: Detail pesanan untuk admin
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      responses:
+        '200': { description: Detail pesanan beserta peserta dan pembayaran }
+  /admin/bookings/{code}/status:
+    patch:
+      tags: [Admin]
+      summary: Ubah status pesanan (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string }
+                reason: { type: string }
+      responses:
+        '200': { description: Status diperbarui dan dicatat pada riwayat }
+        '409': { description: Transisi status tidak valid }
+  /admin/bookings/{code}/notes:
+    patch:
+      tags: [Admin]
+      summary: Simpan catatan internal (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                internal_notes: { type: string }
+      responses:
+        '200': { description: Catatan disimpan }
+  /admin/bookings/{code}/resend:
+    post:
+      tags: [Admin]
+      summary: Kirim ulang notifikasi (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+        - { in: query, name: type, schema: { type: string, enum: [booking_created, payment_paid, booking_completed, status_update] } }
+      responses:
+        '200': { description: Notifikasi dicatat/dikirim ulang }
+  /admin/bookings/{code}/payments:
+    post:
+      tags: [Admin]
+      summary: Catat pembayaran manual (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/BookingCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount]
+              properties:
+                amount: { type: integer, format: int64 }
+                method: { type: string, example: manual }
+                note: { type: string }
+      responses:
+        '201': { description: Pembayaran dicatat dan pesanan dikonfirmasi }
+  /admin/payments:
+    get:
+      tags: [Admin]
+      summary: Daftar pembayaran
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: status, schema: { type: string } }
+        - { in: query, name: provider, schema: { type: string } }
+      responses:
+        '200': { description: Daftar pembayaran }
+  /admin/payments/{id}/refund:
+    post:
+      tags: [Admin]
+      summary: Refund pembayaran (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason: { type: string }
+      responses:
+        '200': { description: Refund dicatat }
+  /admin/webhook-events:
+    get:
+      tags: [Admin]
+      summary: Riwayat event webhook (super_admin, admin_ops)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: provider, schema: { type: string } }
+      responses:
+        '200': { description: Daftar event webhook }
+  /admin/customers:
+    get:
+      tags: [Admin]
+      summary: Daftar pelanggan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: q, schema: { type: string } }
+      responses:
+        '200': { description: Daftar pelanggan beserta jumlah booking dan total belanja }
+  /admin/coupons:
+    get:
+      tags: [Admin]
+      summary: Daftar kupon
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Daftar kupon }
+    post:
+      tags: [Admin]
+      summary: Buat kupon (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code, type, value]
+              properties:
+                code: { type: string }
+                description: { type: string }
+                type: { type: string, enum: [percent, fixed] }
+                value: { type: integer }
+                min_spend: { type: integer }
+                max_discount: { type: integer }
+                usage_limit: { type: integer }
+                starts_at: { type: string, format: date-time, nullable: true }
+                ends_at: { type: string, format: date-time, nullable: true }
+                active: { type: boolean }
+      responses:
+        '201': { description: Kupon dibuat }
+  /admin/coupons/{id}:
+    put:
+      tags: [Admin]
+      summary: Perbarui kupon (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Kupon diperbarui }
+    delete:
+      tags: [Admin]
+      summary: Hapus kupon (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Kupon dihapus }
+  /admin/reviews:
+    get:
+      tags: [Admin]
+      summary: Daftar ulasan untuk moderasi
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: query, name: status, schema: { type: string } }
+      responses:
+        '200': { description: Daftar ulasan }
+  /admin/reviews/{id}:
+    patch:
+      tags: [Admin]
+      summary: Moderasi ulasan (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: [pending, published, rejected] }
+                admin_note: { type: string }
+      responses:
+        '200': { description: Ulasan diperbarui }
+  /admin/content:
+    get:
+      tags: [Admin]
+      summary: Daftar halaman konten
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Daftar halaman }
+    post:
+      tags: [Admin]
+      summary: Buat halaman konten (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, content]
+              properties:
+                slug: { type: string }
+                title: { type: string }
+                content: { type: string }
+                meta_title: { type: string }
+                meta_description: { type: string }
+                status: { type: string, enum: [draft, published] }
+      responses:
+        '201': { description: Halaman dibuat }
+  /admin/content/{id}:
+    put:
+      tags: [Admin]
+      summary: Perbarui halaman konten (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Halaman diperbarui }
+    delete:
+      tags: [Admin]
+      summary: Hapus halaman konten (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Halaman dihapus }
+  /admin/faqs:
+    get:
+      tags: [Admin]
+      summary: Daftar FAQ (termasuk draft dengan `all=true`)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: query, name: all, schema: { type: boolean } }
+      responses:
+        '200': { description: Daftar FAQ }
+    post:
+      tags: [Admin]
+      summary: Buat FAQ (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [question, answer]
+              properties:
+                question: { type: string }
+                answer: { type: string }
+                category: { type: string }
+                sort_order: { type: integer }
+                published: { type: boolean }
+      responses:
+        '201': { description: FAQ dibuat }
+  /admin/faqs/{id}:
+    put:
+      tags: [Admin]
+      summary: Perbarui FAQ (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: FAQ diperbarui }
+    delete:
+      tags: [Admin]
+      summary: Hapus FAQ (super_admin, admin_content)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: FAQ dihapus }
+  /admin/messages:
+    get:
+      tags: [Admin]
+      summary: Daftar pesan kontak
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: query, name: status, schema: { type: string, enum: [new, read, replied, archived] } }
+      responses:
+        '200': { description: Daftar pesan }
+  /admin/messages/{id}:
+    patch:
+      tags: [Admin]
+      summary: Ubah status pesan
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [new, read, replied, archived] }
+      responses:
+        '200': { description: Status pesan diperbarui }
+  /admin/staff:
+    get:
+      tags: [Admin]
+      summary: Daftar staf (super_admin)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Daftar staf }
+    post:
+      tags: [Admin]
+      summary: Buat staf (super_admin)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password, role]
+              properties:
+                name: { type: string }
+                email: { type: string, format: email }
+                password: { type: string, minLength: 8 }
+                phone: { type: string }
+                role: { type: string, enum: [admin_ops, admin_content, super_admin] }
+      responses:
+        '201': { description: Staf dibuat }
+  /admin/staff/{id}:
+    put:
+      tags: [Admin]
+      summary: Perbarui staf (super_admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Staf diperbarui }
+  /admin/settings:
+    get:
+      tags: [Admin]
+      summary: Pengaturan bisnis (super_admin)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Map pengaturan }
+    put:
+      tags: [Admin]
+      summary: Perbarui pengaturan bisnis (super_admin)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: { type: string }
+      responses:
+        '200': { description: Pengaturan diperbarui }
+  /admin/audit-logs:
+    get:
+      tags: [Admin]
+      summary: Audit log (super_admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - { in: query, name: action, schema: { type: string } }
+      responses:
+        '200': { description: Daftar audit log }
