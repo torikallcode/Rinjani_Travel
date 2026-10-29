@@ -68,11 +68,11 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto -mt-8 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-3 rounded-xl border border-hitam-0/10 bg-white p-5 shadow-lg md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 rounded-xl border border-ink/10 bg-surface p-5 shadow-lg md:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-tomorrow text-2xl font-bold text-hitam-0 md:text-3xl">{stat.value}</p>
-              <p className="mt-1 text-xs text-hitam-0/50">{stat.label}</p>
+              <p className="font-tomorrow text-2xl font-bold text-ink md:text-3xl">{stat.value}</p>
+              <p className="mt-1 text-xs text-ink/50">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -81,9 +81,9 @@ export default function AboutPage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
           <Card className="p-6 sm:p-9">
-            <h2 className="font-tomorrow text-2xl font-bold text-hitam-0">Cerita kami</h2>
+            <h2 className="font-tomorrow text-2xl font-bold text-ink">Cerita kami</h2>
             {loading ? <Spinner label="Memuat cerita..." /> : page ? <ContentHtml html={page.content} className="mt-4" /> : (
-              <p className="mt-4 text-sm leading-relaxed text-hitam-0/60">
+              <p className="mt-4 text-sm leading-relaxed text-ink/60">
                 Rinjani Travel adalah operator perjalanan lokal di Lombok yang fokus pada trekking Gunung Rinjani dan wisata alam. Kami bekerja bersama guide, porter, dan driver berpengalaman untuk menghadirkan perjalanan yang aman dan transparan.
               </p>
             )}
@@ -98,12 +98,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-surface py-16">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-biru-0">Nilai yang kami pegang</p>
-            <h2 className="mt-2 font-tomorrow text-3xl font-bold text-hitam-0">Bukan sekadar menjual paket</h2>
-            <p className="mt-3 text-sm leading-relaxed text-hitam-0/60">
+            <h2 className="mt-2 font-tomorrow text-3xl font-bold text-ink">Bukan sekadar menjual paket</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink/60">
               Kami percaya perjalanan yang baik dimulai dari kejujuran informasi dan diakhiri dengan kenangan yang aman untuk semua orang.
             </p>
           </div>
@@ -115,8 +115,8 @@ export default function AboutPage() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-biru-0/10 text-biru-0">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-4 font-tomorrow text-base font-bold text-hitam-0">{value.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-hitam-0/60">{value.text}</p>
+                  <h3 className="mt-4 font-tomorrow text-base font-bold text-ink">{value.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{value.text}</p>
                 </Card>
               );
             })}
@@ -141,7 +141,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        <p className="mt-6 text-center text-xs text-hitam-0/45">
+        <p className="mt-6 text-center text-xs text-ink/45">
           Ingin membaca ketentuan perjalanan? <Link to="/terms" className="font-semibold text-biru-0 hover:underline">Syarat & ketentuan</Link> · <Link to="/safety" className="font-semibold text-biru-0 hover:underline">Keselamatan</Link>
         </p>
       </section>

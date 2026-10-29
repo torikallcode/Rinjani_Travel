@@ -99,7 +99,7 @@ export default function AdminBookingsPage() {
           <Link to={`/admin/bookings/${row.booking_code}`} className="font-mono text-xs font-semibold text-biru-0 hover:underline">
             {row.booking_code}
           </Link>
-          <p className="mt-1 text-[11px] text-hitam-0/45"><DateTimeCell value={row.created_at} /></p>
+          <p className="mt-1 text-[11px] text-ink/45"><DateTimeCell value={row.created_at} /></p>
         </div>
       ),
     },
@@ -108,8 +108,8 @@ export default function AdminBookingsPage() {
       header: 'Pemesan',
       render: (row) => (
         <div>
-          <p className="text-sm font-semibold text-hitam-0">{row.organizer_name}</p>
-          <p className="text-[11px] text-hitam-0/50">{row.organizer_phone}</p>
+          <p className="text-sm font-semibold text-ink">{row.organizer_name}</p>
+          <p className="text-[11px] text-ink/50">{row.organizer_phone}</p>
         </div>
       ),
     },
@@ -118,13 +118,13 @@ export default function AdminBookingsPage() {
       header: 'Paket / Keberangkatan',
       render: (row) => (
         <div>
-          <p className="max-w-[240px] truncate text-sm text-hitam-0">{row.departure?.package?.title || '-'}</p>
-          <p className="text-[11px] text-hitam-0/50">{row.departure ? <DateCell value={row.departure.start_date} /> : '-'}</p>
+          <p className="max-w-[240px] truncate text-sm text-ink">{row.departure?.package?.title || '-'}</p>
+          <p className="text-[11px] text-ink/50">{row.departure ? <DateCell value={row.departure.start_date} /> : '-'}</p>
         </div>
       ),
     },
     { key: 'status', header: 'Status', render: (row) => <BookingStatusBadge status={row.status} /> },
-    { key: 'travelers', header: 'Peserta', render: (row) => <span className="text-hitam-0/70">{row.number_of_travelers} org</span> },
+    { key: 'travelers', header: 'Peserta', render: (row) => <span className="text-ink/70">{row.number_of_travelers} org</span> },
     { key: 'total', header: 'Total', render: (row) => <Money value={row.total} /> },
     {
       key: 'actions',
@@ -132,7 +132,7 @@ export default function AdminBookingsPage() {
       className: 'text-right',
       cellClassName: 'text-right',
       render: (row) => (
-        <Link to={`/admin/bookings/${row.booking_code}`} className="inline-flex items-center gap-1 rounded-lg border border-hitam-0/15 px-2.5 py-1.5 text-xs font-semibold text-hitam-0 hover:border-biru-0 hover:text-biru-0">
+        <Link to={`/admin/bookings/${row.booking_code}`} className="inline-flex items-center gap-1 rounded-lg border border-ink/15 px-2.5 py-1.5 text-xs font-semibold text-ink hover:border-biru-0 hover:text-biru-0">
           <Eye className="h-3.5 w-3.5" /> Detail
         </Link>
       ),
@@ -167,7 +167,7 @@ export default function AdminBookingsPage() {
             }}
           >
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
               <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Cari kode booking, nama, email, atau WhatsApp..." className="pl-9" />
             </div>
             <Button type="submit">Cari</Button>
@@ -177,7 +177,7 @@ export default function AdminBookingsPage() {
           </Select>
         </div>
         {showFilters && (
-          <div className="mt-4 grid gap-3 border-t border-hitam-0/10 pt-4 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 border-t border-ink/10 pt-4 sm:grid-cols-3">
             <Field label="Dibuat dari tanggal">
               <Input type="date" value={filters.date_from} onChange={(event) => setParam('date_from', event.target.value)} />
             </Field>
@@ -191,7 +191,7 @@ export default function AdminBookingsPage() {
         )}
       </Card>
 
-      <p className="mt-4 text-xs text-hitam-0/50">{total} pesanan ditemukan.</p>
+      <p className="mt-4 text-xs text-ink/50">{total} pesanan ditemukan.</p>
 
       <div className="mt-2">
         {error ? (

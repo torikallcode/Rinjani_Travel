@@ -87,6 +87,22 @@ func (h *BookingHandler) Cancel(c *gin.Context) {
 	utils.SuccessResponse(c, http.StatusOK, "Pesanan dibatalkan.", booking)
 }
 
+func (h *BookingHandler) RequestCancellation(c *gin.Context) {
+	var input struct {
+		Reason string `json:"reason" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&input); err != nil {
+		utils.ErrorResponse(c, http.StatusBadRequest, validationMessage(err))
+		return
+	}
+	booking, err := h.service.RequestCancellation(c.Param("code"), middleware.CurrentUserID(c), input.Reason)
+	if err != nil {
+		utils.RespondError(c, err)
+		return
+	}
+	utils.SuccessResponse(c, http.StatusOK, "Permintaan pembatalan telah diterima dan akan diproses tim operasional.", booking)
+}
+
 func (h *BookingHandler) AddReview(c *gin.Context) {
 	var input struct {
 		Rating  int    `json:"rating" binding:"required,min=1,max=5"`

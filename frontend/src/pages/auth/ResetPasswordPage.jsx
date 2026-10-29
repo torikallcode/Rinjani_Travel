@@ -32,8 +32,8 @@ export default function ResetPasswordPage() {
 
   return (
     <div>
-      <h1 className="font-tomorrow text-2xl font-bold text-hitam-0">Atur kata sandi baru</h1>
-      <p className="mt-2 text-sm text-hitam-0/55">Gunakan minimal 8 karakter dan kombinasi yang mudah Anda ingat.</p>
+      <h1 className="font-tomorrow text-2xl font-bold text-ink">Atur kata sandi baru</h1>
+      <p className="mt-2 text-sm text-ink/55">Gunakan minimal 8 karakter dan kombinasi yang mudah Anda ingat.</p>
       {error && <Alert tone="danger" className="mt-5">{error}</Alert>}
       {success && <Alert tone="success" title="Berhasil" className="mt-5">Kata sandi diperbarui. Mengarahkan ke halaman masuk...</Alert>}
       <form onSubmit={submit} className="mt-6 space-y-4">
@@ -48,7 +48,7 @@ export default function ResetPasswordPage() {
         </Field>
         <Button type="submit" size="lg" className="w-full" loading={loading}>Simpan kata sandi</Button>
       </form>
-      <p className="mt-4 text-center text-xs text-hitam-0/55">
+      <p className="mt-4 text-center text-xs text-ink/55">
         <Link to="/login" className="font-semibold text-biru-0 hover:underline">Kembali ke halaman masuk</Link>
       </p>
     </div>

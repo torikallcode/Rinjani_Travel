@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"rinjani-travel-backend/internal/middleware"
+	"rinjani-travel-backend/internal/models"
 	"rinjani-travel-backend/internal/services"
 	"rinjani-travel-backend/internal/utils"
 
@@ -184,7 +185,7 @@ func (h *PaymentHandler) Simulate(c *gin.Context) {
 
 func (h *PaymentHandler) WebhookEvents(c *gin.Context) {
 	page, pageSize, offset := utils.Pagination(c)
-	query := h.db.Model(&struct{}{}).Table("payment_events")
+	query := h.db.Model(&models.PaymentEvent{})
 	if provider := c.Query("provider"); provider != "" {
 		query = query.Where("provider = ?", provider)
 	}
@@ -193,7 +194,7 @@ func (h *PaymentHandler) WebhookEvents(c *gin.Context) {
 		utils.RespondError(c, err)
 		return
 	}
-	var items []map[string]interface{}
+	var items []models.PaymentEvent
 	if err := query.Order("created_at DESC").Offset(offset).Limit(pageSize).Find(&items).Error; err != nil {
 		utils.RespondError(c, err)
 		return

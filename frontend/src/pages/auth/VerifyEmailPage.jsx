@@ -26,7 +26,7 @@ export default function VerifyEmailPage() {
 
   return (
     <div>
-      <h1 className="font-tomorrow text-2xl font-bold text-hitam-0">Verifikasi email</h1>
+      <h1 className="font-tomorrow text-2xl font-bold text-ink">Verifikasi email</h1>
       {status === 'loading' && <Spinner label="Memverifikasi email..." />}
       {status === 'success' && (
         <>

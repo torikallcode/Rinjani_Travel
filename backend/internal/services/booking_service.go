@@ -2,6 +2,7 @@ package services
 
 import (
 	"crypto/rand"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"math"
@@ -809,6 +810,41 @@ func (s *BookingService) CancelByCustomer(code string, userID uint, reason strin
 	return s.Transition(booking.ID, models.BookingCancelled, booking.OrganizerName, reason, &userID)
 }
 
+// RequestCancellation allows a customer to request cancellation of a paid or
+// confirmed booking. It does not cancel the booking directly; instead it records
+// the request via audit log so operations can review and process refund per policy.
+func (s *BookingService) RequestCancellation(code string, userID uint, reason string) (*models.Booking, error) {
+	booking, err := s.LoadBookingByCode(code, userID, false)
+	if err != nil {
+		return nil, err
+	}
+	if booking.Status != models.BookingPaid && booking.Status != models.BookingConfirmed {
+		return nil, utils.Conflict("Hanya pesanan yang sudah dibayar atau dikonfirmasi yang dapat diajukan pembatalan.")
+	}
+	if strings.TrimSpace(reason) == "" {
+		return nil, utils.BadRequest("Alasan pembatalan wajib diisi.")
+	}
+	auditDetails := map[string]interface{}{
+		"booking_code": booking.BookingCode,
+		"status":       booking.Status,
+		"reason":       reason,
+		"requested_by": userID,
+	}
+	_ = s.db.Create(&models.AuditLog{
+		ActorID:    &userID,
+		ActorName:  booking.OrganizerName,
+		Action:     "booking.cancellation_requested",
+		EntityType: "booking",
+		EntityID:   booking.BookingCode,
+		After:      mustJSON(auditDetails),
+		IPAddress:  "",
+		UserAgent:  "",
+	})
+	// Notify ops about the cancellation request.
+	_ = s.email.SendBookingNotification(booking, "cancellation_requested")
+	return booking, nil
+}
+
 // ExpireHolds releases quota for unpaid bookings past their expiry.
 func (s *BookingService) ExpireHolds() (int, error) {
 	var expired []models.Booking
@@ -908,4 +944,12 @@ func recomputePackageRating(db *gorm.DB, packageID uint) error {
 		"rating":       math.Round(avg.Average*100) / 100,
 		"review_count": avg.Count,
 	}).Error
+}
+
+func mustJSON(v any) string {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return "{}"
+	}
+	return string(b)
 }

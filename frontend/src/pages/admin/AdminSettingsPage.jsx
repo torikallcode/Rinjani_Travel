@@ -61,7 +61,7 @@ export default function AdminSettingsPage() {
 
       <form onSubmit={save} className="mt-6 grid gap-6 xl:grid-cols-[1fr_340px]">
         <Card className="p-5">
-          <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Identitas & kontak</h2>
+          <h2 className="font-tomorrow text-lg font-bold text-ink">Identitas & kontak</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {fields.map((field) => (
               <Field key={field.key} label={field.label} hint={field.hint} className={field.key === 'business_name' ? 'sm:col-span-2' : ''}>
@@ -80,7 +80,7 @@ export default function AdminSettingsPage() {
 
         <div className="space-y-4">
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Kebijakan & instruksi</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Kebijakan & instruksi</h2>
             <div className="mt-4 space-y-4">
               <Field label="Instruksi pembayaran">
                 <Textarea rows={4} value={settings?.payment_instructions ?? ''} onChange={(event) => update('payment_instructions', event.target.value)} />
@@ -94,7 +94,7 @@ export default function AdminSettingsPage() {
             </div>
           </Card>
           <Button type="submit" size="lg" className="w-full" loading={saving}><Save className="h-4 w-4" /> Simpan pengaturan</Button>
-          <p className="text-center text-[11px] text-hitam-0/45">Perubahan pajak dan durasi tahan kuota berlaku untuk transaksi baru.</p>
+          <p className="text-center text-[11px] text-ink/45">Perubahan pajak dan durasi tahan kuota berlaku untuk transaksi baru.</p>
         </div>
       </form>
     </div>

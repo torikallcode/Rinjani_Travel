@@ -41,6 +41,25 @@ func SecurityHeaders() gin.HandlerFunc {
 		if config.IsProduction() {
 			c.Writer.Header().Set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
 		}
+		// Content Security Policy: allow self, inline styles for Tailwind/DaisyUI,
+		// and only trusted script sources. Adjust frontend URL as needed.
+		csp := "default-src 'self'; " +
+			"script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+			"style-src 'self' 'unsafe-inline'; " +
+			"img-src 'self' data: https:; " +
+			"font-src 'self' data:; " +
+			"connect-src 'self'; " +
+			"frame-ancestors 'none';"
+		if config.IsProduction() {
+			csp = "default-src 'self'; " +
+				"script-src 'self'; " +
+				"style-src 'self' 'unsafe-inline'; " +
+				"img-src 'self' data: https:; " +
+				"font-src 'self' data:; " +
+				"connect-src 'self'; " +
+				"frame-ancestors 'none';"
+		}
+		c.Writer.Header().Set("Content-Security-Policy", csp)
 		c.Next()
 	}
 }

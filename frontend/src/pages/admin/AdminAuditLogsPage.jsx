@@ -35,10 +35,10 @@ export default function AdminAuditLogsPage() {
 
   const columns = [
     { key: 'created_at', header: 'Waktu', render: (row) => <DateTimeCell value={row.created_at} /> },
-    { key: 'actor', header: 'Aktor', render: (row) => <span className="text-sm text-hitam-0">{row.actor_name || `#${row.actor_id || 'sistem'}`}</span> },
-    { key: 'action', header: 'Aksi', render: (row) => <span className="rounded bg-hitam-0/5 px-2 py-1 font-mono text-[11px] text-hitam-0/70">{row.action}</span> },
-    { key: 'entity', header: 'Entitas', render: (row) => <span className="text-xs text-hitam-0/60">{row.entity_type}{row.entity_id ? ` · ${row.entity_id}` : ''}</span> },
-    { key: 'ip', header: 'IP', render: (row) => <span className="font-mono text-[11px] text-hitam-0/45">{row.ip_address || '-'}</span> },
+    { key: 'actor', header: 'Aktor', render: (row) => <span className="text-sm text-ink">{row.actor_name || `#${row.actor_id || 'sistem'}`}</span> },
+    { key: 'action', header: 'Aksi', render: (row) => <span className="rounded bg-ink/5 px-2 py-1 font-mono text-[11px] text-ink/70">{row.action}</span> },
+    { key: 'entity', header: 'Entitas', render: (row) => <span className="text-xs text-ink/60">{row.entity_type}{row.entity_id ? ` · ${row.entity_id}` : ''}</span> },
+    { key: 'ip', header: 'IP', render: (row) => <span className="font-mono text-[11px] text-ink/45">{row.ip_address || '-'}</span> },
     {
       key: 'detail',
       header: 'Perubahan',
@@ -48,7 +48,7 @@ export default function AdminAuditLogsPage() {
           <div className="mt-1 space-y-1">
             {row.before && <pre className="max-h-32 overflow-auto rounded bg-red-50 p-2 text-[10px] text-red-800">{row.before}</pre>}
             {row.after && <pre className="max-h-32 overflow-auto rounded bg-emerald-50 p-2 text-[10px] text-emerald-800">{row.after}</pre>}
-            {!row.before && !row.after && <p className="text-[11px] text-hitam-0/40">Tidak ada detail.</p>}
+            {!row.before && !row.after && <p className="text-[11px] text-ink/40">Tidak ada detail.</p>}
           </div>
         </details>
       ),
@@ -64,7 +64,7 @@ export default function AdminAuditLogsPage() {
       <Card className="mt-4 p-4">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
             <Input value={action} onChange={(event) => { setAction(event.target.value); setPage(1); }} placeholder="Filter aksi, contoh booking.status" className="pl-9" />
           </div>
           <Select value={entity} onChange={(event) => { setEntity(event.target.value); setPage(1); }} className="sm:w-52">

@@ -141,28 +141,28 @@ export default function AdminDeparturesPage() {
       header: 'Tanggal',
       render: (row) => (
         <div>
-          <p className="text-sm font-semibold text-hitam-0">{formatDate(row.start_date)}</p>
-          <p className="text-[11px] text-hitam-0/45">s.d. {formatDate(row.end_date)}</p>
+          <p className="text-sm font-semibold text-ink">{formatDate(row.start_date)}</p>
+          <p className="text-[11px] text-ink/45">s.d. {formatDate(row.end_date)}</p>
         </div>
       ),
     },
-    { key: 'package', header: 'Paket', render: (row) => <span className="block max-w-[260px] truncate text-sm text-hitam-0">{row.package?.title || '-'}</span> },
+    { key: 'package', header: 'Paket', render: (row) => <span className="block max-w-[260px] truncate text-sm text-ink">{row.package?.title || '-'}</span> },
     {
       key: 'capacity',
       header: 'Kuota',
       render: (row) => (
         <div>
-          <p className="text-sm text-hitam-0">{row.reserved_count}/{row.capacity}</p>
-          <div className="mt-1 h-1.5 w-20 overflow-hidden rounded-full bg-hitam-0/10">
+          <p className="text-sm text-ink">{row.reserved_count}/{row.capacity}</p>
+          <div className="mt-1 h-1.5 w-20 overflow-hidden rounded-full bg-ink/10">
             <div className="h-full rounded-full bg-biru-0" style={{ width: `${row.capacity ? Math.min(100, (row.reserved_count / row.capacity) * 100) : 0}%` }} />
           </div>
         </div>
       ),
     },
-    { key: 'price', header: 'Harga', render: (row) => (row.price_override ? <Money value={row.price_override} /> : <span className="text-xs text-hitam-0/40">Harga dasar</span>) },
+    { key: 'price', header: 'Harga', render: (row) => (row.price_override ? <Money value={row.price_override} /> : <span className="text-xs text-ink/40">Harga dasar</span>) },
     { key: 'cutoff', header: 'Cut-off', render: (row) => <DateCell value={row.booking_cutoff} /> },
     { key: 'status', header: 'Status', render: (row) => <Badge tone={statusTone[row.status] || 'neutral'}>{row.status}</Badge> },
-    { key: 'guide', header: 'Guide', render: (row) => <span className="text-xs text-hitam-0/60">{row.guide_name || '-'}</span> },
+    { key: 'guide', header: 'Guide', render: (row) => <span className="text-xs text-ink/60">{row.guide_name || '-'}</span> },
     {
       key: 'actions',
       header: '',
@@ -171,7 +171,7 @@ export default function AdminDeparturesPage() {
       render: (row) =>
         canManage ? (
           <div className="flex justify-end gap-1.5">
-            <button onClick={() => openEdit(row)} className="rounded-lg border border-hitam-0/15 p-2 text-hitam-0/60 hover:text-biru-0" title="Edit"><Pencil className="h-3.5 w-3.5" /></button>
+            <button onClick={() => openEdit(row)} className="rounded-lg border border-ink/15 p-2 text-ink/60 hover:text-biru-0" title="Edit"><Pencil className="h-3.5 w-3.5" /></button>
             <button onClick={() => remove(row)} disabled={deleting === row.id} className="rounded-lg border border-red-200 p-2 text-red-600 hover:bg-red-50 disabled:opacity-40" title="Hapus"><Trash2 className="h-3.5 w-3.5" /></button>
           </div>
         ) : null,
@@ -193,7 +193,7 @@ export default function AdminDeparturesPage() {
       <Card className="mt-4 p-4">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
             <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Cari paket, guide, atau tanggal..." className="pl-9" />
           </div>
           <Select value={packageFilter} onChange={(event) => setPackageFilter(event.target.value)} className="sm:w-64">
@@ -259,7 +259,7 @@ export default function AdminDeparturesPage() {
             <Textarea rows={3} value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} />
           </Field>
           {editing && (
-            <p className="sm:col-span-2 rounded-lg bg-[#f7f8f9] px-3 py-2 text-xs text-hitam-0/55">
+            <p className="sm:col-span-2 rounded-lg bg-panel px-3 py-2 text-xs text-ink/55">
               <CalendarDays className="mr-1 inline h-3.5 w-3.5" /> Kuota terisi saat ini: {editing.reserved_count}. Kapasitas tidak boleh lebih kecil dari angka ini.
             </p>
           )}

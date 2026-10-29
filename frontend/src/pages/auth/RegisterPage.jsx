@@ -38,8 +38,8 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h1 className="font-tomorrow text-2xl font-bold text-hitam-0">Buat akun baru</h1>
-      <p className="mt-2 text-sm text-hitam-0/55">Simpan data perjalanan dan akses voucher kapan saja.</p>
+      <h1 className="font-tomorrow text-2xl font-bold text-ink">Buat akun baru</h1>
+      <p className="mt-2 text-sm text-ink/55">Simpan data perjalanan dan akses voucher kapan saja.</p>
 
       {error && <Alert tone="danger" className="mt-5">{error}</Alert>}
 
@@ -66,7 +66,7 @@ export default function RegisterPage() {
         </Field>
         <Button type="submit" size="lg" className="w-full" loading={loading}>Daftar</Button>
       </form>
-      <p className="mt-4 text-center text-xs text-hitam-0/55">
+      <p className="mt-4 text-center text-xs text-ink/55">
         Sudah punya akun? <Link to="/login" className="font-semibold text-biru-0 hover:underline">Masuk</Link>
       </p>
     </div>

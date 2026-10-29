@@ -65,7 +65,7 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
 
   if (!departures.length) {
     return (
-      <p className="rounded-lg border border-dashed border-hitam-0/15 px-4 py-8 text-center text-sm text-hitam-0/50">
+      <p className="rounded-lg border border-dashed border-ink/15 px-4 py-8 text-center text-sm text-ink/50">
         Belum ada jadwal keberangkatan untuk paket ini.
       </p>
     );
@@ -79,11 +79,11 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
           onClick={() => canPrev && setCursor(new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1))}
           disabled={!canPrev}
           aria-label="Bulan sebelumnya"
-          className="rounded-lg p-1.5 text-hitam-0/60 transition hover:bg-hitam-0/5 disabled:cursor-not-allowed disabled:opacity-30"
+          className="rounded-lg p-1.5 text-ink/60 transition hover:bg-ink/5 disabled:cursor-not-allowed disabled:opacity-30"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
-        <p className="text-sm font-bold text-hitam-0">
+        <p className="text-sm font-bold text-ink">
           {MONTHS[cursor.getMonth()]} {cursor.getFullYear()}
         </p>
         <button
@@ -91,7 +91,7 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
           onClick={() => canNext && setCursor(new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1))}
           disabled={!canNext}
           aria-label="Bulan berikutnya"
-          className="rounded-lg p-1.5 text-hitam-0/60 transition hover:bg-hitam-0/5 disabled:cursor-not-allowed disabled:opacity-30"
+          className="rounded-lg p-1.5 text-ink/60 transition hover:bg-ink/5 disabled:cursor-not-allowed disabled:opacity-30"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -99,7 +99,7 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
 
       <div className="mt-4 grid grid-cols-7 gap-1 text-center">
         {WEEKDAYS.map((day) => (
-          <span key={day} className="py-1 text-[10px] font-bold uppercase tracking-wide text-hitam-0/40">
+          <span key={day} className="py-1 text-[10px] font-bold uppercase tracking-wide text-ink/40">
             {day}
           </span>
         ))}
@@ -113,7 +113,7 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
             return (
               <span
                 key={key}
-                className={`flex min-h-[52px] items-start justify-end rounded-lg p-1.5 text-xs ${isPast ? 'text-hitam-0/20' : 'text-hitam-0/35'}`}
+                className={`flex min-h-[52px] items-start justify-end rounded-lg p-1.5 text-xs ${isPast ? 'text-ink/20' : 'text-ink/35'}`}
               >
                 {date.getDate()}
               </span>
@@ -126,7 +126,7 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
             ? 'border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
             : dep.status === 'full'
               ? 'border-amber-200 bg-amber-50 text-amber-800'
-              : 'border-hitam-0/10 bg-hitam-0/5 text-hitam-0/35';
+              : 'border-ink/10 bg-ink/5 text-ink/35';
 
           return (
             <button
@@ -149,10 +149,10 @@ export default function DepartureCalendar({ departures = [], selectedId, onSelec
         })}
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-hitam-0/55">
+      <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-ink/55">
         <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm border border-emerald-300 bg-emerald-100" /> Tersedia</span>
         <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm border border-amber-300 bg-amber-100" /> Penuh</span>
-        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm border border-hitam-0/15 bg-hitam-0/10" /> Ditutup</span>
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm border border-ink/15 bg-ink/10" /> Ditutup</span>
       </div>
     </div>
   );

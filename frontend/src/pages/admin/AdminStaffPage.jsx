@@ -101,14 +101,14 @@ export default function AdminStaffPage() {
         <div className="flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-hitam-0 text-xs font-bold text-white">{initials(row.name)}</span>
           <div>
-            <p className="text-sm font-semibold text-hitam-0">{row.name}</p>
-            <p className="text-[11px] text-hitam-0/45">{row.email}</p>
+            <p className="text-sm font-semibold text-ink">{row.name}</p>
+            <p className="text-[11px] text-ink/45">{row.email}</p>
           </div>
         </div>
       ),
     },
     { key: 'role', header: 'Peran', render: (row) => <Badge tone={row.role === 'super_admin' ? 'brand' : row.role === 'admin_ops' ? 'info' : 'neutral'}>{roleLabel[row.role] || row.role}</Badge> },
-    { key: 'phone', header: 'WhatsApp', render: (row) => <span className="text-xs text-hitam-0/60">{row.phone || '-'}</span> },
+    { key: 'phone', header: 'WhatsApp', render: (row) => <span className="text-xs text-ink/60">{row.phone || '-'}</span> },
     { key: 'active', header: 'Status', render: (row) => <Badge tone={row.is_active ? 'success' : 'danger'}>{row.is_active ? 'Aktif' : 'Nonaktif'}</Badge> },
     { key: 'verified', header: 'Email', render: (row) => <Badge tone={row.email_verified_at ? 'success' : 'warning'}>{row.email_verified_at ? 'Terverifikasi' : 'Belum'}</Badge> },
     { key: 'created_at', header: 'Dibuat', render: (row) => <DateTimeCell value={row.created_at} /> },
@@ -183,8 +183,8 @@ export default function AdminStaffPage() {
               <option value="super_admin">Super Admin</option>
             </Select>
           </Field>
-          <label className="flex items-center gap-2 text-sm text-hitam-0/70 sm:col-span-2">
-            <input type="checkbox" checked={Boolean(form.active)} onChange={(event) => setForm({ ...form, active: event.target.checked })} className="h-4 w-4 rounded border-hitam-0/30 text-biru-0" />
+          <label className="flex items-center gap-2 text-sm text-ink/70 sm:col-span-2">
+            <input type="checkbox" checked={Boolean(form.active)} onChange={(event) => setForm({ ...form, active: event.target.checked })} className="h-4 w-4 rounded border-ink/30 text-biru-0" />
             Akun aktif (dapat masuk)
           </label>
         </form>

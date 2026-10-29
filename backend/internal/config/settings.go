@@ -40,7 +40,7 @@ func LoadSettings() Settings {
 		Env:             getEnv("SERVER_ENV", "development"),
 		Port:            getEnv("SERVER_PORT", "8000"),
 		JWTSecret:       getEnv("JWT_SECRET", "dev-only-change-me"),
-		JWTExpiry:       parseDuration(getEnv("JWT_EXPIRY", "168h"), 168*time.Hour),
+		JWTExpiry:       parseDuration(getEnv("JWT_EXPIRY", "24h"), 24*time.Hour),
 		FrontendURL:     strings.TrimRight(getEnv("FRONTEND_URL", "http://localhost:5173"), "/"),
 		APIBaseURL:      strings.TrimRight(getEnv("API_BASE_URL", "http://localhost:8000"), "/"),
 		PaymentProvider: getEnv("PAYMENT_PROVIDER", "mock"),
@@ -61,8 +61,29 @@ func LoadSettings() Settings {
 		RateLimitPerMin: parseInt(getEnv("RATE_LIMIT_PER_MINUTE", "60"), 60),
 	}
 
-	if App.Env == "production" && (App.JWTSecret == "" || App.JWTSecret == "dev-only-change-me") {
-		panic("JWT_SECRET must be set in production")
+	if App.Env == "production" {
+		// Reject startup if critical secrets still use default/example values.
+		invalid := []string{}
+		if App.JWTSecret == "" || App.JWTSecret == "dev-only-change-me" {
+			invalid = append(invalid, "JWT_SECRET")
+		}
+		if App.PaymentSecret == "" || App.PaymentSecret == "mock-secret" {
+			invalid = append(invalid, "PAYMENT_GATEWAY_SECRET")
+		}
+		if len(App.AllowedOrigins) == 0 {
+			invalid = append(invalid, "ALLOWED_ORIGINS")
+		}
+		// DB_PASSWORD is validated via the connection attempt; SMTP is validated
+		// when the first email is sent, but we warn if empty.
+		if App.SMTPHost == "" || App.SMTPUser == "" || App.SMTPPassword == "" {
+			invalid = append(invalid, "SMTP credentials (EMAIL_HOST, EMAIL_USER, EMAIL_PASSWORD)")
+		}
+		if len(invalid) > 0 {
+			panic("produksi tidak dapat dijalankan dengan konfigurasi tidak aman atau default: " + strings.Join(invalid, ", "))
+		}
+
+		// Pastikan route /dev/* dan simulasi pembayaran nonaktif di produksi.
+		// Handler-level enforcement is also present in routes and services.
 	}
 	return App
 }

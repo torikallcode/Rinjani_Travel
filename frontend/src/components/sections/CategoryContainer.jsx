@@ -105,14 +105,14 @@ const Category = ({ classname }) => {
       <div className="flex items-center justify-center p-2 mx-auto mb-10 border-2 border-gray-500 rounded-full button-group gap-x-3 bg-transparen">
         <button
           onClick={() => setSelectedCategory('Tour')}
-          className={`category-button py-2 px-4 rounded-full font-secondary transition-all ease-out ${selectedCategory === 'Tour' ? 'bg-putih-0 text-hitam-0' : 'bg-transparent text-putih-0'
+          className={`category-button py-2 px-4 rounded-full font-secondary transition-all ease-out ${selectedCategory === 'Tour' ? 'bg-putih-0 text-ink' : 'bg-transparent text-putih-0'
             }`}
         >
           Tour
         </button>
         <button
           onClick={() => setSelectedCategory('Trekking')}
-          className={`category-button py-2 px-4 rounded-full font-secondary transition-all ease-out ${selectedCategory === 'Trekking' ? 'bg-putih-0 text-hitam-0' : 'bg-transparent text-putih-0'
+          className={`category-button py-2 px-4 rounded-full font-secondary transition-all ease-out ${selectedCategory === 'Trekking' ? 'bg-putih-0 text-ink' : 'bg-transparent text-putih-0'
             }`}
         >
           Trekking

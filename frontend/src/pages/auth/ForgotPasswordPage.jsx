@@ -26,8 +26,8 @@ export default function ForgotPasswordPage() {
 
   return (
     <div>
-      <h1 className="font-tomorrow text-2xl font-bold text-hitam-0">Lupa kata sandi?</h1>
-      <p className="mt-2 text-sm text-hitam-0/55">Masukkan email terdaftar. Kami akan mengirim tautan untuk mengatur ulang kata sandi.</p>
+      <h1 className="font-tomorrow text-2xl font-bold text-ink">Lupa kata sandi?</h1>
+      <p className="mt-2 text-sm text-ink/55">Masukkan email terdaftar. Kami akan mengirim tautan untuk mengatur ulang kata sandi.</p>
       {error && <Alert tone="danger" className="mt-5">{error}</Alert>}
       {result && (
         <Alert tone="success" title="Permintaan diproses" className="mt-5">
@@ -48,7 +48,7 @@ export default function ForgotPasswordPage() {
         </Field>
         <Button type="submit" size="lg" className="w-full" loading={loading}>Kirim tautan reset</Button>
       </form>
-      <p className="mt-4 text-center text-xs text-hitam-0/55">
+      <p className="mt-4 text-center text-xs text-ink/55">
         Ingat kata sandi? <Link to="/login" className="font-semibold text-biru-0 hover:underline">Masuk</Link>
       </p>
     </div>

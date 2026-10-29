@@ -58,17 +58,17 @@ export default function AdminCustomersPage() {
         <div className="flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-biru-0/15 text-xs font-bold text-biru-0">{initials(row.name)}</span>
           <div>
-            <p className="text-sm font-semibold text-hitam-0">{row.name}</p>
-            <p className="text-[11px] text-hitam-0/45">{row.email}</p>
+            <p className="text-sm font-semibold text-ink">{row.name}</p>
+            <p className="text-[11px] text-ink/45">{row.email}</p>
           </div>
         </div>
       ),
     },
-    { key: 'phone', header: 'WhatsApp', render: (row) => <span className="text-xs text-hitam-0/60">{row.phone || '-'}</span> },
-    { key: 'country', header: 'Negara', render: (row) => <span className="text-xs text-hitam-0/60">{row.country || '-'}</span> },
+    { key: 'phone', header: 'WhatsApp', render: (row) => <span className="text-xs text-ink/60">{row.phone || '-'}</span> },
+    { key: 'country', header: 'Negara', render: (row) => <span className="text-xs text-ink/60">{row.country || '-'}</span> },
     { key: 'bookings', header: 'Pesanan', render: (row) => <Badge tone="neutral">{row.booking_count || 0}</Badge> },
     { key: 'spent', header: 'Total belanja', render: (row) => <Money value={row.total_spent} /> },
-    { key: 'created_at', header: 'Terdaftar', render: (row) => <span className="text-xs text-hitam-0/50">{formatDate(row.created_at)}</span> },
+    { key: 'created_at', header: 'Terdaftar', render: (row) => <span className="text-xs text-ink/50">{formatDate(row.created_at)}</span> },
     {
       key: 'actions',
       header: '',
@@ -92,7 +92,7 @@ export default function AdminCustomersPage() {
           }}
         >
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
             <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Cari nama, email, atau telepon..." className="pl-9" />
           </div>
           <Button type="submit">Cari</Button>
@@ -117,8 +117,8 @@ export default function AdminCustomersPage() {
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-biru-0 text-base font-bold text-white">{initials(detail.user.name)}</span>
               <div>
-                <p className="font-tomorrow text-lg font-bold text-hitam-0">{detail.user.name}</p>
-                <div className="mt-1 flex flex-wrap gap-3 text-xs text-hitam-0/55">
+                <p className="font-tomorrow text-lg font-bold text-ink">{detail.user.name}</p>
+                <div className="mt-1 flex flex-wrap gap-3 text-xs text-ink/55">
                   <span className="inline-flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {detail.user.email}</span>
                   <span className="inline-flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {detail.user.phone || '-'}</span>
                 </div>
@@ -134,21 +134,21 @@ export default function AdminCustomersPage() {
                 <FieldRow label="Terdaftar">{formatDateTime(detail.user.created_at)}</FieldRow>
               </Card>
               <Card className="p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-hitam-0/45">Riwayat pesanan</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-ink/45">Riwayat pesanan</p>
                 {detailLoading ? (
                   <Spinner label="Memuat..." />
                 ) : (detail.bookings || []).length === 0 ? (
-                  <p className="mt-3 text-sm text-hitam-0/45">Belum ada pesanan.</p>
+                  <p className="mt-3 text-sm text-ink/45">Belum ada pesanan.</p>
                 ) : (
                   <div className="mt-2 max-h-64 space-y-2 overflow-y-auto">
                     {(detail.bookings || []).map((booking) => (
-                      <Link key={booking.id} to={`/admin/bookings/${booking.booking_code}`} className="block rounded-lg border border-hitam-0/10 p-3 hover:border-biru-0/40">
+                      <Link key={booking.id} to={`/admin/bookings/${booking.booking_code}`} className="block rounded-lg border border-ink/10 p-3 hover:border-biru-0/40">
                         <div className="flex items-center justify-between gap-2">
                           <span className="font-mono text-[11px] text-biru-0">{booking.booking_code}</span>
                           <BookingStatusBadge status={booking.status} />
                         </div>
-                        <p className="mt-1 truncate text-xs text-hitam-0/60">{booking.departure?.package?.title || '-'}</p>
-                        <div className="mt-1 flex justify-between text-[11px] text-hitam-0/45">
+                        <p className="mt-1 truncate text-xs text-ink/60">{booking.departure?.package?.title || '-'}</p>
+                        <div className="mt-1 flex justify-between text-[11px] text-ink/45">
                           <span>{formatDate(booking.departure?.start_date)}</span>
                           <Money value={booking.total} />
                         </div>

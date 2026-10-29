@@ -77,8 +77,8 @@ export default function AdminPackagesPage() {
         <div className="flex items-center gap-3">
           <img src={packageImage(row)} alt={row.title} className="h-12 w-16 rounded object-cover" />
           <div className="min-w-0">
-            <p className="max-w-[280px] truncate text-sm font-semibold text-hitam-0">{row.title}</p>
-            <p className="text-[11px] text-hitam-0/45">{row.slug}</p>
+            <p className="max-w-[280px] truncate text-sm font-semibold text-ink">{row.title}</p>
+            <p className="text-[11px] text-ink/45">{row.slug}</p>
           </div>
         </div>
       ),
@@ -86,8 +86,8 @@ export default function AdminPackagesPage() {
     { key: 'category', header: 'Kategori', render: (row) => <Badge tone={row.category === 'trekking' ? 'brand' : 'info'}>{row.category}</Badge> },
     { key: 'base_price', header: 'Harga dasar', render: (row) => <Money value={row.base_price} /> },
     { key: 'status', header: 'Status', render: (row) => <Badge tone={row.status === 'published' ? 'success' : row.status === 'draft' ? 'warning' : 'neutral'}>{row.status}</Badge> },
-    { key: 'featured', header: 'Unggulan', render: (row) => (row.featured ? <Badge tone="warning">Ya</Badge> : <span className="text-xs text-hitam-0/40">Tidak</span>) },
-    { key: 'created_at', header: 'Dibuat', render: (row) => <span className="text-xs text-hitam-0/50">{formatDate(row.created_at)}</span> },
+    { key: 'featured', header: 'Unggulan', render: (row) => (row.featured ? <Badge tone="warning">Ya</Badge> : <span className="text-xs text-ink/40">Tidak</span>) },
+    { key: 'created_at', header: 'Dibuat', render: (row) => <span className="text-xs text-ink/50">{formatDate(row.created_at)}</span> },
     {
       key: 'actions',
       header: '',
@@ -95,12 +95,12 @@ export default function AdminPackagesPage() {
       cellClassName: 'text-right',
       render: (row) => (
         <div className="flex justify-end gap-1.5">
-          <Link to={`/packages/${row.slug}`} target="_blank" className="rounded-lg border border-hitam-0/15 p-2 text-hitam-0/60 hover:text-biru-0" title="Lihat publik">
+          <Link to={`/packages/${row.slug}`} target="_blank" className="rounded-lg border border-ink/15 p-2 text-ink/60 hover:text-biru-0" title="Lihat publik">
             <Eye className="h-3.5 w-3.5" />
           </Link>
           {canManage && (
             <>
-              <Link to={`/admin/packages/${row.id}/edit`} className="rounded-lg border border-hitam-0/15 p-2 text-hitam-0/60 hover:text-biru-0" title="Edit">
+              <Link to={`/admin/packages/${row.id}/edit`} className="rounded-lg border border-ink/15 p-2 text-ink/60 hover:text-biru-0" title="Edit">
                 <Pencil className="h-3.5 w-3.5" />
               </Link>
               <button onClick={() => remove(row)} disabled={deleting === row.id} className="rounded-lg border border-red-200 p-2 text-red-600 hover:bg-red-50 disabled:opacity-40" title="Hapus">
@@ -135,7 +135,7 @@ export default function AdminPackagesPage() {
             }}
           >
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
               <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Cari judul atau slug..." className="pl-9" />
             </div>
             <Button type="submit">Cari</Button>

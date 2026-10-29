@@ -123,8 +123,8 @@ export default function AdminContentPage() {
   };
 
   const pageColumns = [
-    { key: 'title', header: 'Halaman', render: (row) => <div><p className="text-sm font-semibold text-hitam-0">{row.title}</p><p className="text-[11px] text-hitam-0/45">/{row.slug}</p></div> },
-    { key: 'meta', header: 'Meta description', render: (row) => <span className="line-clamp-2 max-w-sm text-xs text-hitam-0/55">{row.meta_description || '-'}</span> },
+    { key: 'title', header: 'Halaman', render: (row) => <div><p className="text-sm font-semibold text-ink">{row.title}</p><p className="text-[11px] text-ink/45">/{row.slug}</p></div> },
+    { key: 'meta', header: 'Meta description', render: (row) => <span className="line-clamp-2 max-w-sm text-xs text-ink/55">{row.meta_description || '-'}</span> },
     { key: 'status', header: 'Status', render: (row) => <Badge tone={row.status === 'published' ? 'success' : 'warning'}>{row.status}</Badge> },
     { key: 'updated_at', header: 'Diperbarui', render: (row) => <DateTimeCell value={row.updated_at} /> },
     {
@@ -135,7 +135,7 @@ export default function AdminContentPage() {
       render: (row) =>
         canManage ? (
           <div className="flex justify-end gap-1.5">
-            <button onClick={() => openPage(row)} className="rounded-lg border border-hitam-0/15 p-2 text-hitam-0/60 hover:text-biru-0"><Pencil className="h-3.5 w-3.5" /></button>
+            <button onClick={() => openPage(row)} className="rounded-lg border border-ink/15 p-2 text-ink/60 hover:text-biru-0"><Pencil className="h-3.5 w-3.5" /></button>
             <button onClick={() => removePage(row)} disabled={deleting === row.id} className="rounded-lg border border-red-200 p-2 text-red-600 hover:bg-red-50 disabled:opacity-40"><Trash2 className="h-3.5 w-3.5" /></button>
           </div>
         ) : null,
@@ -143,9 +143,9 @@ export default function AdminContentPage() {
   ];
 
   const faqColumns = [
-    { key: 'question', header: 'Pertanyaan', render: (row) => <div><p className="text-sm font-semibold text-hitam-0">{row.question}</p><p className="line-clamp-2 max-w-md text-xs text-hitam-0/55">{row.answer}</p></div> },
+    { key: 'question', header: 'Pertanyaan', render: (row) => <div><p className="text-sm font-semibold text-ink">{row.question}</p><p className="line-clamp-2 max-w-md text-xs text-ink/55">{row.answer}</p></div> },
     { key: 'category', header: 'Kategori', render: (row) => <Badge tone="neutral">{row.category}</Badge> },
-    { key: 'sort_order', header: 'Urutan', render: (row) => <span className="text-xs text-hitam-0/55">{row.sort_order}</span> },
+    { key: 'sort_order', header: 'Urutan', render: (row) => <span className="text-xs text-ink/55">{row.sort_order}</span> },
     { key: 'published', header: 'Status', render: (row) => <Badge tone={row.published ? 'success' : 'neutral'}>{row.published ? 'Tampil' : 'Disembunyikan'}</Badge> },
     {
       key: 'actions',
@@ -155,7 +155,7 @@ export default function AdminContentPage() {
       render: (row) =>
         canManage ? (
           <div className="flex justify-end gap-1.5">
-            <button onClick={() => openFaq(row)} className="rounded-lg border border-hitam-0/15 p-2 text-hitam-0/60 hover:text-biru-0"><Pencil className="h-3.5 w-3.5" /></button>
+            <button onClick={() => openFaq(row)} className="rounded-lg border border-ink/15 p-2 text-ink/60 hover:text-biru-0"><Pencil className="h-3.5 w-3.5" /></button>
             <button onClick={() => removeFaq(row)} disabled={deleting === row.id} className="rounded-lg border border-red-200 p-2 text-red-600 hover:bg-red-50 disabled:opacity-40"><Trash2 className="h-3.5 w-3.5" /></button>
           </div>
         ) : null,
@@ -181,10 +181,10 @@ export default function AdminContentPage() {
       {error && <Alert tone="danger" className="mt-4">{error}</Alert>}
 
       <div className="mt-5 flex gap-2">
-        <button onClick={() => setTab('pages')} className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold ${tab === 'pages' ? 'bg-hitam-0 text-white' : 'border border-hitam-0/10 bg-white text-hitam-0/60'}`}>
+        <button onClick={() => setTab('pages')} className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold ${tab === 'pages' ? 'bg-hitam-0 text-white' : 'border border-ink/10 bg-surface text-ink/60'}`}>
           <FileText className="h-4 w-4" /> Halaman
         </button>
-        <button onClick={() => setTab('faqs')} className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold ${tab === 'faqs' ? 'bg-hitam-0 text-white' : 'border border-hitam-0/10 bg-white text-hitam-0/60'}`}>
+        <button onClick={() => setTab('faqs')} className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold ${tab === 'faqs' ? 'bg-hitam-0 text-white' : 'border border-ink/10 bg-surface text-ink/60'}`}>
           <HelpCircle className="h-4 w-4" /> FAQ
         </button>
       </div>
@@ -234,8 +234,8 @@ export default function AdminContentPage() {
           <Field label="Jawaban" required className="sm:col-span-2"><Textarea rows={4} value={form.answer} onChange={(event) => setForm({ ...form, answer: event.target.value })} required /></Field>
           <Field label="Kategori"><Input value={form.category} onChange={(event) => setForm({ ...form, category: event.target.value })} /></Field>
           <Field label="Urutan"><Input type="number" value={form.sort_order} onChange={(event) => setForm({ ...form, sort_order: event.target.value })} /></Field>
-          <label className="flex items-center gap-2 text-sm text-hitam-0/70 sm:col-span-2">
-            <input type="checkbox" checked={form.published} onChange={(event) => setForm({ ...form, published: event.target.checked })} className="h-4 w-4 rounded border-hitam-0/30 text-biru-0" />
+          <label className="flex items-center gap-2 text-sm text-ink/70 sm:col-span-2">
+            <input type="checkbox" checked={form.published} onChange={(event) => setForm({ ...form, published: event.target.checked })} className="h-4 w-4 rounded border-ink/30 text-biru-0" />
             Tampilkan di situs publik
           </label>
         </form>

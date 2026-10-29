@@ -26,15 +26,15 @@ const methods = [
 function Timeline({ history = [] }) {
   if (!history.length) return null;
   return (
-    <ol className="relative space-y-4 border-l border-hitam-0/10 pl-5">
+    <ol className="relative space-y-4 border-l border-ink/10 pl-5">
       {history.map((item) => (
         <li key={item.id} className="relative">
           <span className="absolute -left-[25px] top-1 h-2.5 w-2.5 rounded-full bg-biru-0" />
-          <p className="text-sm font-semibold text-hitam-0">
+          <p className="text-sm font-semibold text-ink">
             {statusMeta(BOOKING_STATUS, item.to_status).label}
           </p>
-          <p className="text-xs text-hitam-0/50">{formatDateTime(item.created_at)} · {item.changed_by_name || 'Sistem'}</p>
-          {item.reason && <p className="mt-1 text-xs text-hitam-0/55">{item.reason}</p>}
+          <p className="text-xs text-ink/50">{formatDateTime(item.created_at)} · {item.changed_by_name || 'Sistem'}</p>
+          {item.reason && <p className="mt-1 text-xs text-ink/55">{item.reason}</p>}
         </li>
       ))}
     </ol>
@@ -152,7 +152,7 @@ export default function AccountBookingDetailPage() {
 
   return (
     <div>
-      <Link to="/account/bookings" className="inline-flex items-center gap-1.5 text-sm font-medium text-hitam-0/55 hover:text-biru-0">
+      <Link to="/account/bookings" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/55 hover:text-biru-0">
         <ArrowLeft className="h-4 w-4" /> Semua pesanan
       </Link>
 
@@ -168,10 +168,10 @@ export default function AccountBookingDetailPage() {
         <div>
           <div className="flex items-center gap-2">
             <Badge tone={meta.tone}>{meta.label}</Badge>
-            <span className="font-mono text-xs text-hitam-0/50">{booking.booking_code}</span>
+            <span className="font-mono text-xs text-ink/50">{booking.booking_code}</span>
           </div>
-          <h1 className="mt-2 font-tomorrow text-2xl font-bold text-hitam-0">{pkg?.title || 'Detail Pesanan'}</h1>
-          <p className="mt-1 text-xs text-hitam-0/50">Dibuat {formatDateTime(booking.created_at)}</p>
+          <h1 className="mt-2 font-tomorrow text-2xl font-bold text-ink">{pkg?.title || 'Detail Pesanan'}</h1>
+          <p className="mt-1 text-xs text-ink/50">Dibuat {formatDateTime(booking.created_at)}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {canCancel && (
@@ -193,8 +193,8 @@ export default function AccountBookingDetailPage() {
             <div className="flex flex-col gap-4 p-5 sm:flex-row">
               <img src={pkg ? packageImage(pkg) : '/img/mnt4.jpg'} alt={pkg?.title} className="h-40 w-full rounded-lg object-cover sm:h-32 sm:w-44" />
               <div className="flex-1">
-                <h2 className="font-tomorrow text-lg font-bold text-hitam-0">{pkg?.title}</h2>
-                <div className="mt-2 grid gap-2 text-sm text-hitam-0/60 sm:grid-cols-2">
+                <h2 className="font-tomorrow text-lg font-bold text-ink">{pkg?.title}</h2>
+                <div className="mt-2 grid gap-2 text-sm text-ink/60 sm:grid-cols-2">
                   {dep && <p className="flex items-center gap-1.5"><CalendarDays className="h-4 w-4 text-biru-0" /> {formatDate(dep.start_date)} – {formatDate(dep.end_date)}</p>}
                   <p className="flex items-center gap-1.5"><Users className="h-4 w-4 text-biru-0" /> {booking.number_of_travelers} peserta</p>
                   {pkg?.departure_point && <p className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-biru-0" /> {pkg.departure_point}</p>}
@@ -210,10 +210,10 @@ export default function AccountBookingDetailPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Rincian biaya</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Rincian biaya</h2>
             <div className="mt-3 space-y-2 text-sm">
               {(booking.items || []).map((item) => (
-                <div key={item.id} className="flex justify-between gap-3 text-hitam-0/65">
+                <div key={item.id} className="flex justify-between gap-3 text-ink/65">
                   <span>{item.name_snapshot} × {item.quantity}</span>
                   <span>{formatCurrency(item.total)}</span>
                 </div>
@@ -225,27 +225,27 @@ export default function AccountBookingDetailPage() {
                 </div>
               )}
               {booking.tax > 0 && (
-                <div className="flex justify-between text-hitam-0/65"><span>Pajak</span><span>{formatCurrency(booking.tax)}</span></div>
+                <div className="flex justify-between text-ink/65"><span>Pajak</span><span>{formatCurrency(booking.tax)}</span></div>
               )}
-              <div className="flex justify-between border-t border-hitam-0/10 pt-3 font-tomorrow text-lg font-bold text-hitam-0">
+              <div className="flex justify-between border-t border-ink/10 pt-3 font-tomorrow text-lg font-bold text-ink">
                 <span>Total</span><span>{formatCurrency(booking.total)}</span>
               </div>
             </div>
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Data peserta</h2>
-            <div className="mt-3 divide-y divide-hitam-0/10">
+            <h2 className="font-tomorrow text-base font-bold text-ink">Data peserta</h2>
+            <div className="mt-3 divide-y divide-ink/10">
               {(booking.travelers || []).map((traveler, index) => (
                 <div key={traveler.id || index} className="flex flex-col gap-1 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="font-semibold text-hitam-0">{traveler.name} {traveler.is_organizer && <span className="ml-1 text-[10px] font-semibold uppercase text-biru-0">Pemesan</span>}</p>
-                    <p className="text-xs text-hitam-0/50">
+                    <p className="font-semibold text-ink">{traveler.name} {traveler.is_organizer && <span className="ml-1 text-[10px] font-semibold uppercase text-biru-0">Pemesan</span>}</p>
+                    <p className="text-xs text-ink/50">
                       {[traveler.nationality, traveler.gender === 'male' ? 'Laki-laki' : traveler.gender === 'female' ? 'Perempuan' : traveler.gender].filter(Boolean).join(' · ') || '—'}
                     </p>
                   </div>
                   {traveler.emergency_contact_phone && (
-                    <p className="text-xs text-hitam-0/50">Darurat: {traveler.emergency_contact_name} · {traveler.emergency_contact_phone}</p>
+                    <p className="text-xs text-ink/50">Darurat: {traveler.emergency_contact_name} · {traveler.emergency_contact_phone}</p>
                   )}
                 </div>
               ))}
@@ -253,7 +253,7 @@ export default function AccountBookingDetailPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Riwayat pesanan</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Riwayat pesanan</h2>
             <div className="mt-4">
               <Timeline history={booking.status_history} />
             </div>
@@ -261,14 +261,14 @@ export default function AccountBookingDetailPage() {
 
           {canReview && (
             <Card className="p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Tulis ulasan</h2>
-              <p className="mt-1 text-xs text-hitam-0/50">Bagikan pengalaman Anda setelah perjalanan selesai.</p>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Tulis ulasan</h2>
+              <p className="mt-1 text-xs text-ink/50">Bagikan pengalaman Anda setelah perjalanan selesai.</p>
               <form onSubmit={submitReview} className="mt-4 space-y-4">
                 <Field label="Rating" required>
                   <div className="flex gap-1">
                     {[1, 2, 3, 4, 5].map((value) => (
                       <button key={value} type="button" onClick={() => setReviewForm({ ...reviewForm, rating: value })} className="p-0.5">
-                        <Star className={`h-6 w-6 ${value <= reviewForm.rating ? 'fill-amber-400 text-amber-400' : 'text-hitam-0/20'}`} />
+                        <Star className={`h-6 w-6 ${value <= reviewForm.rating ? 'fill-amber-400 text-amber-400' : 'text-ink/20'}`} />
                       </button>
                     ))}
                   </div>
@@ -288,19 +288,19 @@ export default function AccountBookingDetailPage() {
         <aside className="space-y-4">
           {booking.status === 'pending_payment' && (
             <Card className="border-amber-200 p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Pembayaran</h2>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Pembayaran</h2>
               <p className="mt-1 text-xs text-amber-700">Selesaikan sebelum {formatDateTime(booking.expires_at)}.</p>
               {pendingPayment ? (
                 <div className="mt-4 space-y-3 text-sm">
-                  <div className="rounded-lg bg-[#f4f5f7] p-3">
-                    <p className="text-xs text-hitam-0/50">Virtual Account / Referensi</p>
-                    <p className="mt-1 break-all font-mono text-sm font-bold text-hitam-0">{pendingPayment.virtual_account || pendingPayment.provider_reference}</p>
-                    <p className="mt-1 text-xs text-hitam-0/50">Nominal: {formatCurrency(pendingPayment.amount)}</p>
+                  <div className="rounded-lg bg-panel p-3">
+                    <p className="text-xs text-ink/50">Virtual Account / Referensi</p>
+                    <p className="mt-1 break-all font-mono text-sm font-bold text-ink">{pendingPayment.virtual_account || pendingPayment.provider_reference}</p>
+                    <p className="mt-1 text-xs text-ink/50">Nominal: {formatCurrency(pendingPayment.amount)}</p>
                   </div>
                   <Button className="w-full" onClick={() => simulatePayment(pendingPayment.provider_reference)} loading={paying}>
                     Simulasikan pembayaran
                   </Button>
-                  <p className="text-center text-[11px] text-hitam-0/45">Mode pengembangan: tombol ini mensimulasikan webhook gateway terverifikasi.</p>
+                  <p className="text-center text-[11px] text-ink/45">Mode pengembangan: tombol ini mensimulasikan webhook gateway terverifikasi.</p>
                 </div>
               ) : (
                 <div className="mt-4 space-y-3">
@@ -318,8 +318,8 @@ export default function AccountBookingDetailPage() {
           {booking.status === 'confirmed' && (
             <Card className="border-emerald-200 p-5">
               <CheckCircle2 className="h-7 w-7 text-emerald-500" />
-              <h2 className="mt-2 font-tomorrow text-base font-bold text-hitam-0">Pesanan terkonfirmasi</h2>
-              <p className="mt-1 text-xs text-hitam-0/55">Tunjukkan kode booking saat tiba di titik keberangkatan.</p>
+              <h2 className="mt-2 font-tomorrow text-base font-bold text-ink">Pesanan terkonfirmasi</h2>
+              <p className="mt-1 text-xs text-ink/55">Tunjukkan kode booking saat tiba di titik keberangkatan.</p>
               <p className="mt-3 rounded-lg bg-emerald-50 px-3 py-2 text-center font-mono text-lg font-bold tracking-wider text-emerald-800">{booking.booking_code}</p>
               <Button variant="outline" className="mt-3 w-full" onClick={() => window.print()}>
                 <Download className="h-4 w-4" /> Unduh / cetak voucher
@@ -329,17 +329,17 @@ export default function AccountBookingDetailPage() {
 
           {booking.payments?.length > 0 && (
             <Card className="p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Pembayaran</h2>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Pembayaran</h2>
               <div className="mt-3 space-y-3">
                 {booking.payments.map((payment) => {
                   const pmeta = statusMeta(PAYMENT_STATUS, payment.status);
                   return (
-                    <div key={payment.id} className="rounded-lg border border-hitam-0/10 p-3 text-xs">
+                    <div key={payment.id} className="rounded-lg border border-ink/10 p-3 text-xs">
                       <div className="flex items-center justify-between">
                         <Badge tone={pmeta.tone}>{pmeta.label}</Badge>
-                        <span className="font-semibold text-hitam-0">{formatCurrency(payment.amount)}</span>
+                        <span className="font-semibold text-ink">{formatCurrency(payment.amount)}</span>
                       </div>
-                      <p className="mt-2 text-hitam-0/50">{payment.method || payment.provider} · {formatDateTime(payment.created_at)}</p>
+                      <p className="mt-2 text-ink/50">{payment.method || payment.provider} · {formatDateTime(payment.created_at)}</p>
                       {payment.paid_at && <p className="text-emerald-600">Dibayar {formatDateTime(payment.paid_at)}</p>}
                     </div>
                   );
@@ -349,12 +349,12 @@ export default function AccountBookingDetailPage() {
           )}
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Informasi pemesan</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Informasi pemesan</h2>
             <dl className="mt-3 space-y-2 text-xs">
-              <div><dt className="text-hitam-0/45">Nama</dt><dd className="font-semibold text-hitam-0">{booking.organizer_name}</dd></div>
-              <div><dt className="text-hitam-0/45">WhatsApp</dt><dd className="font-semibold text-hitam-0">{booking.organizer_phone}</dd></div>
-              <div><dt className="text-hitam-0/45">Email</dt><dd className="break-all font-semibold text-hitam-0">{booking.organizer_email || '-'}</dd></div>
-              {booking.notes && <div><dt className="text-hitam-0/45">Catatan</dt><dd className="text-hitam-0/70">{booking.notes}</dd></div>}
+              <div><dt className="text-ink/45">Nama</dt><dd className="font-semibold text-ink">{booking.organizer_name}</dd></div>
+              <div><dt className="text-ink/45">WhatsApp</dt><dd className="font-semibold text-ink">{booking.organizer_phone}</dd></div>
+              <div><dt className="text-ink/45">Email</dt><dd className="break-all font-semibold text-ink">{booking.organizer_email || '-'}</dd></div>
+              {booking.notes && <div><dt className="text-ink/45">Catatan</dt><dd className="text-ink/70">{booking.notes}</dd></div>}
             </dl>
           </Card>
 

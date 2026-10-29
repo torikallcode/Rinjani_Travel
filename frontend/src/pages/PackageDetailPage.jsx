@@ -123,7 +123,7 @@ export default function PackageDetailPage() {
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <Seo title={pkg.title} description={pkg.description} image={seoImage} jsonLd={jsonLd} />
-      <Link to="/packages" className="inline-flex items-center gap-1.5 text-sm font-medium text-hitam-0/55 hover:text-biru-0">
+      <Link to="/packages" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/55 hover:text-biru-0">
         <ArrowLeft className="h-4 w-4" /> Semua paket
       </Link>
 
@@ -134,8 +134,8 @@ export default function PackageDetailPage() {
             <Badge tone="neutral">{difficultyLabel[pkg.difficulty] || pkg.difficulty}</Badge>
             {pkg.featured && <Badge tone="warning">Populer</Badge>}
           </div>
-          <h1 className="mt-3 font-tomorrow text-3xl font-bold leading-tight text-hitam-0 sm:text-4xl">{pkg.title}</h1>
-          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-hitam-0/60">
+          <h1 className="mt-3 font-tomorrow text-3xl font-bold leading-tight text-ink sm:text-4xl">{pkg.title}</h1>
+          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink/60">
             <span className="inline-flex items-center gap-1.5"><MapPin className="h-4 w-4 text-biru-0" /> {pkg.departure_point}</span>
             <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4 text-biru-0" /> {pkg.days || pkg.duration} hari</span>
             <span className="inline-flex items-center gap-1.5"><Users className="h-4 w-4 text-biru-0" /> Maks. 30 peserta</span>
@@ -144,7 +144,7 @@ export default function PackageDetailPage() {
             </span>
           </div>
 
-          <div className="mt-6 overflow-hidden rounded-xl bg-hitam-0/5">
+          <div className="mt-6 overflow-hidden rounded-xl bg-ink/5">
             <img src={activeImage || packageImage(pkg)} alt={pkg.title} className="h-[300px] w-full object-cover sm:h-[440px]" />
           </div>
           {gallery.length > 1 && (
@@ -164,12 +164,12 @@ export default function PackageDetailPage() {
           <section className="mt-10">
             <div className="flex flex-wrap items-end justify-between gap-2">
               <div>
-                <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Kalender keberangkatan</h2>
-                <p className="mt-1 text-sm text-hitam-0/55">Pilih tanggal yang tersedia untuk melihat harga dan memesan.</p>
+                <h2 className="font-tomorrow text-xl font-bold text-ink">Kalender keberangkatan</h2>
+                <p className="mt-1 text-sm text-ink/55">Pilih tanggal yang tersedia untuk melihat harga dan memesan.</p>
               </div>
               <span className="text-xs font-semibold text-biru-0">{departures.length} jadwal tersedia</span>
             </div>
-            <div className="mt-4 rounded-xl border border-hitam-0/10 bg-white p-4 shadow-sm">
+            <div className="mt-4 rounded-xl border border-ink/10 bg-surface p-4 shadow-sm">
               <DepartureCalendar
                 departures={pkg.departures || []}
                 selectedId={departureId}
@@ -179,21 +179,21 @@ export default function PackageDetailPage() {
           </section>
 
           <section className="mt-10">
-            <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Tentang perjalanan ini</h2>
-            <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-hitam-0/70">
+            <h2 className="font-tomorrow text-xl font-bold text-ink">Tentang perjalanan ini</h2>
+            <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink/70">
               {pkg.description_long || pkg.description}
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-lg bg-white p-4 shadow-sm">
-                <p className="text-xs text-hitam-0/50">Usia peserta</p>
+              <div className="rounded-lg bg-surface p-4 shadow-sm">
+                <p className="text-xs text-ink/50">Usia peserta</p>
                 <p className="mt-1 text-sm font-semibold">{pkg.min_age || 0}–{pkg.max_age || 70} tahun</p>
               </div>
-              <div className="rounded-lg bg-white p-4 shadow-sm">
-                <p className="text-xs text-hitam-0/50">Titik keberangkatan</p>
+              <div className="rounded-lg bg-surface p-4 shadow-sm">
+                <p className="text-xs text-ink/50">Titik keberangkatan</p>
                 <p className="mt-1 text-sm font-semibold">{pkg.departure_point}</p>
               </div>
-              <div className="rounded-lg bg-white p-4 shadow-sm">
-                <p className="text-xs text-hitam-0/50">Durasi</p>
+              <div className="rounded-lg bg-surface p-4 shadow-sm">
+                <p className="text-xs text-ink/50">Durasi</p>
                 <p className="mt-1 text-sm font-semibold">{pkg.days || pkg.duration} hari</p>
               </div>
             </div>
@@ -201,19 +201,19 @@ export default function PackageDetailPage() {
 
           {pkg.itineraries?.length > 0 && (
             <section className="mt-10">
-              <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Itinerary</h2>
+              <h2 className="font-tomorrow text-xl font-bold text-ink">Itinerary</h2>
               <div className="mt-4 space-y-3">
                 {pkg.itineraries.map((item) => (
-                  <div key={item.id} className="rounded-xl border border-hitam-0/10 bg-white p-5">
+                  <div key={item.id} className="rounded-xl border border-ink/10 bg-surface p-5">
                     <div className="flex items-start gap-3">
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-biru-0 text-xs font-bold text-white">
                         {item.day_number}
                       </span>
                       <div>
-                        <h3 className="text-sm font-bold text-hitam-0">{item.title}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-hitam-0/60">{item.description}</p>
+                        <h3 className="text-sm font-bold text-ink">{item.title}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-ink/60">{item.description}</p>
                         {(item.meals || item.accommodation) && (
-                          <div className="mt-2 flex flex-wrap gap-3 text-xs text-hitam-0/50">
+                          <div className="mt-2 flex flex-wrap gap-3 text-xs text-ink/50">
                             {item.meals && <span>🍽 {item.meals}</span>}
                             {item.accommodation && <span>🏕 {item.accommodation}</span>}
                           </div>
@@ -243,10 +243,10 @@ export default function PackageDetailPage() {
 
           {pkg.equipment?.length > 0 && (
             <section className="mt-10">
-              <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Perlengkapan yang disarankan</h2>
+              <h2 className="font-tomorrow text-xl font-bold text-ink">Perlengkapan yang disarankan</h2>
               <div className="mt-3 flex flex-wrap gap-2">
                 {pkg.equipment.map((item) => (
-                  <span key={item} className="rounded-full border border-hitam-0/10 bg-white px-3 py-1.5 text-xs text-hitam-0/70">{item}</span>
+                  <span key={item} className="rounded-full border border-ink/10 bg-surface px-3 py-1.5 text-xs text-ink/70">{item}</span>
                 ))}
               </div>
             </section>
@@ -254,13 +254,13 @@ export default function PackageDetailPage() {
 
           {pkg.addons?.length > 0 && (
             <section className="mt-10">
-              <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Layanan tambahan</h2>
+              <h2 className="font-tomorrow text-xl font-bold text-ink">Layanan tambahan</h2>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {pkg.addons.filter((addon) => addon.active).map((addon) => (
-                  <div key={addon.id} className="flex items-start justify-between gap-3 rounded-xl border border-hitam-0/10 bg-white p-4">
+                  <div key={addon.id} className="flex items-start justify-between gap-3 rounded-xl border border-ink/10 bg-surface p-4">
                     <div>
-                      <p className="text-sm font-semibold text-hitam-0">{addon.name}</p>
-                      <p className="mt-1 text-xs text-hitam-0/55">{addon.description}</p>
+                      <p className="text-sm font-semibold text-ink">{addon.name}</p>
+                      <p className="mt-1 text-xs text-ink/55">{addon.description}</p>
                     </div>
                     <p className="whitespace-nowrap text-sm font-bold text-biru-0">{formatCurrency(addon.price)}</p>
                   </div>
@@ -279,18 +279,18 @@ export default function PackageDetailPage() {
 
           {pkg.faqs?.length > 0 && (
             <section className="mt-10">
-              <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Pertanyaan tentang paket ini</h2>
-              <div className="mt-4 divide-y divide-hitam-0/10 overflow-hidden rounded-xl border border-hitam-0/10 bg-white">
+              <h2 className="font-tomorrow text-xl font-bold text-ink">Pertanyaan tentang paket ini</h2>
+              <div className="mt-4 divide-y divide-ink/10 overflow-hidden rounded-xl border border-ink/10 bg-surface">
                 {pkg.faqs.map((faq) => (
                   <div key={faq.id}>
                     <button
                       onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
-                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-hitam-0"
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-ink"
                     >
                       {faq.question}
                       <ChevronDown className={`h-4 w-4 shrink-0 transition ${openFaq === faq.id ? 'rotate-180' : ''}`} />
                     </button>
-                    {openFaq === faq.id && <p className="px-5 pb-4 text-sm leading-relaxed text-hitam-0/60">{faq.answer}</p>}
+                    {openFaq === faq.id && <p className="px-5 pb-4 text-sm leading-relaxed text-ink/60">{faq.answer}</p>}
                   </div>
                 ))}
               </div>
@@ -299,13 +299,13 @@ export default function PackageDetailPage() {
 
           <section className="mt-10">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-hitam-0 font-tomorrow">Ulasan pelanggan</h2>
-              <div className="flex items-center gap-2 text-sm text-hitam-0/60">
+              <h2 className="text-xl font-bold text-ink font-tomorrow">Ulasan pelanggan</h2>
+              <div className="flex items-center gap-2 text-sm text-ink/60">
                 <Star className="h-4 w-4 fill-amber-400 text-amber-400" /> {Number(pkg.rating || 0).toFixed(1)} dari {pkg.review_count || 0} ulasan
               </div>
             </div>
             {reviews.length === 0 ? (
-              <p className="mt-3 rounded-xl border border-dashed border-hitam-0/15 bg-white p-6 text-sm text-hitam-0/50">
+              <p className="mt-3 rounded-xl border border-dashed border-ink/15 bg-surface p-6 text-sm text-ink/50">
                 Belum ada ulasan untuk paket ini. Ulasan hanya dapat ditulis setelah perjalanan selesai.
               </p>
             ) : (
@@ -313,8 +313,8 @@ export default function PackageDetailPage() {
                 {reviews.map((review) => (
                   <Card key={review.id} className="p-5">
                     <Stars rating={review.rating} />
-                    <h3 className="mt-2 text-sm font-bold text-hitam-0">{review.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-hitam-0/60">{review.content}</p>
+                    <h3 className="mt-2 text-sm font-bold text-ink">{review.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink/60">{review.content}</p>
                     <p className="mt-3 text-xs font-semibold text-biru-0">{review.user_name} · {formatDate(review.created_at)}</p>
                   </Card>
                 ))}
@@ -324,14 +324,14 @@ export default function PackageDetailPage() {
         </div>
 
         <aside>
-          <div className="sticky top-24 rounded-xl border border-hitam-0/10 bg-white p-5 shadow-lg">
-            <p className="text-xs uppercase tracking-wide text-hitam-0/45">Harga mulai</p>
-            <p className="mt-1 font-tomorrow text-3xl font-bold text-hitam-0">{formatCurrency(pkg.base_price)}</p>
-            <p className="text-xs text-hitam-0/50">per orang · belum termasuk add-on</p>
+          <div className="sticky top-24 rounded-xl border border-ink/10 bg-surface p-5 shadow-lg">
+            <p className="text-xs uppercase tracking-wide text-ink/45">Harga mulai</p>
+            <p className="mt-1 font-tomorrow text-3xl font-bold text-ink">{formatCurrency(pkg.base_price)}</p>
+            <p className="text-xs text-ink/50">per orang · belum termasuk add-on</p>
 
             <div className="mt-5 space-y-4">
               <label className="block">
-                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-hitam-0/70">Tanggal keberangkatan</span>
+                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink/70">Tanggal keberangkatan</span>
                 <Select value={departureId} onChange={(event) => setDepartureId(event.target.value)}>
                   {departures.length === 0 && <option value="">Belum ada jadwal tersedia</option>}
                   {departures.map((dep) => (
@@ -343,7 +343,7 @@ export default function PackageDetailPage() {
               </label>
 
               {selectedDeparture && (
-                <div className="rounded-lg bg-[#f4f5f7] p-3 text-xs text-hitam-0/60">
+                <div className="rounded-lg bg-panel p-3 text-xs text-ink/60">
                   <p className="flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-biru-0" /> {formatDateLong(selectedDeparture.start_date)}</p>
                   <p className="mt-1">Batas pemesanan: {formatDate(selectedDeparture.booking_cutoff)}</p>
                   <p className="mt-1">Sisa kuota: {selectedDeparture.seats_left} dari {selectedDeparture.capacity}</p>
@@ -351,11 +351,11 @@ export default function PackageDetailPage() {
               )}
 
               <div>
-                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-hitam-0/70">Jumlah peserta</span>
-                <div className="flex items-center justify-between rounded-lg border border-hitam-0/15 px-2 py-1.5">
+                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink/70">Jumlah peserta</span>
+                <div className="flex items-center justify-between rounded-lg border border-ink/15 px-2 py-1.5">
                   <button
                     onClick={() => setTravelers((value) => Math.max(1, value - 1))}
-                    className="rounded-md p-1.5 text-hitam-0/60 hover:bg-hitam-0/5"
+                    className="rounded-md p-1.5 text-ink/60 hover:bg-ink/5"
                     aria-label="Kurangi peserta"
                   >
                     <Minus className="h-4 w-4" />
@@ -363,7 +363,7 @@ export default function PackageDetailPage() {
                   <span className="text-sm font-semibold">{travelers} orang</span>
                   <button
                     onClick={() => setTravelers((value) => Math.min(maxTravelers, value + 1))}
-                    className="rounded-md p-1.5 text-hitam-0/60 hover:bg-hitam-0/5"
+                    className="rounded-md p-1.5 text-ink/60 hover:bg-ink/5"
                     aria-label="Tambah peserta"
                   >
                     <Plus className="h-4 w-4" />
@@ -371,16 +371,16 @@ export default function PackageDetailPage() {
                 </div>
               </div>
 
-              <div className="border-t border-hitam-0/10 pt-3 text-sm">
-                <div className="flex justify-between text-hitam-0/60">
+              <div className="border-t border-ink/10 pt-3 text-sm">
+                <div className="flex justify-between text-ink/60">
                   <span>{formatCurrency(pricePerPerson)} × {travelers}</span>
                   <span>{formatCurrency(estimate)}</span>
                 </div>
-                <div className="mt-2 flex justify-between font-bold text-hitam-0">
+                <div className="mt-2 flex justify-between font-bold text-ink">
                   <span>Estimasi total</span>
                   <span>{formatCurrency(estimate)}</span>
                 </div>
-                <p className="mt-1 text-[11px] text-hitam-0/45">Harga final dihitung server, termasuk promo dan pajak.</p>
+                <p className="mt-1 text-[11px] text-ink/45">Harga final dihitung server, termasuk promo dan pajak.</p>
               </div>
 
               <Button
@@ -391,12 +391,12 @@ export default function PackageDetailPage() {
               >
                 Pesan sekarang
               </Button>
-              <p className="text-center text-[11px] text-hitam-0/45">Kuota ditahan 30 menit setelah pesanan dibuat.</p>
+              <p className="text-center text-[11px] text-ink/45">Kuota ditahan 30 menit setelah pesanan dibuat.</p>
             </div>
           </div>
 
-          <div className="mt-4 rounded-xl border border-biru-0/20 bg-biru-0/5 p-4 text-xs text-hitam-0/60">
-            <p className="font-semibold text-hitam-0">Butuh bantuan?</p>
+          <div className="mt-4 rounded-xl border border-biru-0/20 bg-biru-0/5 p-4 text-xs text-ink/60">
+            <p className="font-semibold text-ink">Butuh bantuan?</p>
             <p className="mt-1">Hubungi tim kami untuk rombongan besar atau kebutuhan khusus.</p>
             <Link to="/contact" className="mt-2 inline-block font-semibold text-biru-0 hover:underline">Konsultasi gratis →</Link>
           </div>

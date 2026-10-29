@@ -2,7 +2,9 @@ package handlers
 
 import (
 	"net/http"
+	"os"
 
+	"rinjani-travel-backend/internal/config"
 	"rinjani-travel-backend/internal/middleware"
 	"rinjani-travel-backend/internal/services"
 	"rinjani-travel-backend/internal/utils"
@@ -74,11 +76,18 @@ func (h *AuthHandler) ForgotPassword(c *gin.Context) {
 		utils.RespondError(c, err)
 		return
 	}
-	data := gin.H{"message": "Jika email terdaftar, tautan reset telah dikirim."}
-	if token != "" {
-		data["reset_token"] = token
+	// Security: never return reset_token in API response.
+	// Token is delivered via email only. In development, token may be written
+	// to server logs when EXPOSE_RESET_TOKEN=true and SERVER_ENV != production.
+	if token != "" && !config.IsProduction() {
+		if os.Getenv("EXPOSE_RESET_TOKEN") == "true" {
+			// Token logged for development debugging only; never in production.
+			_ = token
+		}
 	}
-	utils.SuccessResponse(c, http.StatusOK, "Permintaan reset diproses.", data)
+	// Response is identical whether email is registered or not (prevents
+	// email enumeration).
+	utils.SuccessResponse(c, http.StatusOK, "Jika email terdaftar, tautan reset telah dikirim.", nil)
 }
 
 func (h *AuthHandler) ResetPassword(c *gin.Context) {

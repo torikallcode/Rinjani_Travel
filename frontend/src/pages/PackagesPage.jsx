@@ -144,13 +144,13 @@ export default function PackagesPage() {
             updateParam('q', search);
           }}
         >
-          <div className="flex flex-1 items-center gap-2 rounded-lg bg-white px-3">
-            <Search className="h-4 w-4 text-hitam-0/40" />
+          <div className="flex flex-1 items-center gap-2 rounded-lg bg-surface px-3">
+            <Search className="h-4 w-4 text-ink/40" />
             <input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Cari paket, lokasi, atau kata kunci..."
-              className="h-11 w-full bg-transparent text-sm text-hitam-0 outline-none placeholder:text-hitam-0/40"
+              className="h-11 w-full bg-transparent text-sm text-ink outline-none placeholder:text-ink/40"
             />
           </div>
           <Button type="submit" size="lg">Cari</Button>
@@ -159,10 +159,10 @@ export default function PackagesPage() {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[260px_1fr]">
         <aside className="hidden lg:block">
-          <div className="sticky top-24 rounded-xl border border-hitam-0/10 bg-white p-5 shadow-sm">
+          <div className="sticky top-24 rounded-xl border border-ink/10 bg-surface p-5 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="font-tomorrow text-base font-bold">Filter</h2>
-              <SlidersHorizontal className="h-4 w-4 text-hitam-0/40" />
+              <SlidersHorizontal className="h-4 w-4 text-ink/40" />
             </div>
             {filterFields}
           </div>
@@ -170,9 +170,9 @@ export default function PackagesPage() {
 
         <div>
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-hitam-0/60">
-              Menampilkan <span className="font-semibold text-hitam-0">{items.length}</span> dari {total} paket
-              {filters.q && <> untuk “<span className="font-semibold text-hitam-0">{filters.q}</span>”</>}
+            <p className="text-sm text-ink/60">
+              Menampilkan <span className="font-semibold text-ink">{items.length}</span> dari {total} paket
+              {filters.q && <> untuk “<span className="font-semibold text-ink">{filters.q}</span>”</>}
             </p>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" className="lg:hidden" onClick={() => setShowFilters(true)}>
@@ -214,11 +214,11 @@ export default function PackagesPage() {
       </div>
 
       {showFilters && (
-        <div className="fixed inset-0 z-[100] flex justify-end bg-hitam-0/50 lg:hidden">
-          <div className="h-full w-full max-w-sm overflow-y-auto bg-white p-5">
+        <div className="fixed inset-0 z-[100] flex justify-end bg-ink/50 lg:hidden">
+          <div className="h-full w-full max-w-sm overflow-y-auto bg-surface p-5">
             <div className="mb-5 flex items-center justify-between">
               <h2 className="font-tomorrow text-lg font-bold">Filter paket</h2>
-              <button onClick={() => setShowFilters(false)} className="rounded p-1 text-hitam-0/50 hover:bg-hitam-0/5">
+              <button onClick={() => setShowFilters(false)} className="rounded p-1 text-ink/50 hover:bg-ink/5">
                 <X className="h-5 w-5" />
               </button>
             </div>

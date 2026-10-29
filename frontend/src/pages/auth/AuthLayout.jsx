@@ -1,9 +1,10 @@
 import { Link, Outlet } from 'react-router-dom';
 import { ShieldCheck, Sparkles, MapPin } from 'lucide-react';
+import ThemeToggle from '../../components/ThemeToggle';
 
 export default function AuthLayout() {
   return (
-    <div className="grid min-h-screen bg-[#f7f7f5] font-secondary lg:grid-cols-2">
+    <div className="grid min-h-screen bg-canvas font-secondary lg:grid-cols-2">
       <div className="relative hidden overflow-hidden bg-hitam-0 lg:block">
         <img src="/img/mnt9.jpg" alt="Rinjani" className="absolute inset-0 h-full w-full object-cover opacity-60" />
         <div className="absolute inset-0 bg-gradient-to-t from-hitam-0 via-hitam-0/40 to-hitam-0/20" />
@@ -30,11 +31,12 @@ export default function AuthLayout() {
           <p className="text-xs text-white/35">© {new Date().getFullYear()} Rinjani Travel</p>
         </div>
       </div>
-      <div className="flex items-center justify-center px-4 py-12 sm:px-8">
+      <div className="relative flex items-center justify-center px-4 py-12 sm:px-8">
+        <ThemeToggle variant="surface" className="absolute right-4 top-4" />
         <div className="w-full max-w-md">
           <Link to="/" className="mb-8 flex items-center gap-2.5 lg:hidden">
             <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-biru-0 font-tomorrow text-sm font-bold text-biru-0">RT</span>
-            <span className="font-tomorrow text-xl font-bold text-hitam-0">RINJANI<span className="text-biru-0">.</span></span>
+            <span className="font-tomorrow text-xl font-bold text-ink">RINJANI<span className="text-biru-0">.</span></span>
           </Link>
           <Outlet />
         </div>

@@ -76,6 +76,8 @@ npm run dev
 
 Buka `http://localhost:5173`. Frontend memakai `VITE_API_URL` (default `http://localhost:8000/api/v1`).
 
+Tema terang/gelap dapat diganti dari header publik, panel admin, atau halaman autentikasi. Pilihan disimpan di `localStorage` (`rinjani_theme`); kunjungan pertama mengikuti preferensi sistem.
+
 ```bash
 # frontend/.env
 VITE_API_URL=http://localhost:8000/api/v1
