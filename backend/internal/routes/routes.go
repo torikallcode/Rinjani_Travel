@@ -82,6 +82,7 @@ func SetupRoutes(router *gin.Engine, db *gorm.DB) {
 		customer.GET("/bookings/:code", bookingHandler.MyBooking)
 		customer.GET("/bookings/:code/voucher", bookingHandler.Voucher)
 		customer.POST("/bookings/:code/cancel", bookingHandler.Cancel)
+	customer.POST("/bookings/:code/request-cancellation", bookingHandler.RequestCancellation)
 		customer.POST("/bookings/:code/reviews", bookingHandler.AddReview)
 		customer.POST("/bookings/:code/payments", middleware.StrictRateLimit(), paymentHandler.Create)
 		customer.GET("/bookings/:code/payments", paymentHandler.List)

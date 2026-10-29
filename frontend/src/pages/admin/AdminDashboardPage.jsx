@@ -77,18 +77,18 @@ export default function AdminDashboardPage() {
         <Card className="p-5">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Pendapatan 14 hari</h2>
-              <p className="mt-1 text-xs text-hitam-0/50">Berdasarkan tanggal booking dibuat.</p>
+              <h2 className="font-tomorrow text-lg font-bold text-ink">Pendapatan 14 hari</h2>
+              <p className="mt-1 text-xs text-ink/50">Berdasarkan tanggal booking dibuat.</p>
             </div>
             <Badge tone="brand">{formatDate(new Date())}</Badge>
           </div>
           {series.length === 0 ? (
-            <p className="mt-8 rounded-lg bg-[#f7f8f9] px-4 py-10 text-center text-sm text-hitam-0/45">Belum ada pendapatan tercatat.</p>
+            <p className="mt-8 rounded-lg bg-panel px-4 py-10 text-center text-sm text-ink/45">Belum ada pendapatan tercatat.</p>
           ) : (
             <div className="mt-6 flex h-48 items-end gap-2">
               {series.map((point) => (
                 <div key={point.date} className="group flex flex-1 flex-col items-center justify-end gap-1">
-                  <span className="text-[10px] font-semibold text-hitam-0/0 transition group-hover:text-hitam-0/60">
+                  <span className="text-[10px] font-semibold text-ink/0 transition group-hover:text-ink/60">
                     {formatNumber(point.total)}
                   </span>
                   <div
@@ -96,7 +96,7 @@ export default function AdminDashboardPage() {
                     style={{ height: `${Math.max(4, (Number(point.total || 0) / maxRevenue) * 100)}%` }}
                     title={`${point.date}: ${formatNumber(point.total)}`}
                   />
-                  <span className="text-[9px] text-hitam-0/40">{String(point.date).slice(8, 10)}</span>
+                  <span className="text-[9px] text-ink/40">{String(point.date).slice(8, 10)}</span>
                 </div>
               ))}
             </div>
@@ -104,8 +104,8 @@ export default function AdminDashboardPage() {
         </Card>
 
         <Card className="p-5">
-          <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Perlu tindakan</h2>
-          <p className="mt-1 text-xs text-hitam-0/50">Tugas operasional yang belum selesai.</p>
+          <h2 className="font-tomorrow text-lg font-bold text-ink">Perlu tindakan</h2>
+          <p className="mt-1 text-xs text-ink/50">Tugas operasional yang belum selesai.</p>
           <div className="mt-4 space-y-2">
             {(data.tasks || []).length === 0 && (
               <p className="rounded-lg bg-emerald-50 px-4 py-6 text-center text-sm text-emerald-700">Tidak ada tugas mendesak. 🎉</p>
@@ -116,16 +116,16 @@ export default function AdminDashboardPage() {
                 <Link
                   key={task.type}
                   to={task.link || '/admin'}
-                  className="flex items-center gap-3 rounded-lg border border-hitam-0/10 p-3 transition hover:border-biru-0/40 hover:bg-biru-0/5"
+                  className="flex items-center gap-3 rounded-lg border border-ink/10 p-3 transition hover:border-biru-0/40 hover:bg-biru-0/5"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
                     <Icon className="h-4 w-4" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-hitam-0">{task.label}</p>
-                    <p className="text-xs text-hitam-0/50">{task.count} item</p>
+                    <p className="truncate text-sm font-semibold text-ink">{task.label}</p>
+                    <p className="text-xs text-ink/50">{task.count} item</p>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-hitam-0/30" />
+                  <ArrowRight className="h-4 w-4 text-ink/30" />
                 </Link>
               );
             })}
@@ -135,23 +135,23 @@ export default function AdminDashboardPage() {
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
         <Card className="overflow-hidden">
-          <div className="flex items-center justify-between border-b border-hitam-0/10 px-5 py-4">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Pesanan terbaru</h2>
+          <div className="flex items-center justify-between border-b border-ink/10 px-5 py-4">
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Pesanan terbaru</h2>
             <Link to="/admin/bookings" className="text-xs font-semibold text-biru-0 hover:underline">Semua pesanan →</Link>
           </div>
-          <div className="divide-y divide-hitam-0/5">
-            {(data.recent_bookings || []).length === 0 && <p className="px-5 py-8 text-center text-sm text-hitam-0/45">Belum ada pesanan.</p>}
+          <div className="divide-y divide-ink/5">
+            {(data.recent_bookings || []).length === 0 && <p className="px-5 py-8 text-center text-sm text-ink/45">Belum ada pesanan.</p>}
             {(data.recent_bookings || []).map((booking) => (
               <Link key={booking.id} to={`/admin/bookings/${booking.booking_code}`} className="flex items-center gap-3 px-5 py-3 transition hover:bg-biru-0/[0.03]">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-xs text-hitam-0/50">{booking.booking_code}</span>
+                    <span className="font-mono text-xs text-ink/50">{booking.booking_code}</span>
                     <BookingStatusBadge status={booking.status} />
                   </div>
-                  <p className="mt-1 truncate text-sm font-semibold text-hitam-0">
+                  <p className="mt-1 truncate text-sm font-semibold text-ink">
                     {booking.departure?.package?.title || 'Paket'}
                   </p>
-                  <p className="text-xs text-hitam-0/50">
+                  <p className="text-xs text-ink/50">
                     {booking.organizer_name} · {formatDate(booking.created_at)}
                   </p>
                 </div>
@@ -162,25 +162,25 @@ export default function AdminDashboardPage() {
         </Card>
 
         <Card className="overflow-hidden">
-          <div className="flex items-center justify-between border-b border-hitam-0/10 px-5 py-4">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Okupansi terdekat</h2>
+          <div className="flex items-center justify-between border-b border-ink/10 px-5 py-4">
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Okupansi terdekat</h2>
             <Link to="/admin/departures" className="text-xs font-semibold text-biru-0 hover:underline">Jadwal →</Link>
           </div>
-          <div className="divide-y divide-hitam-0/5">
-            {(data.occupancy || []).length === 0 && <p className="px-5 py-8 text-center text-sm text-hitam-0/45">Belum ada jadwal.</p>}
+          <div className="divide-y divide-ink/5">
+            {(data.occupancy || []).length === 0 && <p className="px-5 py-8 text-center text-sm text-ink/45">Belum ada jadwal.</p>}
             {(data.occupancy || []).map((row) => {
               const percent = row.capacity ? Math.round((row.reserved_count / row.capacity) * 100) : 0;
               return (
                 <div key={row.id} className="px-5 py-3">
                   <div className="flex items-center justify-between gap-3">
-                    <p className="truncate text-sm font-semibold text-hitam-0">{row.package_title}</p>
-                    <span className="whitespace-nowrap text-xs text-hitam-0/50"><DateCell value={row.start_date} /></span>
+                    <p className="truncate text-sm font-semibold text-ink">{row.package_title}</p>
+                    <span className="whitespace-nowrap text-xs text-ink/50"><DateCell value={row.start_date} /></span>
                   </div>
                   <div className="mt-2 flex items-center gap-2">
-                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-hitam-0/10">
+                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10">
                       <div className={`h-full rounded-full ${percent >= 90 ? 'bg-red-500' : percent >= 60 ? 'bg-amber-500' : 'bg-biru-0'}`} style={{ width: `${Math.min(percent, 100)}%` }} />
                     </div>
-                    <span className="text-[11px] text-hitam-0/50">{row.reserved_count}/{row.capacity}</span>
+                    <span className="text-[11px] text-ink/50">{row.reserved_count}/{row.capacity}</span>
                   </div>
                 </div>
               );
@@ -191,17 +191,17 @@ export default function AdminDashboardPage() {
 
       <div className="mt-6">
         <Card className="overflow-hidden">
-          <div className="flex items-center justify-between border-b border-hitam-0/10 px-5 py-4">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Keberangkatan mendatang</h2>
+          <div className="flex items-center justify-between border-b border-ink/10 px-5 py-4">
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Keberangkatan mendatang</h2>
             <Link to="/admin/departures" className="text-xs font-semibold text-biru-0 hover:underline">Kelola jadwal →</Link>
           </div>
           <div className="grid gap-3 p-4 sm:grid-cols-2 xl:grid-cols-4">
-            {(data.upcoming || []).length === 0 && <p className="col-span-full py-6 text-center text-sm text-hitam-0/45">Belum ada keberangkatan.</p>}
+            {(data.upcoming || []).length === 0 && <p className="col-span-full py-6 text-center text-sm text-ink/45">Belum ada keberangkatan.</p>}
             {(data.upcoming || []).map((dep) => (
-              <div key={dep.id} className="rounded-lg border border-hitam-0/10 p-3">
+              <div key={dep.id} className="rounded-lg border border-ink/10 p-3">
                 <p className="text-[11px] font-semibold uppercase tracking-wide text-biru-0">{formatDate(dep.start_date)}</p>
-                <p className="mt-1 line-clamp-2 text-sm font-semibold text-hitam-0">{dep.package?.title}</p>
-                <p className="mt-1 text-xs text-hitam-0/50">{dep.capacity - dep.reserved_count} kursi tersisa</p>
+                <p className="mt-1 line-clamp-2 text-sm font-semibold text-ink">{dep.package?.title}</p>
+                <p className="mt-1 text-xs text-ink/50">{dep.capacity - dep.reserved_count} kursi tersisa</p>
               </div>
             ))}
           </div>

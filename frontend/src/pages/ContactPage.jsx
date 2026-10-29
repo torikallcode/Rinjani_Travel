@@ -74,8 +74,8 @@ export default function ContactPage() {
 
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8">
         <Card className="p-6 sm:p-8">
-          <h2 className="font-tomorrow text-xl font-bold text-hitam-0">Kirim pesan</h2>
-          <p className="mt-1 text-sm text-hitam-0/55">Isi formulir di bawah. Kami biasanya membalas dalam 1 hari kerja.</p>
+          <h2 className="font-tomorrow text-xl font-bold text-ink">Kirim pesan</h2>
+          <p className="mt-1 text-sm text-ink/55">Isi formulir di bawah. Kami biasanya membalas dalam 1 hari kerja.</p>
 
           {success && <Alert tone="success" className="mt-5">{success}</Alert>}
           {error && <Alert tone="danger" title="Pesan gagal dikirim" className="mt-5">{error}</Alert>}
@@ -104,8 +104,8 @@ export default function ContactPage() {
                 maxLength={3000}
               />
             </Field>
-            <div className="sm:col-span-2 flex flex-col items-start justify-between gap-3 border-t border-hitam-0/10 pt-4 sm:flex-row sm:items-center">
-              <p className="text-xs text-hitam-0/45">Data Anda hanya digunakan untuk menjawab pertanyaan ini.</p>
+            <div className="sm:col-span-2 flex flex-col items-start justify-between gap-3 border-t border-ink/10 pt-4 sm:flex-row sm:items-center">
+              <p className="text-xs text-ink/45">Data Anda hanya digunakan untuk menjawab pertanyaan ini.</p>
               <Button type="submit" loading={sending}>
                 <Send className="h-4 w-4" /> Kirim pesan
               </Button>
@@ -115,7 +115,7 @@ export default function ContactPage() {
 
         <aside className="space-y-4">
           <Card className="p-6">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Informasi kontak</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Informasi kontak</h2>
             <ul className="mt-4 space-y-4 text-sm">
               {channels.map((channel) => {
                 const Icon = channel.icon;
@@ -125,8 +125,8 @@ export default function ContactPage() {
                       <Icon className="h-4 w-4" />
                     </span>
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-hitam-0/40">{channel.label}</p>
-                      <p className="mt-0.5 leading-snug text-hitam-0/75">{channel.value}</p>
+                      <p className="text-xs uppercase tracking-wide text-ink/40">{channel.label}</p>
+                      <p className="mt-0.5 leading-snug text-ink/75">{channel.value}</p>
                     </div>
                   </>
                 );
@@ -141,8 +141,8 @@ export default function ContactPage() {
                 );
               })}
             </ul>
-            <div className="mt-5 border-t border-hitam-0/10 pt-4 text-xs text-hitam-0/55">
-              <p className="flex items-center gap-2 font-semibold text-hitam-0"><Clock className="h-3.5 w-3.5 text-biru-0" /> Jam operasional</p>
+            <div className="mt-5 border-t border-ink/10 pt-4 text-xs text-ink/55">
+              <p className="flex items-center gap-2 font-semibold text-ink"><Clock className="h-3.5 w-3.5 text-biru-0" /> Jam operasional</p>
               <p className="mt-1.5">Senin–Sabtu, 08.00–18.00 WITA</p>
             </div>
           </Card>
@@ -160,8 +160,8 @@ export default function ContactPage() {
             <MessageCircle className="h-6 w-6" />
           </a>
 
-          <div className="rounded-xl border border-hitam-0/10 bg-white p-5 text-xs text-hitam-0/55">
-            <p className="font-semibold text-hitam-0">Untuk rombongan besar</p>
+          <div className="rounded-xl border border-ink/10 bg-surface p-5 text-xs text-ink/55">
+            <p className="font-semibold text-ink">Untuk rombongan besar</p>
             <p className="mt-1.5 leading-relaxed">
               Rombongan lebih dari 10 peserta sebaiknya menghubungi kami lebih awal agar ketersediaan guide, porter, dan transportasi bisa dipastikan.
             </p>

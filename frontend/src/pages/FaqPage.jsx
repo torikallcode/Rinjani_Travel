@@ -63,8 +63,8 @@ export default function FaqPage() {
           <p className="mx-auto mt-3 max-w-2xl text-sm text-white/65">
             Temukan jawaban tentang pemesanan, pembayaran, kesiapan fisik, dan kebijakan perjalanan. Jika belum terjawab, tim kami siap membantu.
           </p>
-          <div className="mx-auto mt-6 flex max-w-xl items-center gap-2 rounded-lg bg-white px-3">
-            <Search className="h-4 w-4 text-hitam-0/40" />
+          <div className="mx-auto mt-6 flex max-w-xl items-center gap-2 rounded-lg bg-surface px-3">
+            <Search className="h-4 w-4 text-ink/40" />
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
@@ -84,7 +84,7 @@ export default function FaqPage() {
               className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${
                 category === value
                   ? 'border-biru-0 bg-biru-0 text-white'
-                  : 'border-hitam-0/15 bg-white text-hitam-0/60 hover:border-biru-0/40 hover:text-biru-0'
+                  : 'border-ink/15 bg-surface text-ink/60 hover:border-biru-0/40 hover:text-biru-0'
               }`}
             >
               {categoryLabels[value] || value}
@@ -104,18 +104,18 @@ export default function FaqPage() {
             action={<Button variant="outline" onClick={() => { setSearch(''); setCategory('semua'); }}>Reset pencarian</Button>}
           />
         ) : (
-          <div className="mt-6 divide-y divide-hitam-0/10 overflow-hidden rounded-xl border border-hitam-0/10 bg-white">
+          <div className="mt-6 divide-y divide-ink/10 overflow-hidden rounded-xl border border-ink/10 bg-surface">
             {filtered.map((faq) => (
               <div key={faq.id}>
                 <button
                   onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                 >
-                  <span className="text-sm font-semibold text-hitam-0">{faq.question}</span>
-                  <ChevronDown className={`h-4 w-4 shrink-0 text-hitam-0/40 transition ${openId === faq.id ? 'rotate-180 text-biru-0' : ''}`} />
+                  <span className="text-sm font-semibold text-ink">{faq.question}</span>
+                  <ChevronDown className={`h-4 w-4 shrink-0 text-ink/40 transition ${openId === faq.id ? 'rotate-180 text-biru-0' : ''}`} />
                 </button>
                 {openId === faq.id && (
-                  <p className="px-5 pb-5 text-sm leading-relaxed text-hitam-0/60">{faq.answer}</p>
+                  <p className="px-5 pb-5 text-sm leading-relaxed text-ink/60">{faq.answer}</p>
                 )}
               </div>
             ))}
@@ -128,14 +128,14 @@ export default function FaqPage() {
               <MessageSquare className="h-5 w-5" />
             </span>
             <div>
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Masih ada pertanyaan?</h2>
-              <p className="mt-1 text-sm text-hitam-0/60">Kirim pesan ke tim kami, biasanya dibalas dalam 1 hari kerja.</p>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Masih ada pertanyaan?</h2>
+              <p className="mt-1 text-sm text-ink/60">Kirim pesan ke tim kami, biasanya dibalas dalam 1 hari kerja.</p>
             </div>
           </div>
           <Button as="link" to="/contact">Hubungi kami</Button>
         </Card>
 
-        <p className="mt-6 text-center text-xs text-hitam-0/45">
+        <p className="mt-6 text-center text-xs text-ink/45">
           Baca juga <Link to="/terms" className="font-semibold text-biru-0 hover:underline">syarat & ketentuan</Link> dan <Link to="/cancellation" className="font-semibold text-biru-0 hover:underline">kebijakan pembatalan</Link>.
         </p>
       </div>

@@ -161,7 +161,7 @@ export default function AdminPackageFormPage() {
 
   return (
     <div>
-      <Link to="/admin/packages" className="inline-flex items-center gap-1.5 text-sm font-medium text-hitam-0/55 hover:text-biru-0">
+      <Link to="/admin/packages" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/55 hover:text-biru-0">
         <ArrowLeft className="h-4 w-4" /> Semua paket
       </Link>
       <PageHeader
@@ -183,7 +183,7 @@ export default function AdminPackageFormPage() {
       <form id="package-form" onSubmit={submit} className="mt-6 grid gap-6 xl:grid-cols-[1fr_340px]">
         <div className="space-y-6">
           <Card className="p-5">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Informasi dasar</h2>
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Informasi dasar</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <Field label="Judul paket" required className="sm:col-span-2">
                 <Input value={form.title} onChange={(event) => update('title', event.target.value)} required />
@@ -230,7 +230,7 @@ export default function AdminPackageFormPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Media</h2>
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Media</h2>
             <div className="mt-4 grid gap-4">
               <Field label="Gambar utama (URL/path)" hint="Contoh: /img/mnt4.jpg">
                 <Input value={form.image} onChange={(event) => update('image', event.target.value)} />
@@ -243,7 +243,7 @@ export default function AdminPackageFormPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Fasilitas & persyaratan</h2>
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Fasilitas & persyaratan</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <Field label="Termasuk" hint="Satu item per baris.">
                 <Textarea rows={6} value={form.includes} onChange={(event) => update('includes', event.target.value)} />
@@ -266,19 +266,19 @@ export default function AdminPackageFormPage() {
           <Card className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Itinerary</h2>
-                <p className="mt-1 text-xs text-hitam-0/50">Urutan hari dan aktivitas perjalanan.</p>
+                <h2 className="font-tomorrow text-lg font-bold text-ink">Itinerary</h2>
+                <p className="mt-1 text-xs text-ink/50">Urutan hari dan aktivitas perjalanan.</p>
               </div>
               <Button type="button" size="sm" variant="outline" onClick={() => addChild('itineraries', emptyItinerary)}>
                 <Plus className="h-3.5 w-3.5" /> Tambah hari
               </Button>
             </div>
             <div className="mt-4 space-y-3">
-              {form.itineraries.length === 0 && <p className="rounded-lg border border-dashed border-hitam-0/15 px-4 py-6 text-center text-xs text-hitam-0/45">Belum ada itinerary.</p>}
+              {form.itineraries.length === 0 && <p className="rounded-lg border border-dashed border-ink/15 px-4 py-6 text-center text-xs text-ink/45">Belum ada itinerary.</p>}
               {form.itineraries.map((item, index) => (
-                <div key={index} className="rounded-lg border border-hitam-0/10 p-4">
+                <div key={index} className="rounded-lg border border-ink/10 p-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-semibold text-hitam-0">Hari {index + 1}</p>
+                    <p className="text-sm font-semibold text-ink">Hari {index + 1}</p>
                     <button type="button" onClick={() => removeChild('itineraries', index)} className="text-red-500 hover:text-red-700"><Trash2 className="h-4 w-4" /></button>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-6">
@@ -306,19 +306,19 @@ export default function AdminPackageFormPage() {
           <Card className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Add-on</h2>
-                <p className="mt-1 text-xs text-hitam-0/50">Layanan tambahan opsional saat checkout.</p>
+                <h2 className="font-tomorrow text-lg font-bold text-ink">Add-on</h2>
+                <p className="mt-1 text-xs text-ink/50">Layanan tambahan opsional saat checkout.</p>
               </div>
               <Button type="button" size="sm" variant="outline" onClick={() => addChild('addons', emptyAddon)}>
                 <Plus className="h-3.5 w-3.5" /> Tambah add-on
               </Button>
             </div>
             <div className="mt-4 space-y-3">
-              {form.addons.length === 0 && <p className="rounded-lg border border-dashed border-hitam-0/15 px-4 py-6 text-center text-xs text-hitam-0/45">Belum ada add-on.</p>}
+              {form.addons.length === 0 && <p className="rounded-lg border border-dashed border-ink/15 px-4 py-6 text-center text-xs text-ink/45">Belum ada add-on.</p>}
               {form.addons.map((item, index) => (
-                <div key={index} className="rounded-lg border border-hitam-0/10 p-4">
+                <div key={index} className="rounded-lg border border-ink/10 p-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-semibold text-hitam-0">Add-on {index + 1}</p>
+                    <p className="text-sm font-semibold text-ink">Add-on {index + 1}</p>
                     <button type="button" onClick={() => removeChild('addons', index)} className="text-red-500 hover:text-red-700"><Trash2 className="h-4 w-4" /></button>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -331,8 +331,8 @@ export default function AdminPackageFormPage() {
                       </Select>
                     </Field>
                     <Field label="Aktif">
-                      <label className="flex h-10 items-center gap-2 text-sm text-hitam-0/70">
-                        <input type="checkbox" checked={Boolean(item.active)} onChange={(event) => updateChild('addons', index, { active: event.target.checked })} className="h-4 w-4 rounded border-hitam-0/30 text-biru-0" />
+                      <label className="flex h-10 items-center gap-2 text-sm text-ink/70">
+                        <input type="checkbox" checked={Boolean(item.active)} onChange={(event) => updateChild('addons', index, { active: event.target.checked })} className="h-4 w-4 rounded border-ink/30 text-biru-0" />
                         Tampilkan di checkout
                       </label>
                     </Field>
@@ -346,19 +346,19 @@ export default function AdminPackageFormPage() {
           <Card className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-tomorrow text-lg font-bold text-hitam-0">FAQ paket</h2>
-                <p className="mt-1 text-xs text-hitam-0/50">Pertanyaan yang tampil di halaman detail.</p>
+                <h2 className="font-tomorrow text-lg font-bold text-ink">FAQ paket</h2>
+                <p className="mt-1 text-xs text-ink/50">Pertanyaan yang tampil di halaman detail.</p>
               </div>
               <Button type="button" size="sm" variant="outline" onClick={() => addChild('faqs', emptyFaq)}>
                 <Plus className="h-3.5 w-3.5" /> Tambah FAQ
               </Button>
             </div>
             <div className="mt-4 space-y-3">
-              {form.faqs.length === 0 && <p className="rounded-lg border border-dashed border-hitam-0/15 px-4 py-6 text-center text-xs text-hitam-0/45">Belum ada FAQ.</p>}
+              {form.faqs.length === 0 && <p className="rounded-lg border border-dashed border-ink/15 px-4 py-6 text-center text-xs text-ink/45">Belum ada FAQ.</p>}
               {form.faqs.map((item, index) => (
-                <div key={index} className="rounded-lg border border-hitam-0/10 p-4">
+                <div key={index} className="rounded-lg border border-ink/10 p-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-semibold text-hitam-0">FAQ {index + 1}</p>
+                    <p className="text-sm font-semibold text-ink">FAQ {index + 1}</p>
                     <button type="button" onClick={() => removeChild('faqs', index)} className="text-red-500 hover:text-red-700"><Trash2 className="h-4 w-4" /></button>
                   </div>
                   <div className="grid gap-3">
@@ -373,7 +373,7 @@ export default function AdminPackageFormPage() {
 
         <aside className="space-y-4">
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Publikasi</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Publikasi</h2>
             <div className="mt-4 space-y-4">
               <Field label="Status">
                 <Select value={form.status} onChange={(event) => update('status', event.target.value)}>
@@ -382,15 +382,15 @@ export default function AdminPackageFormPage() {
                   <option value="archived">Archived</option>
                 </Select>
               </Field>
-              <label className="flex items-center gap-2 text-sm text-hitam-0/70">
-                <input type="checkbox" checked={Boolean(form.featured)} onChange={(event) => update('featured', event.target.checked)} className="h-4 w-4 rounded border-hitam-0/30 text-biru-0" />
+              <label className="flex items-center gap-2 text-sm text-ink/70">
+                <input type="checkbox" checked={Boolean(form.featured)} onChange={(event) => update('featured', event.target.checked)} className="h-4 w-4 rounded border-ink/30 text-biru-0" />
                 Tampilkan sebagai paket unggulan
               </label>
             </div>
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Harga</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Harga</h2>
             <div className="mt-4 space-y-4">
               <Field label="Harga dasar per orang (IDR)" required>
                 <Input type="number" min="1" value={form.base_price} onChange={(event) => update('base_price', event.target.value)} required />
@@ -402,7 +402,7 @@ export default function AdminPackageFormPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">SEO</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">SEO</h2>
             <div className="mt-4 space-y-4">
               <Field label="SEO title"><Input value={form.seo_title} onChange={(event) => update('seo_title', event.target.value)} /></Field>
               <Field label="SEO description"><Textarea rows={3} value={form.seo_description} onChange={(event) => update('seo_description', event.target.value)} /></Field>

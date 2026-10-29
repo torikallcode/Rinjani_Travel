@@ -73,14 +73,14 @@ export default function ContentPage({ slug }) {
         <aside>
           <div className="sticky top-24 space-y-4">
             <Card className="p-5">
-              <h2 className="font-tomorrow text-sm font-bold uppercase tracking-wide text-hitam-0">Informasi lain</h2>
+              <h2 className="font-tomorrow text-sm font-bold uppercase tracking-wide text-ink">Informasi lain</h2>
               <nav className="mt-3 space-y-1">
                 {infoLinks.map((item) => (
                   <Link
                     key={item.slug}
                     to={item.slug === 'faq' ? '/faq' : `/${item.slug}`}
                     className={`block rounded-lg px-3 py-2 text-sm transition ${
-                      item.slug === slug ? 'bg-biru-0/10 font-semibold text-biru-0' : 'text-hitam-0/60 hover:bg-hitam-0/5 hover:text-hitam-0'
+                      item.slug === slug ? 'bg-biru-0/10 font-semibold text-biru-0' : 'text-ink/60 hover:bg-ink/5 hover:text-ink'
                     }`}
                   >
                     {item.label}
@@ -88,8 +88,8 @@ export default function ContentPage({ slug }) {
                 ))}
               </nav>
             </Card>
-            <div className="rounded-xl border border-biru-0/20 bg-biru-0/5 p-5 text-xs text-hitam-0/60">
-              <p className="flex items-center gap-2 font-semibold text-hitam-0">
+            <div className="rounded-xl border border-biru-0/20 bg-biru-0/5 p-5 text-xs text-ink/60">
+              <p className="flex items-center gap-2 font-semibold text-ink">
                 <ShieldCheck className="h-4 w-4 text-biru-0" /> Butuh klarifikasi?
               </p>
               <p className="mt-2 leading-relaxed">

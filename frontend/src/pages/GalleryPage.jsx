@@ -56,7 +56,7 @@ export default function GalleryPage() {
               className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${
                 category === value
                   ? 'border-biru-0 bg-biru-0 text-white'
-                  : 'border-hitam-0/15 bg-white text-hitam-0/60 hover:border-biru-0/40 hover:text-biru-0'
+                  : 'border-ink/15 bg-surface text-ink/60 hover:border-biru-0/40 hover:text-biru-0'
               }`}
             >
               {value}
@@ -110,8 +110,8 @@ export default function GalleryPage() {
 
       <div className="mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
         <Card className="p-6 text-center">
-          <p className="font-tomorrow text-lg font-bold text-hitam-0">Ingin mengalami sendiri?</p>
-          <p className="mx-auto mt-1 max-w-xl text-sm text-hitam-0/60">
+          <p className="font-tomorrow text-lg font-bold text-ink">Ingin mengalami sendiri?</p>
+          <p className="mx-auto mt-1 max-w-xl text-sm text-ink/60">
             Foto terbaik selalu datang dari perjalanan Anda sendiri. Pilih paket yang paling sesuai dan mulai rencanakan.
           </p>
         </Card>

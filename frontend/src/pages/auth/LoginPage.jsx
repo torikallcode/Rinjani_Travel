@@ -35,8 +35,8 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h1 className="font-tomorrow text-2xl font-bold text-hitam-0">Masuk ke akun Anda</h1>
-      <p className="mt-2 text-sm text-hitam-0/55">Kelola pesanan dan lanjutkan perjalanan yang sudah direncanakan.</p>
+      <h1 className="font-tomorrow text-2xl font-bold text-ink">Masuk ke akun Anda</h1>
+      <p className="mt-2 text-sm text-ink/55">Kelola pesanan dan lanjutkan perjalanan yang sudah direncanakan.</p>
 
       {error && <Alert tone="danger" className="mt-5">{error}</Alert>}
 
@@ -49,20 +49,20 @@ export default function LoginPage() {
         </Field>
         <div className="flex items-center justify-between text-xs">
           <Link to="/forgot-password" className="font-semibold text-biru-0 hover:underline">Lupa kata sandi?</Link>
-          <Link to="/register" className="text-hitam-0/55 hover:text-hitam-0">Belum punya akun? <span className="font-semibold text-biru-0">Daftar</span></Link>
+          <Link to="/register" className="text-ink/55 hover:text-ink">Belum punya akun? <span className="font-semibold text-biru-0">Daftar</span></Link>
         </div>
         <Button type="submit" size="lg" className="w-full" loading={loading}>Masuk</Button>
       </form>
 
       {import.meta.env.DEV && (
-        <div className="mt-6 rounded-xl border border-hitam-0/10 bg-white p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-hitam-0/50">Akun demo</p>
+        <div className="mt-6 rounded-xl border border-ink/10 bg-surface p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">Akun demo</p>
           <div className="mt-2 grid gap-2 text-xs">
-            <button type="button" onClick={() => fillDemo('customer@example.com', 'Customer123!')} className="flex items-center justify-between rounded-lg bg-[#f4f5f7] px-3 py-2 text-left hover:bg-biru-0/10">
-              <span><strong>Pelanggan</strong> · customer@example.com</span><span className="font-mono text-hitam-0/50">Customer123!</span>
+            <button type="button" onClick={() => fillDemo('customer@example.com', 'Customer123!')} className="flex items-center justify-between rounded-lg bg-panel px-3 py-2 text-left hover:bg-biru-0/10">
+              <span><strong>Pelanggan</strong> · customer@example.com</span><span className="font-mono text-ink/50">Customer123!</span>
             </button>
-            <button type="button" onClick={() => fillDemo('superadmin@rinjanitravel.com', 'Admin123!')} className="flex items-center justify-between rounded-lg bg-[#f4f5f7] px-3 py-2 text-left hover:bg-biru-0/10">
-              <span><strong>Super Admin</strong> · superadmin@rinjanitravel.com</span><span className="font-mono text-hitam-0/50">Admin123!</span>
+            <button type="button" onClick={() => fillDemo('superadmin@rinjanitravel.com', 'Admin123!')} className="flex items-center justify-between rounded-lg bg-panel px-3 py-2 text-left hover:bg-biru-0/10">
+              <span><strong>Super Admin</strong> · superadmin@rinjanitravel.com</span><span className="font-mono text-ink/50">Admin123!</span>
             </button>
           </div>
         </div>

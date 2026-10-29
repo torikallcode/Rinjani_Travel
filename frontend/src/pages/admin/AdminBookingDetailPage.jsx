@@ -135,7 +135,7 @@ export default function AdminBookingDetailPage() {
 
   return (
     <div>
-      <Link to="/admin/bookings" className="inline-flex items-center gap-1.5 text-sm font-medium text-hitam-0/55 hover:text-biru-0">
+      <Link to="/admin/bookings" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/55 hover:text-biru-0">
         <ArrowLeft className="h-4 w-4" /> Semua pesanan
       </Link>
 
@@ -143,10 +143,10 @@ export default function AdminBookingDetailPage() {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone={meta.tone}>{meta.label}</Badge>
-            <span className="font-mono text-xs text-hitam-0/50">{booking.booking_code}</span>
+            <span className="font-mono text-xs text-ink/50">{booking.booking_code}</span>
           </div>
-          <h1 className="mt-2 font-tomorrow text-2xl font-bold text-hitam-0">{pkg?.title || 'Detail Pesanan'}</h1>
-          <p className="mt-1 text-xs text-hitam-0/50">Dibuat {formatDateTime(booking.created_at)} · {booking.number_of_travelers} peserta</p>
+          <h1 className="mt-2 font-tomorrow text-2xl font-bold text-ink">{pkg?.title || 'Detail Pesanan'}</h1>
+          <p className="mt-1 text-xs text-ink/50">Dibuat {formatDateTime(booking.created_at)} · {booking.number_of_travelers} peserta</p>
         </div>
         <Money value={booking.total} />
       </div>
@@ -160,10 +160,10 @@ export default function AdminBookingDetailPage() {
             <div className="flex flex-col gap-4 sm:flex-row">
               <img src={packageImage(pkg || {})} alt={pkg?.title || 'Paket'} className="h-36 w-full rounded-lg object-cover sm:h-28 sm:w-40" />
               <div className="grid flex-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
-                <p className="flex items-center gap-1.5 text-hitam-0/70"><CalendarDays className="h-4 w-4 text-biru-0" /> {booking.departure ? `${formatDate(booking.departure.start_date)} – ${formatDate(booking.departure.end_date)}` : '-'}</p>
-                <p className="flex items-center gap-1.5 text-hitam-0/70"><Users className="h-4 w-4 text-biru-0" /> {booking.number_of_travelers} peserta</p>
-                <p className="flex items-center gap-1.5 text-hitam-0/70"><MapPin className="h-4 w-4 text-biru-0" /> {pkg?.departure_point || '-'}</p>
-                <p className="flex items-center gap-1.5 text-hitam-0/70"><Mail className="h-4 w-4 text-biru-0" /> {booking.organizer_email || '-'}</p>
+                <p className="flex items-center gap-1.5 text-ink/70"><CalendarDays className="h-4 w-4 text-biru-0" /> {booking.departure ? `${formatDate(booking.departure.start_date)} – ${formatDate(booking.departure.end_date)}` : '-'}</p>
+                <p className="flex items-center gap-1.5 text-ink/70"><Users className="h-4 w-4 text-biru-0" /> {booking.number_of_travelers} peserta</p>
+                <p className="flex items-center gap-1.5 text-ink/70"><MapPin className="h-4 w-4 text-biru-0" /> {pkg?.departure_point || '-'}</p>
+                <p className="flex items-center gap-1.5 text-ink/70"><Mail className="h-4 w-4 text-biru-0" /> {booking.organizer_email || '-'}</p>
                 {booking.expires_at && <p className="text-xs text-amber-700 sm:col-span-2">Batas pembayaran: {formatDateTime(booking.expires_at)}</p>}
                 {booking.cancellation_reason && <p className="text-xs text-red-600 sm:col-span-2">Alasan pembatalan: {booking.cancellation_reason}</p>}
               </div>
@@ -171,43 +171,43 @@ export default function AdminBookingDetailPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Rincian biaya</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Rincian biaya</h2>
             <div className="mt-3 space-y-2 text-sm">
               {(booking.items || []).map((item) => (
-                <div key={item.id} className="flex justify-between gap-3 text-hitam-0/65">
+                <div key={item.id} className="flex justify-between gap-3 text-ink/65">
                   <span>{item.name_snapshot} × {item.quantity}</span>
                   <span>{formatCurrency(item.total)}</span>
                 </div>
               ))}
-              <div className="flex justify-between text-hitam-0/65"><span>Subtotal</span><span>{formatCurrency(booking.subtotal)}</span></div>
+              <div className="flex justify-between text-ink/65"><span>Subtotal</span><span>{formatCurrency(booking.subtotal)}</span></div>
               {booking.discount > 0 && <div className="flex justify-between text-emerald-600"><span>Diskon {booking.coupon_code && `(${booking.coupon_code})`}</span><span>−{formatCurrency(booking.discount)}</span></div>}
-              {booking.tax > 0 && <div className="flex justify-between text-hitam-0/65"><span>Pajak</span><span>{formatCurrency(booking.tax)}</span></div>}
-              <div className="flex justify-between border-t border-hitam-0/10 pt-3 font-tomorrow text-lg font-bold text-hitam-0"><span>Total</span><span>{formatCurrency(booking.total)}</span></div>
+              {booking.tax > 0 && <div className="flex justify-between text-ink/65"><span>Pajak</span><span>{formatCurrency(booking.tax)}</span></div>}
+              <div className="flex justify-between border-t border-ink/10 pt-3 font-tomorrow text-lg font-bold text-ink"><span>Total</span><span>{formatCurrency(booking.total)}</span></div>
             </div>
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Data peserta</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Data peserta</h2>
             <div className="mt-3 overflow-x-auto">
               <table className="min-w-full text-sm">
                 <thead>
-                  <tr className="border-b border-hitam-0/10 text-left text-[11px] uppercase tracking-wide text-hitam-0/45">
+                  <tr className="border-b border-ink/10 text-left text-[11px] uppercase tracking-wide text-ink/45">
                     <th className="py-2 pr-4">Nama</th>
                     <th className="py-2 pr-4">Identitas</th>
                     <th className="py-2 pr-4">Kontak darurat</th>
                     <th className="py-2">Catatan kesehatan</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-hitam-0/5">
+                <tbody className="divide-y divide-ink/5">
                   {(booking.travelers || []).map((traveler) => (
                     <tr key={traveler.id}>
                       <td className="py-2.5 pr-4">
-                        <p className="font-semibold text-hitam-0">{traveler.name} {traveler.is_organizer && <span className="ml-1 text-[10px] uppercase text-biru-0">Pemesan</span>}</p>
-                        <p className="text-[11px] text-hitam-0/45">{[traveler.nationality, traveler.gender, traveler.birth_date].filter(Boolean).join(' · ')}</p>
+                        <p className="font-semibold text-ink">{traveler.name} {traveler.is_organizer && <span className="ml-1 text-[10px] uppercase text-biru-0">Pemesan</span>}</p>
+                        <p className="text-[11px] text-ink/45">{[traveler.nationality, traveler.gender, traveler.birth_date].filter(Boolean).join(' · ')}</p>
                       </td>
-                      <td className="py-2.5 pr-4 text-xs text-hitam-0/60">{traveler.id_number || '-'}</td>
-                      <td className="py-2.5 pr-4 text-xs text-hitam-0/60">{traveler.emergency_contact_name ? `${traveler.emergency_contact_name} · ${traveler.emergency_contact_phone}` : '-'}</td>
-                      <td className="py-2.5 text-xs text-hitam-0/60">{traveler.health_note || '-'}{traveler.health_consent && <span className="ml-1 text-emerald-600">(consent)</span>}</td>
+                      <td className="py-2.5 pr-4 text-xs text-ink/60">{traveler.id_number || '-'}</td>
+                      <td className="py-2.5 pr-4 text-xs text-ink/60">{traveler.emergency_contact_name ? `${traveler.emergency_contact_name} · ${traveler.emergency_contact_phone}` : '-'}</td>
+                      <td className="py-2.5 text-xs text-ink/60">{traveler.health_note || '-'}{traveler.health_consent && <span className="ml-1 text-emerald-600">(consent)</span>}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -216,29 +216,29 @@ export default function AdminBookingDetailPage() {
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Riwayat status</h2>
-            <ol className="mt-4 space-y-4 border-l border-hitam-0/10 pl-5">
+            <h2 className="font-tomorrow text-base font-bold text-ink">Riwayat status</h2>
+            <ol className="mt-4 space-y-4 border-l border-ink/10 pl-5">
               {(booking.status_history || []).map((item) => (
                 <li key={item.id} className="relative">
                   <span className="absolute -left-[25px] top-1 h-2.5 w-2.5 rounded-full bg-biru-0" />
-                  <p className="text-sm font-semibold text-hitam-0">{statusMeta(BOOKING_STATUS, item.to_status).label}</p>
-                  <p className="text-xs text-hitam-0/50">{formatDateTime(item.created_at)} · {item.changed_by_name || 'Sistem'}</p>
-                  {item.reason && <p className="mt-1 text-xs text-hitam-0/55">{item.reason}</p>}
+                  <p className="text-sm font-semibold text-ink">{statusMeta(BOOKING_STATUS, item.to_status).label}</p>
+                  <p className="text-xs text-ink/50">{formatDateTime(item.created_at)} · {item.changed_by_name || 'Sistem'}</p>
+                  {item.reason && <p className="mt-1 text-xs text-ink/55">{item.reason}</p>}
                 </li>
               ))}
-              {!booking.status_history?.length && <p className="text-sm text-hitam-0/45">Belum ada riwayat.</p>}
+              {!booking.status_history?.length && <p className="text-sm text-ink/45">Belum ada riwayat.</p>}
             </ol>
           </Card>
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Pembayaran</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Pembayaran</h2>
             <div className="mt-3 space-y-2">
               {(booking.payments || []).map((payment) => (
-                <div key={payment.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-hitam-0/10 p-3 text-xs">
+                <div key={payment.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-ink/10 p-3 text-xs">
                   <div>
                     <PaymentStatusBadge status={payment.status} />
-                    <p className="mt-1 font-mono text-hitam-0/60">{payment.provider_reference}</p>
-                    <p className="text-hitam-0/45">{payment.method || payment.provider} · {formatDateTime(payment.created_at)}</p>
+                    <p className="mt-1 font-mono text-ink/60">{payment.provider_reference}</p>
+                    <p className="text-ink/45">{payment.method || payment.provider} · {formatDateTime(payment.created_at)}</p>
                   </div>
                   <div className="text-right">
                     <Money value={payment.amount} />
@@ -246,14 +246,14 @@ export default function AdminBookingDetailPage() {
                   </div>
                 </div>
               ))}
-              {!booking.payments?.length && <p className="text-sm text-hitam-0/45">Belum ada pembayaran.</p>}
+              {!booking.payments?.length && <p className="text-sm text-ink/45">Belum ada pembayaran.</p>}
             </div>
           </Card>
         </div>
 
         <aside className="space-y-4">
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Pemesan</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Pemesan</h2>
             <div className="mt-2">
               <FieldRow label="Nama">{booking.organizer_name}</FieldRow>
               <FieldRow label="WhatsApp">{booking.organizer_phone}</FieldRow>
@@ -265,10 +265,10 @@ export default function AdminBookingDetailPage() {
 
           {canManage && (
             <Card className="p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Ubah status</h2>
-              <p className="mt-1 text-xs text-hitam-0/50">Hanya transisi yang valid yang ditampilkan.</p>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Ubah status</h2>
+              <p className="mt-1 text-xs text-ink/50">Hanya transisi yang valid yang ditampilkan.</p>
               {nextStatuses.length === 0 ? (
-                <p className="mt-3 rounded-lg bg-[#f7f8f9] px-3 py-4 text-xs text-hitam-0/45">Tidak ada transisi tersedia untuk status ini.</p>
+                <p className="mt-3 rounded-lg bg-panel px-3 py-4 text-xs text-ink/45">Tidak ada transisi tersedia untuk status ini.</p>
               ) : (
                 <form onSubmit={updateStatus} className="mt-3 space-y-3">
                   <Field label="Status berikutnya" required>
@@ -288,7 +288,7 @@ export default function AdminBookingDetailPage() {
 
           {canManage && (
             <Card className="p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Catatan internal</h2>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Catatan internal</h2>
               <Textarea className="mt-3" rows={4} value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Hanya terlihat oleh staf." />
               <Button variant="outline" className="mt-2 w-full" onClick={saveNotes} loading={savingNotes}>
                 <Save className="h-4 w-4" /> Simpan catatan
@@ -298,8 +298,8 @@ export default function AdminBookingDetailPage() {
 
           {canManage && (
             <Card className="p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Pembayaran manual</h2>
-              <p className="mt-1 text-xs text-hitam-0/50">Nominal harus sama dengan total invoice.</p>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Pembayaran manual</h2>
+              <p className="mt-1 text-xs text-ink/50">Nominal harus sama dengan total invoice.</p>
               <form onSubmit={addManualPayment} className="mt-3 space-y-3">
                 <Field label="Nominal (IDR)" required>
                   <Input type="number" min="1" value={manual.amount} onChange={(event) => setManual({ ...manual, amount: event.target.value })} required />
@@ -316,7 +316,7 @@ export default function AdminBookingDetailPage() {
 
           {canManage && (
             <Card className="p-5">
-              <h2 className="font-tomorrow text-base font-bold text-hitam-0">Kirim ulang notifikasi</h2>
+              <h2 className="font-tomorrow text-base font-bold text-ink">Kirim ulang notifikasi</h2>
               <div className="mt-3 space-y-3">
                 <Select value={resendType} onChange={(event) => setResendType(event.target.value)}>
                   {notificationTypes.map((type) => <option key={type.value} value={type.value}>{type.label}</option>)}
@@ -329,7 +329,7 @@ export default function AdminBookingDetailPage() {
           )}
 
           <Card className="p-5">
-            <h2 className="font-tomorrow text-base font-bold text-hitam-0">Ringkasan</h2>
+            <h2 className="font-tomorrow text-base font-bold text-ink">Ringkasan</h2>
             <div className="mt-2">
               <FieldRow label="Status"><BookingStatusBadge status={booking.status} /></FieldRow>
               <FieldRow label="Subtotal">{formatCurrency(booking.subtotal)}</FieldRow>

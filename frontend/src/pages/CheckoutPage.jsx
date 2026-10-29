@@ -5,6 +5,7 @@ import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { Alert, Button, Card, Field, Input, Select, Spinner, Textarea } from '../components/ui/primitives';
 import { formatCurrency, formatDate, packageImage } from '../lib/format';
+import Seo from '../components/Seo';
 
 const emptyTraveler = (organizer = false) => ({
   name: '',
@@ -225,11 +226,12 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <Link to={`/packages/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-hitam-0/55 hover:text-biru-0">
+      <Seo title="Selesaikan Pemesanan" description="Isi data pemesan dan peserta, lalu buat pesanan trekking Rinjani. Harga dihitung ulang di server." noIndex={true} />
+      <Link to={`/packages/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/55 hover:text-biru-0">
         <ArrowLeft className="h-4 w-4" /> Kembali ke detail paket
       </Link>
-      <h1 className="mt-4 font-tomorrow text-3xl font-bold text-hitam-0">Selesaikan pemesanan</h1>
-      <p className="mt-1 text-sm text-hitam-0/55">Kuota akan ditahan sementara setelah pesanan dibuat. Selesaikan pembayaran sebelum batas waktu.</p>
+      <h1 className="mt-4 font-tomorrow text-3xl font-bold text-ink">Selesaikan pemesanan</h1>
+      <p className="mt-1 text-sm text-ink/55">Kuota akan ditahan sementara setelah pesanan dibuat. Selesaikan pembayaran sebelum batas waktu.</p>
 
       {submitError && <Alert tone="danger" title="Pemesanan gagal" className="mt-5">{submitError}</Alert>}
       {Object.keys(fieldErrors).length > 0 && (
@@ -245,25 +247,25 @@ export default function CheckoutPage() {
               <img src={packageImage(pkg)} alt={pkg.title} className="h-20 w-24 rounded-lg object-cover" />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-biru-0">Paket dipilih</p>
-                <h2 className="mt-1 font-tomorrow text-lg font-bold text-hitam-0">{pkg.title}</h2>
-                <p className="mt-1 text-sm text-hitam-0/55">
+                <h2 className="mt-1 font-tomorrow text-lg font-bold text-ink">{pkg.title}</h2>
+                <p className="mt-1 text-sm text-ink/55">
                   {formatDate(departure.start_date)} · {travelers} peserta · {departure.seats_left} kursi tersedia
                 </p>
               </div>
             </div>
-            <div className="mt-5 flex items-center justify-between rounded-lg bg-[#f4f5f7] p-3">
-              <span className="text-sm text-hitam-0/60">Jumlah peserta</span>
+            <div className="mt-5 flex items-center justify-between rounded-lg bg-panel p-3">
+              <span className="text-sm text-ink/60">Jumlah peserta</span>
               <div className="flex items-center gap-3">
-                <button type="button" onClick={() => changeTravelerCount(travelers - 1)} className="rounded-md border border-hitam-0/15 bg-white px-2.5 py-1 text-sm">−</button>
+                <button type="button" onClick={() => changeTravelerCount(travelers - 1)} className="rounded-md border border-ink/15 bg-surface px-2.5 py-1 text-sm">−</button>
                 <span className="w-8 text-center text-sm font-bold">{travelers}</span>
-                <button type="button" onClick={() => changeTravelerCount(travelers + 1)} className="rounded-md border border-hitam-0/15 bg-white px-2.5 py-1 text-sm">+</button>
+                <button type="button" onClick={() => changeTravelerCount(travelers + 1)} className="rounded-md border border-ink/15 bg-surface px-2.5 py-1 text-sm">+</button>
               </div>
             </div>
           </Card>
 
           <Card className="p-5 sm:p-6">
-            <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Data pemesan</h2>
-            <p className="mt-1 text-xs text-hitam-0/50">Kami akan mengirim invoice dan voucher ke kontak ini.</p>
+            <h2 className="font-tomorrow text-lg font-bold text-ink">Data pemesan</h2>
+            <p className="mt-1 text-xs text-ink/50">Kami akan mengirim invoice dan voucher ke kontak ini.</p>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <Field label="Nama lengkap" required error={fieldErrors.organizer_name}>
                 <Input value={organizer.name} onChange={(event) => setOrganizer({ ...organizer, name: event.target.value })} placeholder="Nama sesuai identitas" />
@@ -283,16 +285,16 @@ export default function CheckoutPage() {
           <Card className="p-5 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Data peserta</h2>
-                <p className="mt-1 text-xs text-hitam-0/50">Isi sesuai identitas. Data kesehatan hanya digunakan untuk keselamatan.</p>
+                <h2 className="font-tomorrow text-lg font-bold text-ink">Data peserta</h2>
+                <p className="mt-1 text-xs text-ink/50">Isi sesuai identitas. Data kesehatan hanya digunakan untuk keselamatan.</p>
               </div>
               <Users className="h-5 w-5 text-biru-0" />
             </div>
             <div className="mt-5 space-y-5">
               {travelerForms.map((traveler, index) => (
-                <div key={index} className="rounded-xl border border-hitam-0/10 p-4">
+                <div key={index} className="rounded-xl border border-ink/10 p-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <h3 className="text-sm font-bold text-hitam-0">Peserta {index + 1} {index === 0 && <span className="ml-1 rounded bg-biru-0/10 px-1.5 py-0.5 text-[10px] font-semibold text-biru-0">Pemesan</span>}</h3>
+                    <h3 className="text-sm font-bold text-ink">Peserta {index + 1} {index === 0 && <span className="ml-1 rounded bg-biru-0/10 px-1.5 py-0.5 text-[10px] font-semibold text-biru-0">Pemesan</span>}</h3>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <Field label="Nama lengkap" required error={fieldErrors[`traveler_${index}`]}>
@@ -325,12 +327,12 @@ export default function CheckoutPage() {
                       <Input value={traveler.health_note} onChange={(event) => updateTraveler(index, 'health_note', event.target.value)} placeholder="Alergi, kondisi khusus, obat rutin (opsional)" />
                     </Field>
                   </div>
-                  <label className="mt-3 flex items-start gap-2 text-xs text-hitam-0/65">
+                  <label className="mt-3 flex items-start gap-2 text-xs text-ink/65">
                     <input
                       type="checkbox"
                       checked={traveler.health_consent}
                       onChange={(event) => updateTraveler(index, 'health_consent', event.target.checked)}
-                      className="mt-0.5 h-4 w-4 rounded border-hitam-0/30 text-biru-0 focus:ring-biru-0"
+                      className="mt-0.5 h-4 w-4 rounded border-ink/30 text-biru-0 focus:ring-biru-0"
                     />
                     Saya menyetujui pengumpulan data kesehatan untuk keperluan keselamatan perjalanan.
                   </label>
@@ -342,28 +344,28 @@ export default function CheckoutPage() {
 
           {addons.length > 0 && (
             <Card className="p-5 sm:p-6">
-              <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Layanan tambahan</h2>
-              <p className="mt-1 text-xs text-hitam-0/50">Opsional. Harga akan dihitung ulang oleh server.</p>
+              <h2 className="font-tomorrow text-lg font-bold text-ink">Layanan tambahan</h2>
+              <p className="mt-1 text-xs text-ink/50">Opsional. Harga akan dihitung ulang oleh server.</p>
               <div className="mt-4 space-y-3">
                 {addons.map((addon) => {
                   const selected = Boolean(selectedAddons[addon.id]);
                   return (
-                    <div key={addon.id} className={`rounded-lg border p-3 transition ${selected ? 'border-biru-0 bg-biru-0/5' : 'border-hitam-0/10'}`}>
+                    <div key={addon.id} className={`rounded-lg border p-3 transition ${selected ? 'border-biru-0 bg-biru-0/5' : 'border-ink/10'}`}>
                       <label className="flex cursor-pointer items-start gap-3">
-                        <input type="checkbox" checked={selected} onChange={() => toggleAddon(addon)} className="mt-1 h-4 w-4 rounded border-hitam-0/30 text-biru-0 focus:ring-biru-0" />
+                        <input type="checkbox" checked={selected} onChange={() => toggleAddon(addon)} className="mt-1 h-4 w-4 rounded border-ink/30 text-biru-0 focus:ring-biru-0" />
                         <div className="flex-1">
                           <div className="flex items-start justify-between gap-3">
                             <div>
-                              <p className="text-sm font-semibold text-hitam-0">{addon.name}</p>
-                              <p className="mt-0.5 text-xs text-hitam-0/55">{addon.description}</p>
+                              <p className="text-sm font-semibold text-ink">{addon.name}</p>
+                              <p className="mt-0.5 text-xs text-ink/55">{addon.description}</p>
                             </div>
-                            <p className="whitespace-nowrap text-sm font-bold text-hitam-0">{formatCurrency(addon.price)}</p>
+                            <p className="whitespace-nowrap text-sm font-bold text-ink">{formatCurrency(addon.price)}</p>
                           </div>
-                          <p className="mt-1 text-[11px] text-hitam-0/45">{addon.pricing_type === 'per_person' ? 'per peserta' : 'per pesanan'}</p>
+                          <p className="mt-1 text-[11px] text-ink/45">{addon.pricing_type === 'per_person' ? 'per peserta' : 'per pesanan'}</p>
                         </div>
                       </label>
                       {selected && (
-                        <div className="mt-2 flex items-center justify-end gap-2 text-xs text-hitam-0/60">
+                        <div className="mt-2 flex items-center justify-end gap-2 text-xs text-ink/60">
                           <span>Jumlah</span>
                           <input
                             type="number"
@@ -371,7 +373,7 @@ export default function CheckoutPage() {
                             max={addon.pricing_type === 'per_person' ? travelers : 99}
                             value={selectedAddons[addon.id]}
                             onChange={(event) => setAddonQty(addon, event.target.value)}
-                            className="w-16 rounded border border-hitam-0/15 px-2 py-1 text-center"
+                            className="w-16 rounded border border-ink/15 px-2 py-1 text-center"
                           />
                         </div>
                       )}
@@ -383,12 +385,12 @@ export default function CheckoutPage() {
           )}
 
           <Card className="p-5 sm:p-6">
-            <label className="flex items-start gap-3 text-sm text-hitam-0/70">
+            <label className="flex items-start gap-3 text-sm text-ink/70">
               <input
                 type="checkbox"
                 checked={consent}
                 onChange={(event) => setConsent(event.target.checked)}
-                className="mt-0.5 h-4 w-4 rounded border-hitam-0/30 text-biru-0 focus:ring-biru-0"
+                className="mt-0.5 h-4 w-4 rounded border-ink/30 text-biru-0 focus:ring-biru-0"
               />
               <span>
                 Saya menyetujui <Link to="/terms" className="font-semibold text-biru-0 hover:underline">syarat & ketentuan</Link>, kebijakan pembatalan, dan pemrosesan data pribadi sesuai <Link to="/privacy" className="font-semibold text-biru-0 hover:underline">kebijakan privasi</Link>.
@@ -401,19 +403,19 @@ export default function CheckoutPage() {
         <aside>
           <div className="sticky top-24 space-y-4">
             <Card className="p-5">
-              <h2 className="font-tomorrow text-lg font-bold text-hitam-0">Ringkasan biaya</h2>
+              <h2 className="font-tomorrow text-lg font-bold text-ink">Ringkasan biaya</h2>
               {quoteLoading ? (
-                <div className="flex items-center gap-2 py-6 text-sm text-hitam-0/50"><Loader2 className="h-4 w-4 animate-spin" /> Menghitung...</div>
+                <div className="flex items-center gap-2 py-6 text-sm text-ink/50"><Loader2 className="h-4 w-4 animate-spin" /> Menghitung...</div>
               ) : quoteError ? (
                 <Alert tone="danger" className="mt-3">{quoteError}</Alert>
               ) : quote ? (
                 <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between text-hitam-0/60">
+                  <div className="flex justify-between text-ink/60">
                     <span>{formatCurrency(quote.price_per_person)} × {quote.travelers_count}</span>
                     <span>{formatCurrency(quote.subtotal)}</span>
                   </div>
                   {quote.addons?.map((addon) => (
-                    <div key={addon.id} className="flex justify-between text-hitam-0/60">
+                    <div key={addon.id} className="flex justify-between text-ink/60">
                       <span>{addon.name} × {addon.quantity}</span>
                       <span>{formatCurrency(addon.total)}</span>
                     </div>
@@ -425,26 +427,26 @@ export default function CheckoutPage() {
                     </div>
                   )}
                   {quote.tax > 0 && (
-                    <div className="flex justify-between text-hitam-0/60">
+                    <div className="flex justify-between text-ink/60">
                       <span>Pajak</span>
                       <span>{formatCurrency(quote.tax)}</span>
                     </div>
                   )}
-                  <div className="flex justify-between border-t border-hitam-0/10 pt-3 font-tomorrow text-lg font-bold text-hitam-0">
+                  <div className="flex justify-between border-t border-ink/10 pt-3 font-tomorrow text-lg font-bold text-ink">
                     <span>Total</span>
                     <span>{formatCurrency(quote.total)}</span>
                   </div>
                 </div>
               ) : null}
 
-              <div className="mt-4 border-t border-hitam-0/10 pt-4">
-                <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-hitam-0/70"><Tag className="h-3.5 w-3.5" /> Kode promo</label>
+              <div className="mt-4 border-t border-ink/10 pt-4">
+                <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-ink/70"><Tag className="h-3.5 w-3.5" /> Kode promo</label>
                 <div className="flex gap-2">
                   <Input value={coupon} onChange={(event) => setCoupon(event.target.value.toUpperCase())} placeholder="RINJANI10" className="uppercase" />
                   <Button type="button" variant="outline" onClick={applyCoupon}>Pakai</Button>
                 </div>
                 {appliedCoupon && (
-                  <button type="button" onClick={() => { setAppliedCoupon(''); setCoupon(''); }} className="mt-1.5 text-xs text-hitam-0/50 hover:text-red-600">
+                  <button type="button" onClick={() => { setAppliedCoupon(''); setCoupon(''); }} className="mt-1.5 text-xs text-ink/50 hover:text-red-600">
                     Hapus kode {appliedCoupon}
                   </button>
                 )}
@@ -453,12 +455,12 @@ export default function CheckoutPage() {
               <Button type="submit" size="lg" className="mt-5 w-full" loading={submitting} disabled={!quote || quoteLoading}>
                 Buat pesanan
               </Button>
-              <p className="mt-2 flex items-center justify-center gap-1.5 text-center text-[11px] text-hitam-0/45">
+              <p className="mt-2 flex items-center justify-center gap-1.5 text-center text-[11px] text-ink/45">
                 <ShieldCheck className="h-3.5 w-3.5" /> Harga dihitung ulang di server saat pesanan dibuat.
               </p>
             </Card>
-            <div className="rounded-xl border border-hitam-0/10 bg-white p-4 text-xs text-hitam-0/55">
-              <p className="flex items-center gap-1.5 font-semibold text-hitam-0"><Info className="h-3.5 w-3.5 text-biru-0" /> Setelah pesanan dibuat</p>
+            <div className="rounded-xl border border-ink/10 bg-surface p-4 text-xs text-ink/55">
+              <p className="flex items-center gap-1.5 font-semibold text-ink"><Info className="h-3.5 w-3.5 text-biru-0" /> Setelah pesanan dibuat</p>
               <p className="mt-1.5">Anda akan diarahkan ke halaman pembayaran. Kuota ditahan {quote?.hold_minutes || 30} menit.</p>
             </div>
           </div>

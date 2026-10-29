@@ -138,15 +138,15 @@ export default function AdminCouponsPage() {
       header: 'Kode',
       render: (row) => (
         <div>
-          <p className="font-mono text-sm font-bold text-hitam-0">{row.code}</p>
-          <p className="max-w-[220px] truncate text-[11px] text-hitam-0/45">{row.description || '-'}</p>
+          <p className="font-mono text-sm font-bold text-ink">{row.code}</p>
+          <p className="max-w-[220px] truncate text-[11px] text-ink/45">{row.description || '-'}</p>
         </div>
       ),
     },
-    { key: 'value', header: 'Nilai', render: (row) => <span className="text-sm font-semibold text-hitam-0">{row.type === 'percent' ? `${row.value}%` : formatRupiah(row.value)}</span> },
-    { key: 'min_spend', header: 'Min. belanja', render: (row) => <span className="text-xs text-hitam-0/60">{row.min_spend ? formatRupiah(row.min_spend) : '-'}</span> },
+    { key: 'value', header: 'Nilai', render: (row) => <span className="text-sm font-semibold text-ink">{row.type === 'percent' ? `${row.value}%` : formatRupiah(row.value)}</span> },
+    { key: 'min_spend', header: 'Min. belanja', render: (row) => <span className="text-xs text-ink/60">{row.min_spend ? formatRupiah(row.min_spend) : '-'}</span> },
     { key: 'usage', header: 'Pemakaian', render: (row) => <Badge tone="neutral">{row.used_count}{row.usage_limit ? ` / ${row.usage_limit}` : ''}</Badge> },
-    { key: 'period', header: 'Periode', render: (row) => <span className="text-xs text-hitam-0/55">{formatDate(row.starts_at)} – {formatDate(row.ends_at)}</span> },
+    { key: 'period', header: 'Periode', render: (row) => <span className="text-xs text-ink/55">{formatDate(row.starts_at)} – {formatDate(row.ends_at)}</span> },
     { key: 'active', header: 'Status', render: (row) => <Badge tone={row.active ? 'success' : 'neutral'}>{row.active ? 'Aktif' : 'Nonaktif'}</Badge> },
     {
       key: 'actions',
@@ -156,7 +156,7 @@ export default function AdminCouponsPage() {
       render: (row) =>
         canManage ? (
           <div className="flex justify-end gap-1.5">
-            <button onClick={() => openEdit(row)} className="rounded-lg border border-hitam-0/15 p-2 text-hitam-0/60 hover:text-biru-0" title="Edit"><Pencil className="h-3.5 w-3.5" /></button>
+            <button onClick={() => openEdit(row)} className="rounded-lg border border-ink/15 p-2 text-ink/60 hover:text-biru-0" title="Edit"><Pencil className="h-3.5 w-3.5" /></button>
             <button onClick={() => remove(row)} disabled={deleting === row.id} className="rounded-lg border border-red-200 p-2 text-red-600 hover:bg-red-50 disabled:opacity-40" title="Hapus"><Trash2 className="h-3.5 w-3.5" /></button>
           </div>
         ) : null,
@@ -185,7 +185,7 @@ export default function AdminCouponsPage() {
           }}
         >
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
             <Input value={search} onChange={(event) => setSearch(event.target.value.toUpperCase())} placeholder="Cari kode promo..." className="pl-9 uppercase" />
           </div>
           <Button type="submit">Cari</Button>
@@ -243,8 +243,8 @@ export default function AdminCouponsPage() {
           <Field label="Deskripsi" className="sm:col-span-2">
             <Textarea rows={2} value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} />
           </Field>
-          <label className="flex items-center gap-2 text-sm text-hitam-0/70 sm:col-span-2">
-            <input type="checkbox" checked={form.active} onChange={(event) => setForm({ ...form, active: event.target.checked })} className="h-4 w-4 rounded border-hitam-0/30 text-biru-0" />
+          <label className="flex items-center gap-2 text-sm text-ink/70 sm:col-span-2">
+            <input type="checkbox" checked={form.active} onChange={(event) => setForm({ ...form, active: event.target.checked })} className="h-4 w-4 rounded border-ink/30 text-biru-0" />
             Aktif dan dapat digunakan pelanggan
           </label>
         </form>

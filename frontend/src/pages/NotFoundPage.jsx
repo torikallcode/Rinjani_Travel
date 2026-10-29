@@ -1,17 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Compass, Home, PackageSearch } from 'lucide-react';
 import { Button } from '../components/ui/primitives';
+import Seo from '../components/Seo';
 
 export default function NotFoundPage() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4 py-16">
+      <Seo title="Halaman Tidak Ditemukan" description="Halaman yang Anda cari tidak ada di Rinjani Travel. Kembali ke beranda atau jelajahi paket wisata." noIndex={true} />
       <div className="max-w-lg text-center">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-biru-0/10 text-biru-0">
           <Compass className="h-8 w-8" />
         </span>
-        <p className="mt-6 font-tomorrow text-6xl font-bold text-hitam-0">404</p>
-        <h1 className="mt-2 font-tomorrow text-2xl font-bold text-hitam-0">Halaman tidak ditemukan</h1>
-        <p className="mt-3 text-sm leading-relaxed text-hitam-0/60">
+        <p className="mt-6 font-tomorrow text-6xl font-bold text-ink">404</p>
+        <h1 className="mt-2 font-tomorrow text-2xl font-bold text-ink">Halaman tidak ditemukan</h1>
+        <p className="mt-3 text-sm leading-relaxed text-ink/60">
           Sepertinya Anda tersesat di jalur yang tidak ada. Mari kembali ke jalur utama dan temukan perjalanan berikutnya.
         </p>
         <div className="mt-7 flex flex-col justify-center gap-2 sm:flex-row">

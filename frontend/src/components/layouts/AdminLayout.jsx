@@ -20,6 +20,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import ThemeToggle from '../ThemeToggle';
 
 const items = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
@@ -56,10 +57,10 @@ export default function AdminLayout() {
   const visibleItems = items.filter((item) => !item.superOnly || isSuperAdmin);
 
   return (
-    <div className="min-h-screen bg-[#f4f5f7] font-secondary text-hitam-0">
+    <div className="min-h-screen bg-canvas font-secondary text-ink">
       {open && (
         <button
-          className="fixed inset-0 z-40 bg-hitam-0/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-ink/50 lg:hidden"
           onClick={() => setOpen(false)}
           aria-label="Tutup menu"
         />
@@ -108,25 +109,26 @@ export default function AdminLayout() {
       </aside>
 
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-hitam-0/10 bg-white px-4 sm:px-6">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-ink/10 bg-surface px-4 sm:px-6">
           <div className="flex items-center gap-3">
-            <button onClick={() => setOpen(true)} className="rounded-lg p-2 text-hitam-0/60 hover:bg-hitam-0/5 lg:hidden">
+            <button onClick={() => setOpen(true)} className="rounded-lg p-2 text-ink/60 hover:bg-ink/5 lg:hidden">
               <Menu className="h-5 w-5" />
             </button>
             <div>
-              <p className="text-xs uppercase tracking-wider text-hitam-0/40">Panel Admin</p>
-              <p className="text-sm font-semibold text-hitam-0">Rinjani Travel</p>
+              <p className="text-xs uppercase tracking-wider text-ink/40">Panel Admin</p>
+              <p className="text-sm font-semibold text-ink">Rinjani Travel</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden text-right sm:block">
               <p className="text-sm font-semibold leading-tight">{user?.name}</p>
-              <p className="text-xs text-hitam-0/50">{roleLabel[user?.role] || user?.role}</p>
+              <p className="text-xs text-ink/50">{roleLabel[user?.role] || user?.role}</p>
             </div>
+            <ThemeToggle variant="surface" />
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-biru-0 text-sm font-bold text-white">
               {user?.name?.slice(0, 1).toUpperCase()}
             </span>
-            <button onClick={logout} className="rounded-lg p-2 text-hitam-0/50 hover:bg-hitam-0/5 hover:text-red-600" title="Keluar">
+            <button onClick={logout} className="rounded-lg p-2 text-ink/50 hover:bg-ink/5 hover:text-red-600" title="Keluar">
               <LogOut className="h-4 w-4" />
             </button>
           </div>

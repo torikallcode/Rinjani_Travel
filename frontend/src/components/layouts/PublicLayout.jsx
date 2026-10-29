@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X, UserRound, LogOut, LayoutDashboard, Phone, Mail, MapPin, Instagram } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import ThemeToggle from '../ThemeToggle';
 import api from '../../services/api';
 
 const navLinks = [
@@ -27,7 +28,7 @@ function Logo({ light = true }) {
       <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-biru-0 font-tomorrow text-sm font-bold text-biru-0 transition group-hover:bg-biru-0 group-hover:text-white">
         RT
       </span>
-      <span className={`font-tomorrow text-xl font-bold tracking-tight ${light ? 'text-white' : 'text-hitam-0'}`}>
+      <span className={`font-tomorrow text-xl font-bold tracking-tight ${light ? 'text-white' : 'text-ink'}`}>
         RINJANI<span className="text-biru-0">.</span>
       </span>
     </Link>
@@ -52,8 +53,15 @@ export default function PublicLayout() {
     `text-sm font-medium transition ${isActive ? 'text-biru-0' : 'text-white/80 hover:text-white'}`;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f7f7f5] font-secondary text-hitam-0">
+    <div className="flex min-h-screen flex-col bg-canvas font-secondary text-ink">
       <ScrollToTop />
+      {/* Skip to content link for keyboard navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-biru-0 focus:text-white focus:rounded-md focus:font-semibold"
+      >
+        Lompat ke konten utama
+      </a>
       <header className="sticky top-0 z-50 bg-hitam-0/95 shadow-lg backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Logo />
@@ -64,52 +72,55 @@ export default function PublicLayout() {
               </NavLink>
             ))}
           </nav>
-          <div className="hidden items-center gap-2 lg:flex">
-            {user ? (
-              <>
-                {isAdmin && (
+          <div className="flex items-center gap-1.5">
+            <ThemeToggle />
+            <div className="hidden items-center gap-2 lg:flex">
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
+                    >
+                      <LayoutDashboard className="h-4 w-4" /> Admin
+                    </Link>
+                  )}
                   <Link
-                    to="/admin"
-                    className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
+                    to="/account"
+                    className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10"
                   >
-                    <LayoutDashboard className="h-4 w-4" /> Admin
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-biru-0 text-xs font-bold text-white">
+                      {user.name?.slice(0, 1).toUpperCase()}
+                    </span>
+                    {user.name?.split(' ')[0]}
                   </Link>
-                )}
-                <Link
-                  to="/account"
-                  className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10"
-                >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-biru-0 text-xs font-bold text-white">
-                    {user.name?.slice(0, 1).toUpperCase()}
-                  </span>
-                  {user.name?.split(' ')[0]}
-                </Link>
-                <button
-                  onClick={logout}
-                  className="rounded-lg p-2 text-white/60 transition hover:bg-white/10 hover:text-white"
-                  title="Keluar"
-                >
-                  <LogOut className="h-4 w-4" />
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="rounded-lg px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10">
-                  Masuk
-                </Link>
-                <Link to="/register" className="rounded-lg bg-biru-0 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#009aa1]">
-                  Daftar
-                </Link>
-              </>
-            )}
+                  <button
+                    onClick={logout}
+                    className="rounded-lg p-2 text-white/60 transition hover:bg-white/10 hover:text-white"
+                    title="Keluar"
+                  >
+                    <LogOut className="h-4 w-4" />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="rounded-lg px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10">
+                    Masuk
+                  </Link>
+                  <Link to="/register" className="rounded-lg bg-biru-0 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#009aa1]">
+                    Daftar
+                  </Link>
+                </>
+              )}
+            </div>
+            <button
+              onClick={() => setOpen((value) => !value)}
+              className="rounded-lg p-2 text-white lg:hidden"
+              aria-label="Buka menu"
+            >
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-          <button
-            onClick={() => setOpen((value) => !value)}
-            className="rounded-lg p-2 text-white lg:hidden"
-            aria-label="Buka menu"
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
         {open && (
           <div className="border-t border-white/10 bg-hitam-0 px-4 pb-5 pt-3 lg:hidden">
@@ -157,7 +168,7 @@ export default function PublicLayout() {
         )}
       </header>
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1" tabIndex={-1}>
         <Outlet />
       </main>
 

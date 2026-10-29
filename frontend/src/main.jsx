@@ -4,9 +4,11 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicLayout from './components/layouts/PublicLayout';
 import AdminLayout from './components/layouts/AdminLayout';
+import { Spinner } from './components/ui/primitives';
 
 import HomePage from './pages/HomePage';
 import PackagesPage from './pages/PackagesPage';
@@ -33,21 +35,22 @@ import AccountSecurityPage from './pages/account/AccountSecurityPage';
 import AccountBookingsPage from './pages/account/AccountBookingsPage';
 import AccountBookingDetailPage from './pages/account/AccountBookingDetailPage';
 
-import AdminDashboardPage from './pages/admin/AdminDashboardPage';
-import AdminBookingsPage from './pages/admin/AdminBookingsPage';
-import AdminBookingDetailPage from './pages/admin/AdminBookingDetailPage';
-import AdminPaymentsPage from './pages/admin/AdminPaymentsPage';
-import AdminPackagesPage from './pages/admin/AdminPackagesPage';
-import AdminPackageFormPage from './pages/admin/AdminPackageFormPage';
-import AdminDeparturesPage from './pages/admin/AdminDeparturesPage';
-import AdminCustomersPage from './pages/admin/AdminCustomersPage';
-import AdminCouponsPage from './pages/admin/AdminCouponsPage';
-import AdminReviewsPage from './pages/admin/AdminReviewsPage';
-import AdminContentPage from './pages/admin/AdminContentPage';
-import AdminMessagesPage from './pages/admin/AdminMessagesPage';
-import AdminStaffPage from './pages/admin/AdminStaffPage';
-import AdminSettingsPage from './pages/admin/AdminSettingsPage';
-import AdminAuditLogsPage from './pages/admin/AdminAuditLogsPage';
+import { Suspense, lazy } from 'react';
+const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
+const AdminBookingsPage = lazy(() => import('./pages/admin/AdminBookingsPage'));
+const AdminBookingDetailPage = lazy(() => import('./pages/admin/AdminBookingDetailPage'));
+const AdminPaymentsPage = lazy(() => import('./pages/admin/AdminPaymentsPage'));
+const AdminPackagesPage = lazy(() => import('./pages/admin/AdminPackagesPage'));
+const AdminPackageFormPage = lazy(() => import('./pages/admin/AdminPackageFormPage'));
+const AdminDeparturesPage = lazy(() => import('./pages/admin/AdminDeparturesPage'));
+const AdminCustomersPage = lazy(() => import('./pages/admin/AdminCustomersPage'));
+const AdminCouponsPage = lazy(() => import('./pages/admin/AdminCouponsPage'));
+const AdminReviewsPage = lazy(() => import('./pages/admin/AdminReviewsPage'));
+const AdminContentPage = lazy(() => import('./pages/admin/AdminContentPage'));
+const AdminMessagesPage = lazy(() => import('./pages/admin/AdminMessagesPage'));
+const AdminStaffPage = lazy(() => import('./pages/admin/AdminStaffPage'));
+const AdminSettingsPage = lazy(() => import('./pages/admin/AdminSettingsPage'));
+const AdminAuditLogsPage = lazy(() => import('./pages/admin/AdminAuditLogsPage'));
 
 const router = createBrowserRouter([
   {
@@ -64,7 +67,9 @@ const router = createBrowserRouter([
     path: '/admin',
     element: (
       <ProtectedRoute admin>
-        <AdminLayout />
+        <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center"><Spinner className="animate-spin" /></div>}>
+          <AdminLayout />
+        </Suspense>
       </ProtectedRoute>
     ),
     children: [
@@ -152,8 +157,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 );

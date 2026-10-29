@@ -66,7 +66,7 @@ export default function AccountBookingsPage() {
             key={tab.value}
             onClick={() => setParam('status', tab.value)}
             className={`whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition ${
-              status === tab.value ? 'bg-hitam-0 text-white' : 'border border-hitam-0/10 bg-white text-hitam-0/60 hover:text-hitam-0'
+              status === tab.value ? 'bg-hitam-0 text-white' : 'border border-ink/10 bg-surface text-ink/60 hover:text-ink'
             }`}
           >
             {tab.label}
@@ -94,7 +94,7 @@ export default function AccountBookingsPage() {
               <Link
                 key={booking.id}
                 to={`/account/bookings/${booking.booking_code}`}
-                className="group flex flex-col gap-4 rounded-xl border border-hitam-0/10 bg-white p-4 shadow-sm transition hover:border-biru-0/40 hover:shadow-md sm:flex-row sm:items-center"
+                className="group flex flex-col gap-4 rounded-xl border border-ink/10 bg-surface p-4 shadow-sm transition hover:border-biru-0/40 hover:shadow-md sm:flex-row sm:items-center"
               >
                 <img
                   src={pkg ? packageImage(pkg) : '/img/mnt4.jpg'}
@@ -104,21 +104,21 @@ export default function AccountBookingsPage() {
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <Badge tone={meta.tone}>{meta.label}</Badge>
-                    <span className="text-xs font-mono text-hitam-0/45">{booking.booking_code}</span>
+                    <span className="text-xs font-mono text-ink/45">{booking.booking_code}</span>
                   </div>
-                  <h3 className="mt-1.5 truncate font-tomorrow text-base font-bold text-hitam-0 group-hover:text-biru-0">
+                  <h3 className="mt-1.5 truncate font-tomorrow text-base font-bold text-ink group-hover:text-biru-0">
                     {pkg?.title || 'Paket Rinjani Travel'}
                   </h3>
-                  <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-xs text-hitam-0/55">
+                  <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink/55">
                     {dep && <span className="inline-flex items-center gap-1"><CalendarDays className="h-3.5 w-3.5" /> {formatDate(dep.start_date)}</span>}
                     <span className="inline-flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {booking.number_of_travelers} peserta</span>
                     {pkg?.departure_point && <span className="inline-flex items-center gap-1"><MapPin className="h-3.5 w-3.5" /> {pkg.departure_point}</span>}
                   </div>
                 </div>
-                <div className="flex items-center justify-between gap-4 border-t border-hitam-0/10 pt-3 sm:block sm:border-0 sm:pt-0 sm:text-right">
+                <div className="flex items-center justify-between gap-4 border-t border-ink/10 pt-3 sm:block sm:border-0 sm:pt-0 sm:text-right">
                   <div>
-                    <p className="text-[11px] uppercase tracking-wide text-hitam-0/40">Total</p>
-                    <p className="font-tomorrow text-base font-bold text-hitam-0">{formatCurrency(booking.total)}</p>
+                    <p className="text-[11px] uppercase tracking-wide text-ink/40">Total</p>
+                    <p className="font-tomorrow text-base font-bold text-ink">{formatCurrency(booking.total)}</p>
                   </div>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-biru-0">
                     Detail <ArrowRight className="h-3.5 w-3.5" />

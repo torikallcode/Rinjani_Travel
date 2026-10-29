@@ -71,15 +71,15 @@ export default function AdminMessagesPage() {
       header: 'Pengirim',
       render: (row) => (
         <div>
-          <p className="text-sm font-semibold text-hitam-0">{row.name}</p>
-          <p className="text-[11px] text-hitam-0/45">{row.email}</p>
+          <p className="text-sm font-semibold text-ink">{row.name}</p>
+          <p className="text-[11px] text-ink/45">{row.email}</p>
         </div>
       ),
     },
-    { key: 'subject', header: 'Subjek', render: (row) => <span className="block max-w-xs truncate text-sm text-hitam-0">{row.subject || '(tanpa subjek)'}</span> },
-    { key: 'message', header: 'Pesan', render: (row) => <span className="line-clamp-2 max-w-md text-xs text-hitam-0/55">{row.message}</span> },
+    { key: 'subject', header: 'Subjek', render: (row) => <span className="block max-w-xs truncate text-sm text-ink">{row.subject || '(tanpa subjek)'}</span> },
+    { key: 'message', header: 'Pesan', render: (row) => <span className="line-clamp-2 max-w-md text-xs text-ink/55">{row.message}</span> },
     { key: 'status', header: 'Status', render: (row) => <Badge tone={statusTone[row.status] || 'neutral'}>{row.status}</Badge> },
-    { key: 'created_at', header: 'Diterima', render: (row) => <span className="text-xs text-hitam-0/50">{formatDateTime(row.created_at)}</span> },
+    { key: 'created_at', header: 'Diterima', render: (row) => <span className="text-xs text-ink/50">{formatDateTime(row.created_at)}</span> },
     {
       key: 'actions',
       header: '',
@@ -103,7 +103,7 @@ export default function AdminMessagesPage() {
       <Card className="mt-4 p-4">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-hitam-0/35" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/35" />
             <Input disabled placeholder="Gunakan filter status untuk mempersempit daftar." className="pl-9" />
           </div>
           <Select value={status} onChange={(event) => { setStatus(event.target.value); setPage(1); }} className="sm:w-48">
@@ -129,14 +129,14 @@ export default function AdminMessagesPage() {
       <Modal open={Boolean(selected)} onClose={() => setSelected(null)} title={selected?.subject || 'Pesan Masuk'} wide>
         {selected && (
           <div>
-            <div className="flex flex-wrap items-center gap-3 text-xs text-hitam-0/55">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-ink/55">
               <span className="inline-flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {selected.email}</span>
               {selected.phone && <span className="inline-flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {selected.phone}</span>}
               <span>{formatDateTime(selected.created_at)}</span>
               <Badge tone={statusTone[selected.status] || 'neutral'}>{selected.status}</Badge>
             </div>
-            <p className="mt-3 text-sm font-semibold text-hitam-0">{selected.name}</p>
-            <div className="mt-2 whitespace-pre-line rounded-lg bg-[#f7f8f9] p-4 text-sm leading-relaxed text-hitam-0/75">{selected.message}</div>
+            <p className="mt-3 text-sm font-semibold text-ink">{selected.name}</p>
+            <div className="mt-2 whitespace-pre-line rounded-lg bg-panel p-4 text-sm leading-relaxed text-ink/75">{selected.message}</div>
             <div className="mt-4 flex flex-wrap justify-end gap-2">
               <Button variant="ghost" onClick={() => setSelected(null)}>Tutup</Button>
               {selected.status !== 'replied' && (
